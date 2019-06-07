@@ -1,0 +1,27 @@
+{% extends "layout" %}
+{% set posts = craft.entries
+    .section('posts')
+    .relatedTo( entry )
+    .all() %}
+{% block content %}
+    <div class="grid">
+        <div class="s-col-12">
+            <h1 class="text-xxl">
+                <dms-engraved>{{ entry.title }}</dms-engraved>
+            </h1>
+            {% for asset in entry.thumbnail.all %}
+                {% set transitionId = "hero_#{ entry.id }_#{ entry.thumbnail.one.id }" %}
+                <div data-transition-id="hero_{{ entry.thumbnail.one.id }}">
+                    {% include 'components/image/image' with {
+                        asset: asset,
+                        attrs: { 'data-transition-id': transitionId }
+                    } only %}
+                </div>
+            {% endfor %}
+            <div class="text-xl">
+                <p><dms-engraved>Architecture is a profession that requires both artistic and practical skills.   We enjoy this connection as we see no division between the poetic potential of ideas, and a pragmatic approach to problem solving.</dms-engraved></p>
+                <p><dms-engraved>Collectively, we have experience in design and construction of individual houses, residential developments, schools, museums, hotels, transport interchanges and more unusual projects.  We are currently working on diverse projects across a range of scales and typologies.  One particular specialism is our ability to unlock difficult sites through negotiating planning, landscape, heritage and conservation issues.<dms-engraved></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

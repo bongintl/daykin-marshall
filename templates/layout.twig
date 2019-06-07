@@ -1,0 +1,35 @@
+{% set posts = posts ?? [] %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        {#{% if entry is defined %}#}
+        {#    {% set seo = entry.seo %}#}
+        {#    {% hook "seo" %}#}
+        {#{% else %}#}
+            <title>{{ siteName }}</title>
+        {#{% endif %}#}
+    	{#{% if globals.favicon16 | length %}<link rel="icon" href="{{ globals.favicon16.first.url }}" sizes="16x16">{% endif %}#}
+        {#{% if globals.favicon32 | length %}<link rel="icon" href="{{ globals.favicon32.first.url }}" sizes="32x32">{% endif %}#}
+        <link rel="stylesheet" href="{{ siteUrl }}build/style.css" type="text/css" />
+        <base href="{{ siteUrl }}"></base>
+    </head>
+    <body>
+        {% if block('livePreview') is defined %}
+            {{ block( 'livePreview' ) | raw }}
+        {% else %}
+            {%- set left = block('content') -%}
+            {%- set right_collapsed -%}
+                {%- include 'components/posts-collapsed/posts-collapsed' with { posts: posts } only -%}
+            {%- endset -%}
+            {%- set right_expanded -%}
+                {%- include 'components/posts-expanded/posts-expanded' with { posts: posts } only -%}
+            {%- endset -%}
+            {%- include 'components/panels/panels' with { left: left, right_collapsed: right_collapsed, right_expanded: right_expanded } only -%}
+        {% endif %}
+        <script type="text/javascript" src="{{ siteUrl }}build/main.js"></script>
+    </body>
+</html>

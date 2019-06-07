@@ -1,0 +1,12 @@
+<dms-panels>
+    {% include 'components/nav/nav' %}
+    <dms-panel class="bg-grey" id="{{ craft.app.request.pathInfo }}" side="left">
+        {{ left | raw }}
+    </dms-panel>
+    <dms-panel class="bg-grey" id="{{ craft.app.request.pathInfo }}" side="right" state="collapsed">
+        {{ right_collapsed | raw }}
+    </dms-panel>
+    <dms-panel class="bg-grey" id="{{ craft.app.request.pathInfo }}" side="right" state="expanded">
+        {{ right_expanded | raw }}
+    </dms-panel>
+</dms-panels>

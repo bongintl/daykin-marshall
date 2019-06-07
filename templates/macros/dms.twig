@@ -1,0 +1,9 @@
+{%- macro urls ( post ) -%}
+    {%- set urls = post.tags.options
+        | filter( tag => tag.selected )
+        | map( tag => siteUrl ~ tag.value )
+        | merge( post.building.all
+            | map( building => building.url ) )
+    -%}
+    {{ urls | join(',') }}
+{%- endmacro -%}

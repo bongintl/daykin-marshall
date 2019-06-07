@@ -1,0 +1,5 @@
+<div class="grid s-gap-bottom-5">
+    {% for post in posts %}
+        {% include 'components/post/post' with { post: post } only %}
+    {% endfor %}
+</div>

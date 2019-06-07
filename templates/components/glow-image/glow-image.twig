@@ -1,0 +1,65 @@
+{% import 'macros/macros' as m %}
+
+{% if asset %}
+    
+    {% set ratio = ratio ?? true %}
+    {% set glowing = glowing ?? false %}
+    {#{% set title = title ?? null %}#}
+    {% set title = null %}
+    {% set transitionId = transitionId ?? false %}
+    {% if ratio == true %}{% set ratio = asset.height / asset.width %}{% endif %}
+    {% set srcset = m.srcset( asset ) %}
+    {% set placeholder = asset.getUrl({ width: 2 }) %}
+    
+    {% set class = m.bem('glow-image', { glow: glowing, 'with-title': title } )%}
+    
+    <div
+        {% if ratio != false %}
+            class="{{ class }}"
+            style="padding-bottom: {{ ratio * 100 }}%"
+        {% else %}
+            class="{{ class }} cover"
+        {% endif %}
+    >
+        {% set width = 100 %}
+        {% set blur = 10 %}
+        {% set tinyImg = craft.imager.transformImage( asset, { width: width } ) %}
+        {% set extendedImg = craft.imager.transformImage( '/static/nothing.png', {
+            width: tinyImg.getWidth + blur * 2,
+            height: tinyImg.getHeight + blur * 2,
+            watermark: {
+                image: tinyImg,
+                width: tinyImg.getWidth,
+                height: tinyImg.getHeight,
+                position: { top: blur, left: blur },
+                opacity: 1,
+                blendMode: 'blend'
+            }
+        }) %}
+        {% set blurredImg = craft.imager.transformImage( extendedImg, {
+            effects: {
+                blur: blur / 2,
+                modulate: [ 100, 250, 100 ]
+            }
+        }) %}
+        {% if title %}
+            <div class="glow-image__title">
+                {{ title }}
+            </div>
+        {% endif %}
+        <img
+            class="glow-image__glow"
+            src="{{ blurredImg }}"
+        >
+        <img
+            is="lazy-img"
+            class="glow-image__image cover"
+            data-srcset="{{ srcset }}"
+            src="{{ placeholder }}"
+            {% if transitionId %}
+                data-transition-id="{{ transitionId }}"
+            {% endif %}
+        >
+    </div>
+    
+{% endif %}

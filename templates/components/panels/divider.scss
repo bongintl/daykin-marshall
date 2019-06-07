@@ -1,0 +1,25 @@
+dms-divider {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: calc( var(--bevel-size) * 2 );
+    margin-left: calc( var( --bevel-size ) * -1 );
+    background: green;
+    z-index: 200;
+    transition: transform .4s;
+    // background: linear-gradient( to right, transparent 0%, rgba( 0, 0, 0, .2 ) 50%, transparent 100% );
+    background: linear-gradient( to right, transparent 0%, rgba( 0, 0, 0, .2 ) 50%, rgba( 255, 255, 255, 1 ) 51%, transparent 100% );
+    &[offset=half] {
+        transform: translateX( 50vw );
+    }
+    &[offset=small] {
+        transform: translateX( calc( var( --width-small ) / 2 ) );
+        @include medium {
+            transform: translateX( var( --width-small ) );
+        }
+    }
+    &[offset=large] {
+        transform: translateX( var( --width-large ) );
+    }
+}

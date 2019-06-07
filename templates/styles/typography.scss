@@ -1,0 +1,26 @@
+:root {
+    --line-height: 1.25;
+    --line: calc( var( --line-height ) * 1rem );
+}
+
+html {
+    line-height: var( --line-height );
+    font-family: "Monument Grotesk", sans-serif;
+    color: var( --text-color );
+    -webkit-font-smoothing: antialiased;
+    @include medium {
+        font-size: 18px;
+    }
+}
+
+.text-xl {
+    font-size: 4rem;
+}
+
+.text-xxl {
+    font-size: 8rem;
+}
+
+p {
+    margin-bottom: calc( 1em * var( --line-height ) );
+}

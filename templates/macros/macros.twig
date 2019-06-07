@@ -1,0 +1,47 @@
+{%- macro cls( classes ) -%}
+    {%- set res = [] -%}
+    {%- for class, value in classes -%}
+        {%- if value -%}
+            {%- set res = res | merge([ class ]) -%}
+        {%- endif -%}
+    {%- endfor -%}
+    {{ res | join(' ') | raw }}
+{%- endmacro -%}
+
+{%- macro bem( be, ms ) -%}
+    {%- import _self as m -%}
+    {%- set classes = { ( be ): true } -%}
+    {%- for modifier, value in ms -%}
+        {%- set class = "#{ be }--#{ modifier }" -%}
+        {%- set classes = classes | merge({ ( class ): value }) -%}
+    {%- endfor -%}
+    {{ m.cls( classes ) }}
+{%- endmacro -%}
+
+{%- macro style( styles ) -%}
+    {%- set res = [] -%}
+    {%- for prop, value in styles -%}
+        {%- set res = res | merge([ "#{ prop }: #{ value }" ]) -%}
+    {%- endfor -%}
+    {{ res | join('; ') | raw }}
+{%- endmacro -%}
+
+{%- macro srcset( asset, ratio ) -%}
+    {%- set srcset = [] -%}
+    {%- for width in [ min( asset.width, 400 ), 600, 800, 1000, 1600 ] if width <= asset.width -%}
+        {%- set url = asset.getUrl({ width: width }) -%}
+        {%- set srcset = srcset | merge([ "#{ url } #{ width }w" ]) -%}
+    {%- endfor -%}
+    {{ srcset | join(', ') | raw }}
+{%- endmacro -%}
+
+{%- macro attrs( attrs ) -%}
+    {%- set res = [] -%}
+    {%- for attr, value in attrs -%}
+        {%- if value is not same as( false ) -%}
+            {%- set a = value is same as( true ) ? attr : "#{attr}=\"#{ value }\"" -%}
+            {%- set res = res | merge([ a ]) -%}
+        {%- endif -%}
+    {%- endfor -%}
+    {{ res | join(' ') | raw }}
+{%- endmacro -%}

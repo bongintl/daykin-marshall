@@ -1,0 +1,41 @@
+@mixin spacing ( $name, $property ) {
+    .#{ $name }-half {
+        #{ $property }: calc( var( --line ) * .5 );
+    }
+    @for $i from 0 through 6 {
+        .#{ $name }-#{ $i } {
+            #{ $property }: calc( var( --line ) * #{ $i } );
+        }
+    }
+}
+
+@mixin spacing-sides ( $name, $property ) {
+    @include spacing( $name, $property );
+    @include spacing( $name + '-x', $property + '-left' );
+    @include spacing( $name + '-x', $property + '-right' );
+    @include spacing( $name + '-y', $property + '-top' );
+    @include spacing( $name + '-y', $property + '-bottom' );
+    @include spacing( $name + '-top', $property + '-top' );
+    @include spacing( $name + '-bottom', $property + '-bottom' );
+    @include spacing( $name + '-left', $property + '-left' );
+    @include spacing( $name + '-right', $property + '-right' );
+}
+
+@include spacing-sides('s-pad', 'padding');
+@include spacing-sides('s-gap', 'margin');
+@include medium {
+    @include spacing-sides('m-pad', 'padding');
+    @include spacing-sides('m-gap', 'margin');
+}
+@include large {
+    @include spacing-sides('l-pad', 'padding');
+    @include spacing-sides('l-gap', 'margin');
+}
+@include xlarge {
+    @include spacing-sides('xl-pad', 'padding');
+    @include spacing-sides('xl-gap', 'margin');
+}
+@include xxlarge {
+    @include spacing-sides('xxl-pad', 'padding');
+    @include spacing-sides('xxl-gap', 'margin');
+}

@@ -1,0 +1,7 @@
+dms-transition-element {
+    position: fixed;
+    display: block;
+    // background: green;
+    transition: transform .4s;
+    transform-origin: 0 0;
+}

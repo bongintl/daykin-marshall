@@ -1,0 +1,39 @@
+{
+  "name": "environment",
+  "version": "1.0.0",
+  "description": "___        ______     ____ _                 _  ___           / \\ \\      / / ___|   / ___| | ___  _   _  __| |/ _ \\         / _ \\ \\ /\\ / /\\___ \\  | |   | |/ _ \\| | | |/ _` | (_) |       / ___ \\ V  V /  ___) | | |___| | (_) | |_| | (_| |\\__, |      /_/   \\_\\_/\\_/  |____/   \\____|_|\\___/ \\__,_|\\__,_|  /_/   -----------------------------------------------------------------",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch:js": "parcel watch templates/main.js -d web/build",
+    "build:js": "parcel templaes/main.js -d web/build",
+    "watch:sass": "npm run build:sass && onchange 'templates/**/*.scss' -- npm run build:sass",
+    "build:sass": "node-sass templates/style.scss --importer node_modules/node-sass-glob/index.js --output web/build",
+    "dev": "npm run watch:js & npm run watch:sass",
+    "build": "npm run build:js & npm run build:sass"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "breakjs": "^1.0.0",
+    "es6-map": "^0.1.5",
+    "es6-promisify": "^6.0.1",
+    "gr8": "^3.1.5",
+    "intersection-observer": "^0.7.0",
+    "lit-element": "^2.1.0",
+    "nanohtml": "^1.6.3",
+    "navigo": "^7.1.2",
+    "node-sass": "^4.12.0",
+    "node-sass-glob": "^1.0.4",
+    "onchange": "^6.0.0",
+    "opentype-layout": "^1.1.0",
+    "opentype.js": "^1.1.0",
+    "parcel-bundler": "^1.12.3",
+    "resize-observer-polyfill": "^1.5.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0"
+  }
+}

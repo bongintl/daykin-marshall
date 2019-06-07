@@ -1,0 +1,17 @@
+{% import 'macros/dms' as dms %}
+
+<div class="grid">
+    {% for post in posts %}
+        {% for asset in post.images.all %}
+            <div class="s-col-12 s-gap-bottom-1 m-gap-bottom-1">
+                <dms-hover url="{{ dms.urls( post ) }}">
+                    {% set transitionId = "post_#{ post.id }_#{ asset.id }" %}
+                    {% include 'components/glow-image/glow-image' with {
+                        asset: asset,
+                        attrs: { 'data-transition-id': transitionId }
+                    } %}
+                </dms-hover>
+            </div>
+        {% endfor %}
+    {% endfor %}
+</div>

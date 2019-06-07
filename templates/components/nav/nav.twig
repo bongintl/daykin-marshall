@@ -1,0 +1,14 @@
+<nav>
+    {% for text, url in {
+        "Daykin Marshall Studio": "/",
+        "People": "#{ siteUrl }people",
+        "Making": "#{ siteUrl }making",
+        "Buildings": "#{ siteUrl }buildings"
+    } %}
+        <dms-hover url="{{ url }}">
+            <a class="s-pad-half bg-grey" href="{{ url }}">
+                {{ text }}
+            </a>
+        </dms-hover>
+    {% endfor %}
+</nav>

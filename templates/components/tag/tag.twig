@@ -1,0 +1,5 @@
+{% set label = label ?? '' %}
+{% set url = url ?? '' %}
+<dms-hover url="{{ url }}">
+    <a class="tag" href="{{ url }}"><span class="tag__dot"></span>{{ label }}</a>
+</dms-hover>

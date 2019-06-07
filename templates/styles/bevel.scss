@@ -1,0 +1,90 @@
+:root {
+    --bevel-dark: rgba( 0, 0, 0, .3 );
+    --bevel-light: rgba( 255, 255, 255, 1 );
+    --bevel-size: 2px;
+    --shadow-color: rgba( 0, 0, 0, .1 );
+}
+
+@mixin _bevel ( $dx, $dy ) {
+    box-shadow:
+    
+        inset
+        calc( var( --bevel-size ) * #{ -.5 * $dx } )
+        calc( var( --bevel-size ) * #{ -.5 * $dy } )
+        var( --bevel-size )
+        var( --bevel-dark ),
+        
+        inset
+        calc( var( --bevel-size ) * #{ .5 * $dx } )
+        calc( var( --bevel-size ) * #{ .5 * $dy } )
+        var( --bevel-size )
+        var( --bevel-light );
+}
+
+// @keyframes bevel-rotate {
+//     0% {
+//         @include _bevel( 1, 1 );
+//     }
+//     25% {
+//         @include _bevel( 1, -1 );
+//     }
+//     50% {
+//         @include _bevel( -1, -1 );
+//     }
+//     75% {
+//         @include _bevel( -1, 1 );
+//     }
+//     100% {
+//         @include _bevel( 1, 1 );
+//     }
+// }
+
+@mixin bevel ( $d ) {
+    // animation: bevel-rotate 1s linear infinite;
+    // transition: box-shadow 1s;
+    // .light-left & {
+        @include _bevel( -1 * $d, 1 * $d );
+    // }
+    // .light-right & {
+    //     @include _bevel( 1, 1 * $d );
+    // }
+}
+
+@mixin bevel-button {
+    &:before, &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        transition: opacity .1s .1s;
+    }
+    &:before {
+        @include bevel( 1 );
+    }
+    &:after {
+        @include bevel( -1 );
+        opacity: 0;
+    }
+}
+
+@mixin bevel-button-pressed {
+    transition: opacity .1s;
+    &:before {
+        opacity: 0;
+    }
+    &:after {
+        opacity: 1;
+    }
+}
+
+.bevel-up {
+    @include bevel( 1 );
+}
+
+.bevel-down {
+    @include bevel( -1 );
+}

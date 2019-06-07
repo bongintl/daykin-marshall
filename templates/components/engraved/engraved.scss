@@ -1,0 +1,18 @@
+dms-engraved {
+    // color: var( --grey );
+    // text-shadow:
+    //     0 -1px 1px var( --bevel-dark ),
+    //     0 1px 1px var( --bevel-light );
+    // color: transparent;
+    display: block;
+    .word {
+        display: inline-block;
+        white-space: nowrap;
+    }
+    .space {
+        display: inline-block;
+    }
+    img {
+        display: inline-block;
+    }
+}

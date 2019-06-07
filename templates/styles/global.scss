@@ -1,0 +1,26 @@
+html, body {
+    width: 100vw;
+    min-height: 100%;
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    width: 100%;
+}
+
+.cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.db {
+    display: block;
+}

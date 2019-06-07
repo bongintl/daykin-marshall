@@ -1,0 +1,13 @@
+:root {
+    --grey: #E0DEDC;
+    --text-color: #8D8D8D;
+}
+
+html {
+    background-color: var( --grey );
+    color: var( --text-color );
+}
+
+.bg-grey {
+    background: var( --grey );
+}

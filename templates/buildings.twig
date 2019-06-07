@@ -1,0 +1,10 @@
+{% extends "layout" %}
+{% set posts = craft.entries
+    .section('posts')
+    .search("tags:buildings OR building:*")
+    .all() %}
+{% block content %}
+    {% include 'components/buildings/buildings' with {
+        buildings: craft.entries.section('buildings').all
+    } only %}
+{% endblock %}

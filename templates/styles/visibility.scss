@@ -1,0 +1,22 @@
+@mixin visibility ( $prefix ) {
+    .#{ $prefix }-hide {
+        display: none;
+    }
+    .#{ $prefix }-show {
+        display: initial;
+    }
+}
+
+@include visibility('s');
+@include medium {
+    @include visibility('m');
+}
+@include large {
+    @include visibility('l');
+}
+@include xlarge {
+    @include visibility('xl');
+}
+@include xxlarge {
+    @include visibility('xxl');
+}

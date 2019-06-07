@@ -1,0 +1,18 @@
+.tag {
+    white-space: nowrap;
+    margin-right: 1em;
+    &__dot {
+        display: inline-block;
+        width: .75em;
+        height: .75em;
+        margin-right: .5em;
+        @include bevel-button;
+        &:before, &:after {
+            border-radius: 50%;
+        }
+        dms-hover[matches-route] &,
+        dms-hover[matches-hover] & {
+            @include bevel-button-pressed;
+        }
+    }
+}

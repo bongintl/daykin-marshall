@@ -1,0 +1,16 @@
+{% extends "layout" %}
+{% set posts = craft.entries
+    .section('posts')
+    .search('tags:people')
+    .all() %}
+{% block content %}
+    <div class="grid">
+        <div class="s-col-12">
+            <div class="text-xl">
+                <dms-engraved>
+                    <p>Collectively, we have experience in design and construction of individual houses, residential developments, schools, museums, hotels, transport interchanges and more unusual projects.  We are currently working on diverse projects across a range of scales and typologies.  One particular specialism is our ability to unlock difficult sites through negotiating planning, landscape, heritage and conservation issues.</p>
+                </dms-engraved>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,52 @@
+dms-panel {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    transition: transform .4s, opacity .3s;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 12rem;
+    &[width=half] {
+        width: 50vw;
+    }
+    &[width=small] {
+        width: var( --width-small );
+    }
+    &[width=large] {
+        width: var( --width-large );
+    }
+    &[offset=half] {
+        transform: translateX( 50vw );
+    }
+    &[offset=small] {
+        transform: translateX( calc( var( --width-small ) / 2 ) );
+        @include medium {
+            transform: translateX( var( --width-small ) );
+        }
+    }
+    &[offset=large] {
+        transform: translateX( var( --width-large ) );
+    }
+    &[offset=off-left-half] {
+        transform: translateX( calc( -50vw + var( --width-small ) ) );
+    }
+    &[offset=off-left-large] {
+        transform: translateX( calc( var( --width-large ) * -1 + var( --width-small ) / 2 ) );
+        @include medium {
+            transform: translateX( calc( var( --width-large ) * -1 + var( --width-small ) ) );
+        }
+    }
+    &[hidden] {
+        opacity: 0;
+    }
+    &[inactive] {
+        cursor: pointer;
+        overflow-y: hidden;
+        & > * {
+            pointer-events: none;
+        }
+    }
+}

@@ -1,0 +1,12 @@
+dms-panels {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    --width-small: 5rem;
+    --width-large: calc( 100vw - var( --width-small ) / 2 );
+    @include medium {
+        --width-small: 10rem;
+        --width-large: calc( 100vw - var( --width-small ) );
+    }
+}

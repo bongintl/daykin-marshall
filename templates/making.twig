@@ -1,0 +1,14 @@
+{% extends "layout" %}
+{% set posts = craft.entries
+    .section('posts')
+    .search('tags:making')
+    .all() %}
+{% block content %}
+    <div class="grid">
+        <div class="s-col-12">
+            <div class="text-xl">
+                <p><dms-engraved>Traditionally architects were educated in a trade. The word ‘architect’ means master builder.  They were craftsmen skilled in making parts of a building who developed the skill of constructing a building as a whole.  In forested areas, such as Scandinavia and Japan, master carpenters were architects.  Where stone and clay were more readily accessible, from central to southern Europe and north Africa, master masons became architects.  The increasing complexity of modern construction has meant that one trade no longer takes precedence.</dms-engraved></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

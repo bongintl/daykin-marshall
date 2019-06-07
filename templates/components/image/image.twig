@@ -1,0 +1,19 @@
+{% import 'macros/macros' as m %}
+
+{% if asset %}
+    
+    {% set attrs = attrs ?? {} %}
+    {% set ratio = ratio ?? true %}
+    {% if ratio == true %}{% set ratio = asset.height / asset.width %}{% endif %}
+    {% set srcset = m.srcset( asset ) %}
+    {% set placeholder = asset.getUrl({ width: 2 }) %}
+    
+    {% if ratio != false %}
+        <div style="padding-bottom: {{ ratio * 100 }}%">
+            <img is="lazy-img" data-srcset="{{ srcset }}" src="{{ placeholder }}" class="cover" {{ m.attrs( attrs ) }}>
+        </div>
+    {% else %}
+        <img is="lazy-img" data-srcset="{{ srcset }}" src="{{ placeholder }}" {{ m.attrs( attrs ) }}>
+    {% endif %}
+    
+{% endif %}

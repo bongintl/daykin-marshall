@@ -1,0 +1,21 @@
+{% set posts = craft.entries
+    .section('posts')
+    .all() %}
+{% extends "layout" %}
+{% block content %}
+    <div class="grid">
+        {% for building in entry.selectedBuildings.all if building.thumbnail | length %}
+            <div  class="s-col-12 l-col-10 l-off-1 s-gap-bottom-1 l-gap-bottom-4">
+                <a href="{{ building.url }}">
+                    <dms-hover url="{{ building.url }}">
+                        {% set transitionId = "hero_#{ building.id }_#{ building.thumbnail.one.id }" %}
+                        {% include 'components/glow-image/glow-image' with {
+                            asset: building.thumbnail.one,
+                            title: building.title
+                        } only %}
+                    </dms-hover>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
