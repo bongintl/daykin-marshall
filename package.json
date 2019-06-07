@@ -10,7 +10,7 @@
     "watch:sass": "npm run build:sass && onchange 'templates/**/*.scss' -- npm run build:sass",
     "build:sass": "node-sass templates/style.scss --importer node_modules/node-sass-glob/index.js --output web/build",
     "dev": "npm run watch:js & npm run watch:sass",
-    "build": "npm run build:js & npm run build:sass"
+    "build": "npm run build:js && npm run build:sass"
   },
   "keywords": [],
   "author": "",
