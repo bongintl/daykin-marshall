@@ -5,6 +5,7 @@
 
 web/assets/
 web/build/
+web/cpresources/
 
 .c9
 .cache

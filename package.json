@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch:js": "parcel watch templates/main.js -d web/build",
-    "build:js": "parcel templaes/main.js -d web/build",
+    "watch:js": "NODE_ENV=development parcel watch templates/main.js -d web/build",
+    "build:js": "parcel build templates/main.js -d web/build",
     "watch:sass": "npm run build:sass && onchange 'templates/**/*.scss' -- npm run build:sass",
     "build:sass": "node-sass templates/style.scss --importer node_modules/node-sass-glob/index.js --output web/build",
     "dev": "npm run watch:js & npm run watch:sass",
@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/cli": "^7.4.4",
     "breakjs": "^1.0.0",
     "es6-map": "^0.1.5",
     "es6-promisify": "^6.0.1",
@@ -30,7 +31,9 @@
     "opentype-layout": "^1.1.0",
     "opentype.js": "^1.1.0",
     "parcel-bundler": "^1.12.3",
-    "resize-observer-polyfill": "^1.5.1"
+    "resize-observer-polyfill": "^1.5.1",
+    "utils": "^0.3.1",
+    "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

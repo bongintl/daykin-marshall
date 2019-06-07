@@ -155,4 +155,4 @@ class EngravedText extends HTMLElement {
     }
 }
 
-window.customElements.define( 'dms-engraved', EngravedText )
+// window.customElements.define( 'dms-engraved', EngravedText )

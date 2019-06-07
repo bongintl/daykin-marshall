@@ -1,10 +1,7 @@
 {
-   
-            "presets": [
-                [ "env", {
-                    "targets": {
-                        "browsers": ["last 1 Chrome version"]
-                    }
-                }]
-            ]
+    "presets": [
+        [ "env", { 
+            "targets": { "browsers": [">1%"] },
+        }]
+    ]
 }
