@@ -1,0 +1,25 @@
+<div class="process-item s-pad-bottom-4">
+    <div class="grid">
+        <div class="s-col-12 m-col-6 m-off-3">
+            <p class="nomargin">
+               {{ loop.index }}
+            </p>
+            <p>
+               {{ item.heading }}
+            <p>
+                {{ item.copy }}
+            </p>
+        </div>
+    </div>
+    
+    <div class="slider">
+        <div class="grid">
+            <div class="s-col-12 m-col-10 m-off-1">
+                {% for img in item.images %}
+                    {% include 'components/glow-image/glow-image' with { asset : img, alwaysGlow: true } %}
+                {% endfor %}
+            </div>
+        </div>
+        
+    </div>
+</div>

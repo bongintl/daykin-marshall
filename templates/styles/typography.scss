@@ -14,13 +14,18 @@ html {
 }
 
 .text-xl {
-    font-size: 4rem;
+    font-size: 3rem;
+    font-weight: bold;
 }
 
 .text-xxl {
-    font-size: 8rem;
+    font-size: 6rem;
 }
 
 p {
     margin-bottom: calc( 1em * var( --line-height ) );
+    text-indent: 2em;
+    &.nomargin {
+        margin-bottom: 0;
+    }
 }

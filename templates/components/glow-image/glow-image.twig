@@ -2,8 +2,10 @@
 
 {% if asset %}
     
+    
     {% set ratio = ratio ?? true %}
     {% set glowing = glowing ?? false %}
+    {% set alwaysGlow = alwaysGlow ?? false %}
     {#{% set title = title ?? null %}#}
     {% set title = null %}
     {% set transitionId = transitionId ?? false %}
@@ -11,7 +13,7 @@
     {% set srcset = m.srcset( asset ) %}
     {% set placeholder = asset.getUrl({ width: 2 }) %}
     
-    {% set class = m.bem('glow-image', { glow: glowing, 'with-title': title } )%}
+    {% set class = m.bem('glow-image', { glow: glowing, glowing: alwaysGlow,'with-title': title } )%}
     
     <div
         {% if ratio != false %}

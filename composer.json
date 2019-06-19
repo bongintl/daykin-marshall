@@ -2,7 +2,9 @@
   "require": {
     "aelvan/imager": "^2.1",
     "craftcms/cms": "^3.0.0",
+    "craftcms/redactor": "^2.3",
     "ether/seo": "^3.5",
+    "fortrabbit/craft-copy": "^1.0.0-RC5",
     "pinfirestudios/craft-twig-lambda": "@dev",
     "vlucas/phpdotenv": "^2.4.0"
   },
@@ -13,10 +15,7 @@
   },
   "config": {
     "sort-packages": true,
-    "optimize-autoloader": true,
-    "platform": {
-      "php": "7.0"
-    }
+    "optimize-autoloader": true
   },
   "scripts": {
     "post-root-package-install": [

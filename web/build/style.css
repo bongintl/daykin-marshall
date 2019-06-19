@@ -31,21 +31,21 @@ img {
   display: block; }
 
 @font-face {
-  src: url(/static/fonts/MonumentGroteskTrial-Medium.otf);
+  src: url(/static/fonts/MonumentGrotesk-Regular.otf);
   font-family: "Monument Grotesk"; }
 
 @font-face {
-  src: url(/static/fonts/MonumentGroteskTrial-MediumItalic.otf);
+  src: url(/static/fonts/MonumentGrotesk-Italic.otf);
   font-family: "Monument Grotesk";
   font-style: italic; }
 
 @font-face {
-  src: url(/static/fonts/MonumentGroteskTrial-Bold.otf);
+  src: url(/static/fonts/MonumentGrotesk-Medium.otf);
   font-family: "Monument Grotesk";
   font-weight: bold; }
 
 @font-face {
-  src: url(/static/fonts/MonumentGroteskTrial-BoldItalic.otf);
+  src: url(/static/fonts/MonumentGrotesk-MediumItalic.otf);
   font-family: "Monument Grotesk";
   font-weight: bold;
   font-style: italic; }
@@ -64,13 +64,17 @@ html {
       font-size: 18px; } }
 
 .text-xl {
-  font-size: 4rem; }
+  font-size: 3rem;
+  font-weight: bold; }
 
 .text-xxl {
-  font-size: 8rem; }
+  font-size: 6rem; }
 
 p {
-  margin-bottom: calc( 1em * var( --line-height )); }
+  margin-bottom: calc( 1em * var( --line-height ));
+  text-indent: 2em; }
+  p.nomargin {
+    margin-bottom: 0; }
 
 :root {
   --grey: #E0DEDC;

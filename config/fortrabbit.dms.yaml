@@ -1,0 +1,10 @@
+app: craft3-hmvy
+ssh_url: craft3-hmvy@deploy.eu2.frbit.com
+ssh_path: null
+git_remote: craft3-hmvy/master
+before:
+    code/up:
+        - 'echo  "Script example: " $(git rev-parse HEAD)'
+after:
+    code/down:
+        - 'php craft migrate/all'
