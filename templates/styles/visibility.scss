@@ -5,6 +5,9 @@
     .#{ $prefix }-show {
         display: initial;
     }
+    .#{ $prefix }-x {
+        display: flex;
+    }
 }
 
 @include visibility('s');

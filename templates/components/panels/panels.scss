@@ -4,7 +4,7 @@ dms-panels {
     left: 0;
     bottom: 0;
     --width-small: 5rem;
-    --width-large: calc( 100vw - var( --width-small ) / 2 );
+    --width-large: calc( 100vw - var( --line ) * 1.5 );
     @include medium {
         --width-small: 10rem;
         --width-large: calc( 100vw - var( --width-small ) );

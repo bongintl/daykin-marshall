@@ -1,0 +1,34 @@
+/* Slider */
+
+
+.slider {
+    --slider-margin: 2em;
+    @include medium {
+        --slider-margin: 8em;
+    }
+    &__button {
+        width: 1em;
+        height: 1em;
+        cursor: pointer;
+        z-index: 40;
+        @include bevel-button;
+        position: sticky;
+        top: calc( 50vh - .5em );
+        left: 50%;
+        // transform: translateY(-50%);
+        &:hover {
+            @include bevel-button-pressed;
+        }
+        &:before, &:after {
+            border-radius: 50%;
+        }
+    }
+}
+
+[slide] {
+    opacity: 0;
+    transition: opacity .5s;
+    &[active]{
+        opacity: 1;
+    }
+}

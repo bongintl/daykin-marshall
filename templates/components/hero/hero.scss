@@ -1,0 +1,35 @@
+dms-hero {
+    display: block;
+    padding-top: 50vh;
+    .hero__title-sticky {
+        position: sticky;
+        top: calc( 50vh );
+        height: 0;
+    }
+    .hero__title {
+        padding-left: var(--gutter);
+    }
+    // &__title {
+    //     z-index: 10;
+    //     position: sticky;
+    //     top: 0;
+    //     padding-top: 40vh;
+
+    //     @include medium {
+            
+    //     }
+    // }
+    // &__asset {
+    //     margin-top: -1.25em;
+    //     margin-bottom: 1.25em;
+    //     @include medium {
+    //         margin-top: -2em;
+    //         margin-bottom: 2em;
+    //     }
+    //     @include large {
+    //         margin-top: -3em;
+    //         margin-bottom: 3em;
+    //     }
+        
+    // }
+}

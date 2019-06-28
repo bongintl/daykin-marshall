@@ -1,0 +1,19 @@
+<div class="bevel-up s-pad-top-4">
+    {% for item in items %}
+        <div class="grid s-pad-bottom-4 m-pad-bottom-6">
+            <div class="s-col-12 m-col-7 text-l s-pad-bottom-2">
+                <p class="nomargin text-indent"><dms-engraved>{{ item.projectTitle }}</dms-engraved></p>
+                <p class="nomargin text-indent"><dms-engraved>{{ item.collaboratorName }}</dms-engraved></p>
+                
+                <div class="s-pad-top-1 nomargin text-indent">
+                    <dms-engraved>{{ item.quote }}</dms-engraved>
+                </div>
+            </div>
+            <div class="s-col-12 m-col-5">
+                {% set image = item.image.one %}
+                {% include 'components/image/image' with { asset : image } %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+

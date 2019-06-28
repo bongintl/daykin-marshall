@@ -1,0 +1,7 @@
+<div class="grid">
+    <div class="s-col-12 s-pad-bottom-1">
+        {% if video %}
+            {% include 'components/video/video' with { video: video } only %}
+        {% endif %}
+    </div>
+</div>

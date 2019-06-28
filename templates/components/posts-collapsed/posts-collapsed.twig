@@ -1,6 +1,8 @@
 {% import 'macros/dms' as dms %}
 
-<div class="grid">
+{% set padding = craft.app.request.url == '/' or craft.app.request.url == '/buildings' ? 's-pad-top-8' : 's-pad-top-50vh' %}
+
+<div class="grid {{ padding }}">
     {% for post in posts %}
         {% for asset in post.images.all %}
             <div class="s-col-12 s-gap-bottom-1 m-gap-bottom-1">

@@ -1,5 +1,8 @@
 :root {
-    --gutter: var( --line );
+    --gutter: calc( var( --line ) / 2 );
+    @include medium {
+        --gutter: var( --line );
+    }
     // --gutter: 14px;
     // @include medium {
     //     --gutter: 16px;

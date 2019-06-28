@@ -3,14 +3,26 @@
     .section('posts')
     .search('tags:people')
     .all() %}
+
+{% set bios = entry.bios.all %}
+{% set paras = entry.introduction.all %}
+{% set studioImages = entry.studioImages.all %}
+{% set bioImages = entry.bioImages.all %}
+{% set collaborators = entry.collaborators.all %}
+
 {% block content %}
-    <div class="grid">
-        <div class="s-col-12">
-            <div class="text-xl">
-                <dms-engraved>
-                    <p>Collectively, we have experience in design and construction of individual houses, residential developments, schools, museums, hotels, transport interchanges and more unusual projects.  We are currently working on diverse projects across a range of scales and typologies.  One particular specialism is our ability to unlock difficult sites through negotiating planning, landscape, heritage and conservation issues.</p>
-                </dms-engraved>
+    {% include 'components/introduction/introduction' with { paragraphs: paras} %}
+    {% include 'components/blocks/slider/slider' with { images: studioImages } %}
+    <div class="grid s-pad-top-4 s-pad-bottom-4">
+        {% for person in bios %}
+            <div class="s-col-12 m-col-5 text-indent">
+                <h3 class="nomargin">{{ person.bioName }}</h3>
+                <p class="line-break">{{ person.bioRole }}</p>
+                <div class="nomargin s-pad-bottom-2 m-pad-bottom-4">{{ person.bioDescription }}</div>
             </div>
-        </div>
+        {% endfor %}
     </div>
+    {% include 'components/blocks/slider/slider' with { images: bioImages } %}
+    {% include 'components/collaborators/collaborators' with { items: collaborators} %}
+    {% include 'components/footer/footer' %}
 {% endblock %}

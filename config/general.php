@@ -26,6 +26,8 @@ return [
         // Whether to save the project config out to config/project.yaml
         // (see https://docs.craftcms.com/v3/project-config.html)
         'useProjectConfigFile' => false,
+        
+        'maxUploadFileSize' => 100000000
     ],
 
     // Dev environment settings

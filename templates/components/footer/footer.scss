@@ -1,0 +1,13 @@
+.footer {
+    &__left {
+        padding-bottom: 1em;
+        @include medium {
+            padding-bottom: 0;
+        }
+    }
+    &__right {
+        @include medium {
+            text-align: right;
+        }
+    }
+}

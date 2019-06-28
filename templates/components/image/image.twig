@@ -4,13 +4,14 @@
     
     {% set attrs = attrs ?? {} %}
     {% set ratio = ratio ?? true %}
+    {% set fit = fit ?? 'cover' %}
     {% if ratio == true %}{% set ratio = asset.height / asset.width %}{% endif %}
     {% set srcset = m.srcset( asset ) %}
     {% set placeholder = asset.getUrl({ width: 2 }) %}
     
     {% if ratio != false %}
         <div style="padding-bottom: {{ ratio * 100 }}%">
-            <img is="lazy-img" data-srcset="{{ srcset }}" src="{{ placeholder }}" class="cover" {{ m.attrs( attrs ) }}>
+            <img is="lazy-img" data-srcset="{{ srcset }}" src="{{ placeholder }}" class="{{ fit }}" {{ m.attrs( attrs ) }}>
         </div>
     {% else %}
         <img is="lazy-img" data-srcset="{{ srcset }}" src="{{ placeholder }}" {{ m.attrs( attrs ) }}>

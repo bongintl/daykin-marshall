@@ -1,0 +1,9 @@
+<div class="grid bevel-up introduction s-pad-top-50vh s-gap-bottom-4 m-gap-bottom-6">
+    <div class="s-col-12">
+        <div class="text-xl s-pad-bottom-4">
+            {% for para in paragraphs %}
+                <p class="nomargin text-indent"><dms-engraved>{{ para.paragraph }}</dms-engraved></p>
+            {% endfor %}
+        </div>
+    </div>
+</div>

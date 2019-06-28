@@ -1,0 +1,36 @@
+{% set images = images ?? [] %}
+
+{% set ratio = max( images | map( img => img.height / img.width ) | merge([ 0 ]) ) %}
+
+<dms-slider class="grid s-gap-bottom-1">
+    {#<div class="s-hide l-x l-col-1 xac xjc">#}
+    {#    <div slider-prev class="slider__button xs0"></div>#}
+    {#</div>#}
+    <div class="s-col-11">
+        <div style="padding-bottom: {{ ratio * 100 }}%">
+            {% for img in images %}
+                {% include 'components/image/image' with {
+                    asset: img,
+                    ratio: false,
+                    attrs: { class: 'cover', slide: true }
+                } only %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="s-col-1 x xjc">
+        <div slider-next class="slider__button xs0"></div>
+    </div>
+    {#<dms-slider#}
+    {#    class="slider s-col-12 s-gap-top-2 m-gap-top-4 s-gap-bottom-2 m-gap-bottom-6"#}
+    {#    style="padding-bottom: {{ ratio * 100 }}%"#}
+    {#>#}
+    {#    {% for img in images %}#}
+    {#        {% include 'components/image/image' with {#}
+    {#            asset: img,#}
+    {#            ratio: false,#}
+    {#            attrs: { class: 'contain' }#}
+    {#        } only %}#}
+            {#<img class="contain" srcset="{{ srcset }}"/>#}
+    {#    {% endfor %}#}
+    {#</dms-slider>#}
+</dms-slider>

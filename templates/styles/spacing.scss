@@ -1,8 +1,11 @@
 @mixin spacing ( $name, $property ) {
+    .#{ $name }-50vh {
+        #{ $property }: 50vh;
+    }
     .#{ $name }-half {
         #{ $property }: calc( var( --line ) * .5 );
     }
-    @for $i from 0 through 6 {
+    @for $i from 0 through 8 {
         .#{ $name }-#{ $i } {
             #{ $property }: calc( var( --line ) * #{ $i } );
         }
@@ -39,3 +42,16 @@
     @include spacing-sides('xxl-pad', 'padding');
     @include spacing-sides('xxl-gap', 'margin');
 }
+
+// .nav-pad {
+//     padding-top: 8rem;
+//     @include medium {
+//             padding-top: 50vh;
+//     }
+//     &--half {
+//         padding-top: 8rem;
+//         @include medium {
+//             padding-top: 50vh;
+//         }
+//     }
+// }

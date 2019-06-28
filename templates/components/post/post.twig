@@ -1,32 +1,20 @@
 {% import 'macros/macros' as m %}
 {% import 'macros/dms' as dms %}
 
-<div class="s-col-12 m-col-8 s-gap-bottom-1">
-    
-    {% for asset in post.images.all %}
-        <div class="s-gap-bottom-1">
-            {% set image %}
-                {% set transitionId = "post_#{ post.id }_#{ asset.id }" %}
-                {% include 'components/image/image' with {
-                    asset: asset,
-                    ratio: false,
-                    attrs: { class: 'cover', 'data-transition-id': transitionId }
-                } %}
-            {% endset %}
-            {% if asset.width > asset.height %}
-                <div style="padding-bottom: {{ ( asset.height / asset.width ) * 100 }}%">
-                    {{ image }}
-                </div>
-            {% else %}
-                <div style="padding-bottom: 100%; width: {{ ( asset.width / asset.height ) * 100 }}%">
-                    {{ image }}
-                </div>
-            {% endif %}
+{% set images = post.images.all %}
+{% set maxWidth = max( images | map( asset => min( asset.width / asset.height, 1 ) ) ) %}
+<div class="s-gap-bottom-2 s-pad-left-half s-pad-right-half mono" style="width: {{ maxWidth * 100 }}%">
+    {% for asset in images %}
+        {% set transitionId = "post_#{ post.id }_#{ asset.id }" %}
+        {% set width = min( asset.width / asset.height, 1 ) / maxWidth %}
+        <div class="s-gap-bottom-1" style="width: {{ width * 100 }}%">
+            {% include 'components/image/image' with {
+                asset: asset,
+                attrs: { class: 'cover', 'data-transition-id': transitionId }
+            } only %}
         </div>
     {% endfor %}
-    
     <div class="s-gap-bottom-1">
-        
         {% for tag in post.tags.options
             | filter( tag => tag.selected )
             | map( tag => { url: siteUrl ~ tag.value, label: tag.label } )
@@ -35,11 +23,51 @@
         %}
             {% include 'components/tag/tag' with tag only %}
         {% endfor %}
-        
     </div>
-    
     <div class="s-gap-bottom-1">
         {{ post.body }}
-    </div>
-    
+    </div>  
 </div>
+
+{#<div class="s-col-12 m-col-8 s-gap-bottom-1 mono">#}
+    
+{#    {% for asset in post.images.all %}#}
+{#        <div class="s-gap-bottom-1">#}
+{#            {% set image %}#}
+{#                {% set transitionId = "post_#{ post.id }_#{ asset.id }" %}#}
+{#                {% include 'components/image/image' with {#}
+{#                    asset: asset,#}
+{#                    ratio: false,#}
+{#                    attrs: { class: 'cover', 'data-transition-id': transitionId }#}
+{#                } %}#}
+{#            {% endset %}#}
+{#            {% if asset.width > asset.height %}#}
+{#                <div style="padding-bottom: {{ ( asset.height / asset.width ) * 100 }}%">#}
+{#                    {{ image }}#}
+{#                </div>#}
+{#            {% else %}#}
+{#                <div style="padding-bottom: 100%; width: {{ ( asset.width / asset.height ) * 100 }}%">#}
+{#                    {{ image }}#}
+{#                </div>#}
+{#            {% endif %}#}
+{#        </div>#}
+{#    {% endfor %}#}
+    
+{#    <div class="s-gap-bottom-1">#}
+        
+{#        {% for tag in post.tags.options#}
+{#            | filter( tag => tag.selected )#}
+{#            | map( tag => { url: siteUrl ~ tag.value, label: tag.label } )#}
+{#            | merge( post.building.all#}
+{#                | map( building => { url: building.url, label: building.title } ) )#}
+{#        %}#}
+{#            {% include 'components/tag/tag' with tag only %}#}
+{#        {% endfor %}#}
+        
+{#    </div>#}
+    
+{#    <div class="s-gap-bottom-1">#}
+{#        {{ post.body }}#}
+{#    </div>#}
+    
+{#</div>#}

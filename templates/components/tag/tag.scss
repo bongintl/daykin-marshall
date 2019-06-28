@@ -10,6 +10,9 @@
         &:before, &:after {
             border-radius: 50%;
         }
+        &:hover {
+
+        }
         dms-hover[matches-route] &,
         dms-hover[matches-hover] & {
             @include bevel-button-pressed;

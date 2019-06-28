@@ -1,0 +1,29 @@
+<div class="footer grid s-pad-top-1 s-pad-bottom-1 mono nomargin bevel-up ">
+    <div class="footer__left s-col-12 m-col-6">
+        <p>
+            {% for text, url in {
+                "People": "#{ siteUrl }people",
+                "Making": "#{ siteUrl }making",
+                "Buildings": "#{ siteUrl }buildings",
+                "Daykin Marshall Studio": "/"
+            } %}
+                <a href="{{ url }}">{{ text }}</a><br>
+            {% endfor %}
+        </p>
+        
+        <p class="s-pad-top-1">
+            {% for item in footer.links.all %}
+                {% switch item.linkType %}
+                    {% case 'social' %}
+                        <a href="{{ item.linkUrl }}" target="_blank">{{ item.linkTitle }}</a><br>
+                    {% case 'telephone' %}
+                        <a href="tel:{{ item.linkUrl }}">{{ item.linkTitle }}</a><br>
+                    {% case 'email' %}
+                        <a href="mailto:{{ item.linkUrl }}">{{ item.linkTitle }}</a><br>
+                {% endswitch %}
+            {% endfor %}
+        </p>
+        
+    </div>
+
+</div>

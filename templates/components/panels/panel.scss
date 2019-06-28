@@ -8,7 +8,10 @@ dms-panel {
     overflow-x: hidden;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
-    padding-top: 12rem;
+    // padding-top: 8rem;
+    // @include medium {
+    //     padding-top: 12rem;
+    // }
     &[width=half] {
         width: 50vw;
     }

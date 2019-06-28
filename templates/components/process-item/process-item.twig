@@ -1,25 +1,19 @@
-<div class="process-item s-pad-bottom-4">
-    <div class="grid">
+{% set images = item.images.all() %}
+
+<div class="process-item s-pad-bottom-2 m-pad-bottom-6">
+    <div class="grid s-pad-bottom-1">
         <div class="s-col-12 m-col-6 m-off-3">
-            <p class="nomargin">
+            <p class="nomargin text-indent">
                {{ loop.index }}
             </p>
-            <p>
+            <p class="text-indent">
                {{ item.heading }}
-            <p>
-                {{ item.copy }}
             </p>
+            <div class="nomargin text-indent">
+                {{ item.copy }}
+            </div>
         </div>
     </div>
     
-    <div class="slider">
-        <div class="grid">
-            <div class="s-col-12 m-col-10 m-off-1">
-                {% for img in item.images %}
-                    {% include 'components/glow-image/glow-image' with { asset : img, alwaysGlow: true } %}
-                {% endfor %}
-            </div>
-        </div>
-        
-    </div>
+    {% include 'components/blocks/slider/slider' with { images: images } %}
 </div>

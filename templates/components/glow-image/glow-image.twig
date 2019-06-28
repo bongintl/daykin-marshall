@@ -2,25 +2,16 @@
 
 {% if asset %}
     
-    
     {% set ratio = ratio ?? true %}
-    {% set glowing = glowing ?? false %}
     {% set alwaysGlow = alwaysGlow ?? false %}
-    {#{% set title = title ?? null %}#}
-    {% set title = null %}
     {% set transitionId = transitionId ?? false %}
     {% if ratio == true %}{% set ratio = asset.height / asset.width %}{% endif %}
-    {% set srcset = m.srcset( asset ) %}
-    {% set placeholder = asset.getUrl({ width: 2 }) %}
-    
-    {% set class = m.bem('glow-image', { glow: glowing, glowing: alwaysGlow,'with-title': title } )%}
+    {% set attrs = attrs ?? {} %}
     
     <div
+        class="{{ m.bem( 'glow-image', { glowing: alwaysGlow } ) }}"
         {% if ratio != false %}
-            class="{{ class }}"
             style="padding-bottom: {{ ratio * 100 }}%"
-        {% else %}
-            class="{{ class }} cover"
         {% endif %}
     >
         {% set width = 100 %}
@@ -44,20 +35,12 @@
                 modulate: [ 100, 250, 100 ]
             }
         }) %}
-        {% if title %}
-            <div class="glow-image__title">
-                {{ title }}
-            </div>
-        {% endif %}
-        <img
-            class="glow-image__glow"
-            src="{{ blurredImg }}"
-        >
+        <img class="glow-image__glow" src="{{ blurredImg }}">
         <img
             is="lazy-img"
             class="glow-image__image cover"
-            data-srcset="{{ srcset }}"
-            src="{{ placeholder }}"
+            data-srcset="{{ m.srcset( asset ) }}"
+            src="{{ asset.getUrl({ width: 2 }) }}"
             {% if transitionId %}
                 data-transition-id="{{ transitionId }}"
             {% endif %}

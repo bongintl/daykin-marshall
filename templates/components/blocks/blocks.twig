@@ -1,0 +1,29 @@
+{% for block in blocks.all %}
+    {% set template = "components/blocks/#{ block.type }/#{ block.type }" %}
+    {% switch block.type %}
+        {% case 'text' %}
+            {% include template with {
+                heading: block.heading,
+                copy: block.copy
+            } only %}
+        {% case 'engravedText' %}
+            {% include template with {
+                copy: block.copy
+            } only %}
+        {% case 'image' %}
+            {% include template with {
+                image: block.file.one(),
+                size: block.size
+            } only %}
+        {% case 'video' %}
+            {% include template with {
+                video: block.file.one()
+            } only %}
+        {% case 'slider' %}
+            {% include template with {
+                images: block.images.all()
+            } only %}
+        {% default %}
+            you fool: {{ block.type }}
+    {% endswitch %}
+{% endfor %}

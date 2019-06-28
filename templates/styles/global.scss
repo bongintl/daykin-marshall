@@ -8,17 +8,29 @@ a {
     text-decoration: none;
 }
 
-img {
+img, video {
     width: 100%;
+    display: block;
 }
 
-.cover {
+.fill, .cover, .contain {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+.cover, .contain {
+    object-position: center center;
+}
+
+.cover {
     object-fit: cover;
+}
+
+.contain {
+    object-fit: contain;
 }
 
 .db {

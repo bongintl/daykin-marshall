@@ -3,20 +3,19 @@
     .section('posts')
     .search('tags:making')
     .all() %}
+    
+{% set paras = entry.introduction.all %}
+
+
 {% block content %}
-    <div class="grid">
-        <div class="s-col-12">
-            <div class="text-xl s-pad-bottom-4">
-                {% for para in entry.introduction %}
-                    <p class="nomargin"><dms-engraved>{{ para.paragraph }}</dms-engraved></p>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
+    {% include 'components/introduction/introduction' with { paragraphs: paras} %}
     
-    {% for item in entry.process %}
+    {% set items = entry.process.all() %}
+        {% for item in items %}
+            
+            {% include 'components/process-item/process-item' %}
         
-        {% include 'components/process-item/process-item' %}
-    
-    {% endfor %}
+        {% endfor %}
+    {% include 'components/footer/footer' %}
+
 {% endblock %}

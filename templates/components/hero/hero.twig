@@ -1,0 +1,21 @@
+{% set title = title ?? '' %}
+{% set image = image ?? null %}
+{% set video = video ?? null %}
+
+<dms-hero class="s-gap-bottom-1 m-gap-bottom-2">
+    <div class="s-col-12">
+        <div class="s-gap-bottom-1 m-gap-bottom-2">
+            {% if video %}
+                {% include 'components/video/video' with { video: video } only %}
+            {% elseif image %}
+                {% include 'components/image/image' with { asset: image } only %}
+            {% endif %}
+        </div>
+        <div hero-spacer></div>
+        <div class="fill">
+            <div class="hero__title-sticky x xac">
+                <dms-engraved hero-text class="hero__title xx text-xxl lh1">{{ title }}</dms-engraved>
+            </div>
+        </div>
+    </div>
+</dms-hero>

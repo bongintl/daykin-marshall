@@ -17,11 +17,20 @@ var getPanels = el => {
     var [ left, rightCollapsed, rightExpanded ] = el.querySelectorAll( 'dms-panel' );
     return { left, rightCollapsed, rightExpanded }
 }
+var getError = doc => {
+    var left = document.createElement('dms-panel');
+    return {
+        left,
+        rightCollapsed: document.createElement('dms-panel'),
+        rightExpanded: document.createElement('dms-panel')
+    }
+}
 var loadPanels = async url => {
-    var res = await fetch( url )
+    var res = await fetch( url );
     var html = await res.text();
+    console.log(res);
     var doc = parser.parseFromString( html, 'text/html' );
-    return getPanels( doc );
+    return res.status === 200 ? getPanels( doc ) : getError( doc );
 }
 
 class Panels extends HTMLElement {

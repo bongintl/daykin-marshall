@@ -10,8 +10,9 @@ nav {
     flex-wrap: wrap;
     width: 100%;
     text-align: center;
-    box-shadow: -30px 30px 30px var( --shadow-color );
+    box-shadow: 0px 30px 30px var( --shadow-color );
     z-index: 1000;
+    font-size: 20px;
     @include medium {
         top: var( --line );
         max-width: var( --nav-width );
