@@ -16,7 +16,7 @@ html {
 .mono {
     font-family: "Monument Grotesk Mono", monospace;
     font-size: 0.8em;
-    line-height: calc(var( --line-height ) * 1.25);
+    // line-height: calc(var( --line-height ) * 1.25);
     &--s {
         font-size: 0.8em;
     }
@@ -34,10 +34,22 @@ html {
     span {
         text-indent: 0;
     }
+    &--not-first {
+        p:first-of-type {
+            text-indent: 0;
+        }
+    }
 }
 
 .text-center {
     text-align: center;    
+}
+
+.text-m {
+    font-size: 1.25rem;
+    @include medium {
+        font-size: 1.5rem;
+    }
 }
 
 .text-l {
@@ -58,7 +70,7 @@ html {
 }
 
 .text-xxl {
-    font-size: 2.5rem;
+    font-size: 3rem;
     line-height: 1;
     @include medium {
         font-size: 6rem;

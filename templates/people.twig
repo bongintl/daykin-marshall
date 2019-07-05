@@ -13,15 +13,7 @@
 {% block content %}
     {% include 'components/introduction/introduction' with { paragraphs: paras} %}
     {% include 'components/blocks/slider/slider' with { images: studioImages } %}
-    <div class="grid s-pad-top-4 s-pad-bottom-4">
-        {% for person in bios %}
-            <div class="s-col-12 m-col-5 text-indent">
-                <h3 class="nomargin">{{ person.bioName }}</h3>
-                <p class="line-break">{{ person.bioRole }}</p>
-                <div class="nomargin s-pad-bottom-2 m-pad-bottom-4">{{ person.bioDescription }}</div>
-            </div>
-        {% endfor %}
-    </div>
+    {% include 'components/bios/bios' with { bios: bios } %}
     {% include 'components/blocks/slider/slider' with { images: bioImages } %}
     {% include 'components/collaborators/collaborators' with { items: collaborators} %}
     {% include 'components/footer/footer' %}

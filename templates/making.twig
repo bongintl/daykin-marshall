@@ -3,19 +3,11 @@
     .section('posts')
     .search('tags:making')
     .all() %}
-    
-{% set paras = entry.introduction.all %}
-
 
 {% block content %}
-    {% include 'components/introduction/introduction' with { paragraphs: paras} %}
-    
-    {% set items = entry.process.all() %}
-        {% for item in items %}
-            
-            {% include 'components/process-item/process-item' %}
-        
-        {% endfor %}
+    {% include 'components/introduction/introduction' with { paragraphs: entry.introduction.all } only %}
+    {% for item in entry.process.all %}
+        {% include 'components/process-item/process-item' %}
+    {% endfor %}
     {% include 'components/footer/footer' %}
-
 {% endblock %}

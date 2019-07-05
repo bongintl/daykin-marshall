@@ -3,18 +3,18 @@
 
 {% set images = post.images.all %}
 {% set maxWidth = max( images | map( asset => min( asset.width / asset.height, 1 ) ) ) %}
-<div class="s-gap-bottom-2 s-pad-left-half s-pad-right-half mono" style="width: {{ maxWidth * 100 }}%">
+<div class="s-gap-bottom-2 mono" style="width: {{ maxWidth * 100 }}%">
     {% for asset in images %}
         {% set transitionId = "post_#{ post.id }_#{ asset.id }" %}
         {% set width = min( asset.width / asset.height, 1 ) / maxWidth %}
-        <div class="s-gap-bottom-1" style="width: {{ width * 100 }}%">
+        <div class="s-gap-bottom-half" style="width: {{ width * 100 }}%">
             {% include 'components/image/image' with {
                 asset: asset,
                 attrs: { class: 'cover', 'data-transition-id': transitionId }
             } only %}
         </div>
     {% endfor %}
-    <div class="s-gap-bottom-1">
+    <div class="s-gap-bottom-half x xw">
         {% for tag in post.tags.options
             | filter( tag => tag.selected )
             | map( tag => { url: siteUrl ~ tag.value, label: tag.label } )
@@ -24,7 +24,7 @@
             {% include 'components/tag/tag' with tag only %}
         {% endfor %}
     </div>
-    <div class="s-gap-bottom-1">
+    <div class="s-gap-bottom-half">
         {{ post.body }}
     </div>  
 </div>

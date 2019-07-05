@@ -1,13 +1,13 @@
-@mixin spacing ( $name, $property ) {
+@mixin spacing ( $name, $property, $unit: var( --line ) ) {
     .#{ $name }-50vh {
         #{ $property }: 50vh;
     }
     .#{ $name }-half {
-        #{ $property }: calc( var( --line ) * .5 );
+        #{ $property }: calc( #{ $unit } * .5 );
     }
     @for $i from 0 through 8 {
         .#{ $name }-#{ $i } {
-            #{ $property }: calc( var( --line ) * #{ $i } );
+            #{ $property }: calc( #{ $unit } * #{ $i } );
         }
     }
 }
@@ -42,6 +42,9 @@
     @include spacing-sides('xxl-pad', 'padding');
     @include spacing-sides('xxl-gap', 'margin');
 }
+
+
+
 
 // .nav-pad {
 //     padding-top: 8rem;

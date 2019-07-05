@@ -17,6 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "@babel/cli": "^7.4.4",
+    "@glidejs/glide": "^3.3.0",
     "breakjs": "^1.0.0",
     "es6-map": "^0.1.5",
     "es6-promisify": "^6.0.1",
@@ -32,6 +33,7 @@
     "opentype-layout": "^1.1.0",
     "opentype.js": "^1.1.0",
     "parcel-bundler": "^1.12.3",
+    "rebound": "^0.1.0",
     "resize-observer-polyfill": "^1.5.1",
     "slick-carousel": "^1.8.1",
     "utils": "^0.3.1",

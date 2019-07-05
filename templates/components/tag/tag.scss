@@ -1,8 +1,9 @@
 .tag {
     white-space: nowrap;
     margin-right: 1em;
+    display: flex;
     &__dot {
-        display: inline-block;
+        // display: inline-block;
         width: .75em;
         height: .75em;
         margin-right: .5em;

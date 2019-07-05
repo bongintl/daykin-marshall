@@ -1,8 +1,8 @@
 {% set images = item.images.all() %}
 
-<div class="process-item s-pad-bottom-2 m-pad-bottom-6">
+<div class="process-item s-pad-top-4{% if not loop.last %} s-pad-bottom-4{% endif %}">
     <div class="grid s-pad-bottom-1">
-        <div class="s-col-12 m-col-6 m-off-3">
+        <div class="s-col-12 m-col-10 m-off-1 l-col-8 l-off-2 xl-col-6 xl-off-3">
             <p class="nomargin text-indent">
                {{ loop.index }}
             </p>
@@ -14,6 +14,5 @@
             </div>
         </div>
     </div>
-    
     {% include 'components/blocks/slider/slider' with { images: images } %}
 </div>

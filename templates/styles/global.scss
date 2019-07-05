@@ -36,3 +36,7 @@ img, video {
 .db {
     display: block;
 }
+
+.no-pointer {
+    pointer-events: none;
+}

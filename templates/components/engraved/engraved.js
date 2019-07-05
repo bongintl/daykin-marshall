@@ -4,7 +4,7 @@ import { promisify } from 'es6-promisify';
 import resizeObserver from '~/utils/resizeObserver';
 import loadImage from '~/utils/loadImage';
 
-var fontURL = '/static/fonts/MonumentGroteskTrial-Medium.otf';
+var fontURL = '/static/fonts/MonumentGrotesk-Medium.otf';
 var loadFont = promisify( opentype.load );
 var font;
 

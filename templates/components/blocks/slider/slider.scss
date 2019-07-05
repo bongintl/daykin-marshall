@@ -1,22 +1,20 @@
-/* Slider */
-
-
 .slider {
-    --slider-margin: 2em;
-    @include medium {
-        --slider-margin: 8em;
+    &__next {
+        cursor: pointer;
+    }
+    &__button-track {
+        padding: calc( 50% - .5em ) 0;
     }
     &__button {
         width: 1em;
         height: 1em;
         cursor: pointer;
         z-index: 40;
-        @include bevel-button;
+        @include bevel-button( -1 );
         position: sticky;
         top: calc( 50vh - .5em );
         left: 50%;
-        // transform: translateY(-50%);
-        &:hover {
+        [slider-next]:hover & {
             @include bevel-button-pressed;
         }
         &:before, &:after {
@@ -25,10 +23,21 @@
     }
 }
 
-[slide] {
-    opacity: 0;
-    transition: opacity .5s;
-    &[active]{
-        opacity: 1;
-    }
+[slides] {
+    transition: transform .8s;
 }
+
+[slider-next] {
+    cursor: pointer;
+}
+
+// [slide] {
+//     img {
+//         opacity: 0;
+//         transition: opacity 0s .4s;
+//     }
+//     &[active] img {
+//         opacity: 1;
+//         transition: opacity .4s .4s;
+//     }
+// }

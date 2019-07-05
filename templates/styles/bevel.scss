@@ -21,36 +21,11 @@
         var( --bevel-light );
 }
 
-// @keyframes bevel-rotate {
-//     0% {
-//         @include _bevel( 1, 1 );
-//     }
-//     25% {
-//         @include _bevel( 1, -1 );
-//     }
-//     50% {
-//         @include _bevel( -1, -1 );
-//     }
-//     75% {
-//         @include _bevel( -1, 1 );
-//     }
-//     100% {
-//         @include _bevel( 1, 1 );
-//     }
-// }
-
 @mixin bevel ( $d ) {
-    // animation: bevel-rotate 1s linear infinite;
-    // transition: box-shadow 1s;
-    // .light-left & {
-        @include _bevel( -1 * $d, 1 * $d );
-    // }
-    // .light-right & {
-    //     @include _bevel( 1, 1 * $d );
-    // }
+    @include _bevel( -1 * $d, 1 * $d );
 }
 
-@mixin bevel-button {
+@mixin bevel-button ( $d: 1 ) {
     &:before, &:after {
         content: '';
         display: block;
@@ -63,10 +38,10 @@
         transition: opacity .1s .1s;
     }
     &:before {
-        @include bevel( 1 );
+        @include bevel( 1 * $d );
     }
     &:after {
-        @include bevel( -1 );
+        @include bevel( -1 * $d );
         opacity: 0;
     }
 }
@@ -87,4 +62,11 @@
 
 .bevel-down {
     @include bevel( -1 );
+}
+
+.bevel-button {
+    @include bevel-button;
+    &:hover {
+        @include bevel-button-pressed
+    }
 }

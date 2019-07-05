@@ -1,0 +1,9 @@
+<div class="grid s-pad-top-4 s-pad-bottom-4">
+    {% for person in bios %}
+        <div class="s-col-12 m-col-5 text-indent">
+            <h3 class="nomargin">{{ person.bioName }}</h3>
+            <p class="line-break">{{ person.bioRole }}</p>
+            <div class="nomargin s-pad-bottom-2 m-pad-bottom-4">{{ person.bioDescription }}</div>
+        </div>
+    {% endfor %}
+</div>
