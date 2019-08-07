@@ -13,13 +13,18 @@ html {
     }
 }
 
+
+.sans {
+    font-family: "Monument Grotesk", sans-serif;
+}
+
 .mono {
     font-family: "Monument Grotesk Mono", monospace;
-    font-size: 0.8em;
-    // line-height: calc(var( --line-height ) * 1.25);
-    &--s {
-        font-size: 0.8em;
-    }
+    line-height: calc(var( --line-height ) * 1.1);
+    
+    // &--s {
+    //     font-size: 0.8em;
+    // }
 }
 
 .line-break {
@@ -43,6 +48,11 @@ html {
 
 .text-center {
     text-align: center;    
+}
+
+.text-s {
+    font-size: 0.85rem;   
+
 }
 
 .text-m {

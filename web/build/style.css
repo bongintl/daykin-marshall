@@ -10,8 +10,7 @@
 
 html, body {
   width: 100vw;
-  min-height: 100%;
-  overflow: hidden; }
+  min-height: 100%; }
 
 a {
   text-decoration: none; }
@@ -79,11 +78,12 @@ html {
     html {
       font-size: 18px; } }
 
+.sans {
+  font-family: "Monument Grotesk", sans-serif; }
+
 .mono {
   font-family: "Monument Grotesk Mono", monospace;
-  font-size: 0.8em; }
-  .mono--s {
-    font-size: 0.8em; }
+  line-height: calc(var( --line-height ) * 1.1); }
 
 .line-break {
   margin-bottom: 1em; }
@@ -100,6 +100,9 @@ html {
 
 .text-center {
   text-align: center; }
+
+.text-s {
+  font-size: 0.85rem; }
 
 .text-m {
   font-size: 1.25rem; }
@@ -148,7 +151,7 @@ p {
 
 :root {
   --grey: #E0DEDC;
-  --text-color: #8D8D8D; }
+  --text-color: #626262; }
 
 html {
   background-color: var(--grey);
@@ -2691,10 +2694,10 @@ html {
   --bevel-size: 2px;
   --shadow-color: rgba( 0, 0, 0, .1 ); }
 
-.bevel-up {
+.bevel-up, .nav__dot {
   box-shadow: inset calc( var( --bevel-size ) * 0.5) calc( var( --bevel-size ) * -0.5) var(--bevel-size) var(--bevel-dark), inset calc( var( --bevel-size ) * -0.5) calc( var( --bevel-size ) * 0.5) var(--bevel-size) var(--bevel-light); }
 
-.bevel-down {
+.bevel-down, .nav__dot:hover {
   box-shadow: inset calc( var( --bevel-size ) * -0.5) calc( var( --bevel-size ) * 0.5) var(--bevel-size) var(--bevel-dark), inset calc( var( --bevel-size ) * 0.5) calc( var( --bevel-size ) * -0.5) var(--bevel-size) var(--bevel-light); }
 
 .bevel-button:before, .bevel-button:after {
@@ -2935,53 +2938,45 @@ dms-hover {
   display: block; }
 
 :root {
-  --nav-width: 35em; }
+  --nav-size: 2rem; }
 
-nav {
+.nav {
   position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  text-align: center;
-  box-shadow: 0px 30px 30px var(--shadow-color);
   z-index: 1000;
-  font-size: 20px; }
-  @media (min-width: 768px) {
-    nav {
-      top: var(--line);
-      max-width: var(--nav-width); } }
-  nav > * {
-    flex-grow: 1; }
-    nav > *:first-child {
-      width: 100%; }
-  nav a {
-    display: block; }
-    nav a:before, nav a:after {
-      content: '';
-      display: block;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      transition: opacity .1s .1s; }
-    nav a:before {
-      box-shadow: inset calc( var( --bevel-size ) * 0.5) calc( var( --bevel-size ) * -0.5) var(--bevel-size) var(--bevel-dark), inset calc( var( --bevel-size ) * -0.5) calc( var( --bevel-size ) * 0.5) var(--bevel-size) var(--bevel-light); }
-    nav a:after {
-      box-shadow: inset calc( var( --bevel-size ) * -0.5) calc( var( --bevel-size ) * 0.5) var(--bevel-size) var(--bevel-dark), inset calc( var( --bevel-size ) * 0.5) calc( var( --bevel-size ) * -0.5) var(--bevel-size) var(--bevel-light);
-      opacity: 0; }
-  nav dms-hover[matches-hover] a,
-  nav dms-hover[matches-route] a {
-    transition: opacity .1s; }
-    nav dms-hover[matches-hover] a:before,
-    nav dms-hover[matches-route] a:before {
-      opacity: 0; }
-    nav dms-hover[matches-hover] a:after,
-    nav dms-hover[matches-route] a:after {
-      opacity: 1; }
+  width: 100%;
+  height: 100%;
+  background-color: var(--grey);
+  top: 0;
+  left: 0; }
+  .nav__dot {
+    position: fixed;
+    top: var(--gutter);
+    left: var(--gutter);
+    z-index: 2000;
+    width: var(--nav-size);
+    height: var(--nav-size);
+    border-radius: var(--nav-size);
+    background-color: var(--grey);
+    cursor: pointer; }
+  .nav__group {
+    position: fixed; }
+    .nav__group ul {
+      list-style: none;
+      margin: 0; }
+    .nav__group--tl {
+      top: calc( var( --gutter ) * 0.75);
+      left: calc( calc( var( --gutter ) * 2 ) + ( var( --nav-size ) )); }
+    .nav__group--bl {
+      bottom: var(--gutter);
+      left: calc( calc( var( --gutter ) * 2 ) + ( var( --nav-size ) )); }
+    .nav__group--tr {
+      top: calc( var( --gutter ) * 0.75);
+      right: var(--gutter);
+      text-align: right; }
+    .nav__group--br {
+      bottom: var(--gutter);
+      right: var(--gutter);
+      text-align: right; }
 
 dms-divider {
   position: fixed;

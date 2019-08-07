@@ -1,8 +1,6 @@
 {% extends "layout" %}
-{% set posts = craft.entries
-    .section('posts')
-    .search('tags:people')
-    .all() %}
+{% set right_side = true %}
+{% set posts = entry.secondaryItems.all() %}
 
 {% set bios = entry.bios.all %}
 {% set paras = entry.introduction.all %}

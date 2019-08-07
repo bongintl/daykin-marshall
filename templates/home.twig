@@ -1,21 +1,18 @@
-{% set posts = craft.entries
-    .section('posts')
-    .all() %}
 {% extends "layout" %}
 {% block content %}
-    <div class="grid s-pad-top-8">
-        {% for building in entry.selectedBuildings.all if building.thumbnail | length %}
-            <div  class="s-col-12 s-gap-bottom-1">
-                <a href="{{ building.url }}">
-                    <dms-hover url="{{ building.url }}">
-                        {% include 'components/glow-image/glow-image' with {
-                            asset: building.thumbnail.one,
-                            title: building.title
-                        } only %}
-                    </dms-hover>
-                </a>
-            </div>
-        {% endfor %}
-    </div>
+    {#<div class="grid s-pad-top-8">#}
+    {#    {% for building in entry.selectedBuildings.all if building.thumbnail | length %}#}
+    {#        <div  class="s-col-12 s-gap-bottom-1">#}
+    {#            <a href="{{ building.url }}">#}
+    {#                <dms-hover url="{{ building.url }}">#}
+    {#                    {% include 'components/glow-image/glow-image' with {#}
+    {#                        asset: building.thumbnail.one,#}
+    {#                        title: building.title#}
+    {#                    } only %}#}
+    {#                </dms-hover>#}
+    {#            </a>#}
+    {#        </div>#}
+    {#    {% endfor %}#}
+    {#</div>#}
     {% include 'components/footer/footer' %}
 {% endblock %}

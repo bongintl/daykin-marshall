@@ -18,18 +18,34 @@
         <base href="{{ siteUrl }}"></base>
     </head>
     <body>
-        {% if block('livePreview') is defined %}
-            {{ block( 'livePreview' ) | raw }}
-        {% else %}
-            {%- set left = block('content') -%}
-            {%- set right_collapsed -%}
-                {%- include 'components/posts-collapsed/posts-collapsed' with { posts: posts } only -%}
-            {%- endset -%}
-            {%- set right_expanded -%}
-                {%- include 'components/posts-expanded/posts-expanded' with { posts: posts } only -%}
-            {%- endset -%}
-            {%- include 'components/panels/panels' with { left: left, right_collapsed: right_collapsed, right_expanded: right_expanded } only -%}
-        {% endif %}
+        
+        {% include 'components/nav/nav' %}
+        
+        {% block content %}#}
+        {% endblock %}
+        
+        {#{% if right_side is defined %}#}
+        
+        {#    {% if block('livePreview') is defined %}#}
+        {#        {{ block( 'livePreview' ) | raw }}#}
+        {#    {% else %}#}
+        {#        {%- set left = block('content') -%}#}
+        {#        {%- set right_collapsed -%}#}
+        {#            {%- include 'components/posts-collapsed/posts-collapsed' with { posts: posts } only -%}#}
+        {#        {%- endset -%}#}
+        {#        {%- set right_expanded -%}#}
+        {#            {%- include 'components/posts-expanded/posts-expanded' with { posts: posts } only -%}#}
+        {#        {%- endset -%}#}
+        {#        {%- include 'components/panels/panels' with { left: left, right_collapsed: right_collapsed, right_expanded: right_expanded } only -%}#}
+        {#    {% endif %}#}
+            
+        {#{% else %}#}
+        
+        {#    {% block content %}#}
+        {#    {% endblock %}#}
+        
+        {#{% endif %}#}
+        
         <script type="text/javascript" src="{{ siteUrl }}build/main.js"></script>
     </body>
 </html>

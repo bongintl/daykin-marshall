@@ -1,8 +1,6 @@
 {% extends "layout" %}
-{% set posts = craft.entries
-    .section('posts')
-    .search('tags:making')
-    .all() %}
+{% set right_side = true %}
+{% set posts = entry.secondaryItems.all() %}
 
 {% block content %}
     {% include 'components/introduction/introduction' with { paragraphs: entry.introduction.all } only %}

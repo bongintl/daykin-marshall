@@ -1,34 +1,87 @@
 :root {
-    --nav-width: 35em;
+    --nav-size: 2rem;
 }
 
-nav {
+.nav {
     position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    text-align: center;
-    box-shadow: 0px 30px 30px var( --shadow-color );
     z-index: 1000;
-    font-size: 20px;
-    @include medium {
-        top: var( --line );
-        max-width: var( --nav-width );
-    }
-    & > * {
-        flex-grow: 1;
-        &:first-child {
-            width: 100%;
+    width: 100%;
+    height: 100%;
+    background-color: var( --grey );
+    top: 0;
+    left: 0;
+    
+    &__dot {
+        position: fixed;
+        top: var( --gutter );
+        left: var( --gutter );
+        z-index: 2000;
+        width: var( --nav-size );
+        height: var( --nav-size );
+        border-radius: var( --nav-size );
+        background-color: var( --grey );
+        cursor: pointer;
+        @extend .bevel-up;
+        &:hover {
+            @extend .bevel-down;
         }
     }
-    a {
-        display: block;
-        @include bevel-button;
+    
+    &__group {
+        position: fixed;
+        ul {
+            list-style: none;
+            margin: 0;
+        }
+        
+        &--tl {
+            top: calc( var( --gutter ) * 0.75 );
+            left: calc( calc( var( --gutter ) * 2 ) + ( var( --nav-size ) );
+        }
+        
+        &--bl {
+            bottom: var( --gutter );
+            left: calc( calc( var( --gutter ) * 2 ) + ( var( --nav-size ) );
+        }
+        
+        &--tr {
+            top: calc( var( --gutter ) * 0.75 );
+            right: var( --gutter );
+            text-align: right;
+        }
+        
+        &--br {
+            bottom: var( --gutter );
+            right: var( --gutter );
+            text-align: right;
+        }
     }
-    dms-hover[matches-hover] a,
-    dms-hover[matches-route] a {
-        @include bevel-button-pressed;
-    }
+    // position: fixed;
+    // left: 50%;
+    // transform: translateX(-50%);
+    // display: flex;
+    // flex-wrap: wrap;
+    // width: 100%;
+    // text-align: center;
+    // box-shadow: 0px 30px 30px var( --shadow-color );
+    // z-index: 1000;
+    // font-size: 20px;
+    // @include medium {
+    //     top: var( --line );
+    //     max-width: var( --nav-width );
+    // }
+    // & > * {
+    //     flex-grow: 1;
+    //     &:first-child {
+    //         width: 100%;
+    //     }
+    // }
+    // a {
+    //     display: block;
+    //     @include bevel-button;
+    // }
+    // dms-hover[matches-hover] a,
+    // dms-hover[matches-route] a {
+    //     @include bevel-button-pressed;
+    // }
 }

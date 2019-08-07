@@ -1,14 +1,56 @@
-<nav>
-    {% for text, url in {
-        "Daykin Marshall Studio": "/",
-        "People": "#{ siteUrl }people",
-        "Making": "#{ siteUrl }making",
-        "Buildings": "#{ siteUrl }buildings"
-    } %}
-        <dms-hover url="{{ url }}">
-            <a class="s-pad-half bg-grey" href="{{ url }}">
-                <dms-engraved darkness=8>{{ text }}</dms-engraved>
-            </a>
-        </dms-hover>
-    {% endfor %}
+<div class="nav__dot">
+    
+</div>
+
+<nav class="nav text-l">
+    
+    <div class="nav__group nav__group--tl">
+        <ul>
+            <li><a href="/people"><dms-engraved>People</dms-engraved></a></li>
+            <li><a href=""><dms-engraved>Making</dms-engraved></a></li>
+            <li><a href=""><dms-engraved>Buildings</dms-engraved></a></li>
+        </ul>
+    </div>
+    
+    <div class="nav__group nav__group--tr">
+        <ul>
+            <li><a href=""><dms-engraved>Daykin Marshall Studio</dms-engraved></a></li>
+        </ul>
+    </div>
+    
+    <div class="nav__group nav__group--bl">
+        <ul>
+            <li><a href=""><dms-engraved>Archive</dms-engraved></a></li>
+            <li><a href=""><dms-engraved>Twitter</dms-engraved></a></li>
+            <li><a href=""><dms-engraved>Instagram</dms-engraved></a></li>
+        </ul>
+    </div>
+    
+    <div class="nav__group nav__group--br">
+        <ul>
+            <li><a href=""><dms-engraved>+44 20 3490 1727</dms-engraved></a></li>
+            <li><a href=""><dms-engraved>studio@daykinmarshall.com</dms-engraved></a></li>
+        </ul>
+    </div>
+
+    
+    
+    
+    {#{% for text, url in {#}
+    {#    "Daykin Marshall Studio": "/",#}
+    {#    "People": "#{ siteUrl }people",#}
+    {#    "Making": "#{ siteUrl }making",#}
+    {#    "Buildings": "#{ siteUrl }buildings"#}
+    {#} %}#}
+    {#    <dms-hover url="{{ url }}">#}
+    {#        <a class="s-pad-half bg-grey" href="{{ url }}">#}
+    {#            <dms-engraved darkness=8>{{ text }}</dms-engraved>#}
+    {#        </a>#}
+    {#    </dms-hover>#}
+    {#{% endfor %}#}
+    
+    
+    
+    
+    
 </nav>

@@ -1,12 +1,40 @@
 {% extends "layout" %}
-{% block livePreview %}
-    <div class="grid bg-grey">
-        <div class="s-col-11 m-col-6">
-            <div class="grid">
-                <div class="s-col-12 s-gap-top-1">
-                    {% include 'components/post/post/' with { post: entry } only %}
+{% block content %}
+
+    {% set cat = entry.category.first() %}
+    {% set img = entry.images.first() %}
+    {% set imgs = entry.images.offset(1).all() %}
+
+    <div class="grid mono text-s">
+        <div class="s-col-12 m-col-8 s-gap-bottom-1">
+            <a href="">{{ cat }}</a><br>
+            {{ entry.postDate| date("d.m.Y") }}
+        </div>
+
+        <div class="s-col-12 m-col-8">
+            {% if img|length %}<img src="{{ img.url }}" />{% endif %}
+        </div>
+    
+        <div class="s-col-12 m-col-8">
+            {% if entry.showTitle %}
+                <div class="text-m sans s-pad-top-1">
+                    {{ entry.title }}
                 </div>
+            {% endif %}
+
+            <div class="s-pad-top-1">
+                {{ entry.body }}
             </div>
         </div>
+        
+        {% if imgs|length %}
+            <div class="s-col-12 m-col-8">
+                {% for img in imgs %}
+                    <img class="s-gap-bottom-1" src="{{ img.url }}" />
+                {% endfor %}
+            </div>
+        {% endif %}
     </div>
+
+        
 {% endblock %}

@@ -1,0 +1,77 @@
+{% extends "layout" %}
+{% block content %}
+
+
+{% set entries = craft.entries
+    .section(['posts', 'buildings'])
+    .all() %}
+
+
+<div class="grid s-gap-top-8">
+    
+{% for entry in entries %}
+
+            {# type #}
+            {# image #}
+            {# cat #}
+            {# title #}
+    
+            {% if entry.section.handle == 'buildings' %}
+                <div class="s-col-12 m-col-6 s-gap-top-1 s-gap-bottom-2 mono text-s">
+        
+                    {% set img = entry.thumbnail.first() %}
+                    
+                    <div class="s-gap-bottom-half">
+                        <a href="">Building</a><br>
+                        <a href="{{ entry.url }}">{{ entry.title }}</a>
+                    </div>
+                        
+                     
+                     
+                    <a href="{{ entry.url }}">   
+                    
+                        {% if img|length %}<img src="{{ img.url }}" />{% endif %}
+                        <div class="s-pad-top-half">
+                            &rarr;
+                        </div>
+                    </a>
+        
+                </div>
+            {% else %}
+            
+                <div class="s-col-12  m-col-3 s-gap-top-1 s-gap-bottom-2 mono text-s">
+                    {% set cat = entry.category.first() %}
+                    {% set img = entry.images.first() %}
+                    
+                    <div class="s-gap-bottom-half">
+                        <a href="">{{ cat }}</a><br>
+                        {{ entry.postDate| date("d.m.Y") }}
+                    </div>
+                    
+                    {% if img|length %}<img src="{{ img.url }}" />{% endif %}
+                    
+                    {% if entry.showTitle %}
+                        <div class="text-m sans">
+                            {{ entry.title }}
+                        </div>
+                    {% endif %}
+                                    
+                    <div class="s-pad-top-half">
+                        {{ entry.body }}
+                    </div>
+        
+                    <div class="s-pad-top-half">
+                        <a href="{{ entry.url }}">&rarr;</a>
+                    </div>        
+                </div>
+    
+            {% endif %}
+
+    
+{% endfor %}
+
+</div>
+
+    
+
+{% endblock %}
