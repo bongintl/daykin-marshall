@@ -1,68 +1,89 @@
 {% extends "layout" %}
 {% block content %}
 
-
-{% set entries = craft.entries
-    .section(['posts', 'buildings'])
-    .all() %}
+{% include 'components/archive-nav/archive-nav' %}
 
 
-<div class="grid s-gap-top-8">
+
+{% set categoryQuery = craft.app.request.getQueryParam('category') ?? false %}
+{% if categoryQuery %}
+
+
+    {% if categoryQuery == 'buildings' %}
     
-{% for entry in entries %}
-
-            {# type #}
-            {# image #}
-            {# cat #}
-            {# title #}
+        {% set entries = craft.entries
+        .section('buildings')
+        .all() %}
+        
+    {% else %}
     
-            {% if entry.section.handle == 'buildings' %}
+
+        {% set entries = craft.entries
+        .section('posts')
+        .relatedTo(craft.categories.slug(categoryQuery).first())
+        .all() %}
+        
+    {% endif %}
+
+
+{% else %}
+
+    {% set entries = craft.entries
+        .section(['posts', 'buildings'])
+        .all() %}
+        
+{% endif %}
+
+
+
+<div class="grid s-gap-top-4 m-gap-top-8">
+    
+{% for post in entries %}
+
+    
+            {% if post.section.handle == 'buildings' %}
                 <div class="s-col-12 m-col-6 s-gap-top-1 s-gap-bottom-2 mono text-s">
         
-                    {% set img = entry.thumbnail.first() %}
+                    {% set img = post.thumbnail.one() %}
                     
                     <div class="s-gap-bottom-half">
                         <a href="">Building</a><br>
-                        <a href="{{ entry.url }}">{{ entry.title }}</a>
+                        <a href="{{ post.url }}">{{ post.title }}</a>
                     </div>
-                        
                      
-                     
-                    <a href="{{ entry.url }}">   
+                    {% if img|length %}
                     
-                        {% if img|length %}<img src="{{ img.url }}" />{% endif %}
-                        <div class="s-pad-top-half">
-                            &rarr;
-                        </div>
-                    </a>
-        
+                        <dms-hover url="{{ post.url }}">
+                            <a class="buildings" href="{{ post.url }}">
+                                {% include 'components/glow-image/glow-image' with {
+                                    asset: img,
+                                    title: false
+                                } only %}
+                            </a>
+                        </dms-hover>
+                    
+                    {% endif %}
+                    
+                    <div class="s-pad-top-half">
+                        <a href="{{ post.url }}">&rarr;</a><br>
+                    </div>
+
                 </div>
             {% else %}
             
                 <div class="s-col-12  m-col-3 s-gap-top-1 s-gap-bottom-2 mono text-s">
-                    {% set cat = entry.category.first() %}
-                    {% set img = entry.images.first() %}
-                    
-                    <div class="s-gap-bottom-half">
-                        <a href="">{{ cat }}</a><br>
-                        {{ entry.postDate| date("d.m.Y") }}
-                    </div>
-                    
-                    {% if img|length %}<img src="{{ img.url }}" />{% endif %}
-                    
-                    {% if entry.showTitle %}
-                        <div class="text-m sans">
-                            {{ entry.title }}
-                        </div>
-                    {% endif %}
-                                    
-                    <div class="s-pad-top-half">
-                        {{ entry.body }}
-                    </div>
-        
-                    <div class="s-pad-top-half">
-                        <a href="{{ entry.url }}">&rarr;</a>
-                    </div>        
+                    {% include 'components/archive-post/archive-post' with {
+                        entry: post,
+                        cat: post.category.one(),
+                        img: post.images.one(),
+                        limit: 120
+                    } %}
+                        
+            
+                   
+                   
+                   
+                   
                 </div>
     
             {% endif %}
@@ -73,5 +94,8 @@
 </div>
 
     
+{% include 'components/footer/footer' %}
+
+
 
 {% endblock %}

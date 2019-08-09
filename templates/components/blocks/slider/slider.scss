@@ -6,11 +6,11 @@
         padding: calc( 50% - .5em ) 0;
     }
     &__button {
-        width: 1em;
-        height: 1em;
+        width: 1.5em;
+        height: 1.5em;
         cursor: pointer;
         z-index: 40;
-        @include bevel-button( -1 );
+        @include bevel-button( 1 );
         position: sticky;
         top: calc( 50vh - .5em );
         left: 50%;

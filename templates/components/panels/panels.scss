@@ -3,6 +3,10 @@ dms-panels {
     top: 0;
     left: 0;
     bottom: 0;
+    transition: transform .3s;
+    .nav-open & {
+        transform: translateX( var( --nav-width ) );
+    }
     --width-small: 5rem;
     --width-large: calc( 100vw - var( --line ) * 1.5 );
     @include medium {
@@ -10,6 +14,6 @@ dms-panels {
         --width-large: calc( 100vw - var( --width-small ) );
     }
     @include xxlarge {
-        --width-small: calc( 100vw / 13 );
+        // --width-small: calc( 100vw / 13 );
     }
 }

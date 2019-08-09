@@ -1,9 +1,18 @@
 {% extends "layout" %}
 {% set right_side = true %}
 {% set posts = entry.secondaryItems.all() %}
+{% set headerImage = entry.headerImage.one() %}
+
 
 {% block content %}
-    {% include 'components/introduction/introduction' with { paragraphs: entry.introduction.all } only %}
+    
+    {% if headerImage | length %}
+        {% include 'components/header-image/header-image' with { img: headerImage } %}
+    {% endif %}
+    <div class="s-pad-top-half m-pad-top-1">
+        {% include 'components/blocks/blocks' with { blocks: entry.blocks } only %}
+    </div>
+    
     {% for item in entry.process.all %}
         {% include 'components/process-item/process-item' %}
     {% endfor %}

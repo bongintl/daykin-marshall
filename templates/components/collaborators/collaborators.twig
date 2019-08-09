@@ -1,20 +1,75 @@
 {% for item in items %}
-    <div class="grid grid--fill text-l l-reverse">
-        <div class="s-col-12 l-col-6 bevel-up">
-            <div class="grid-padding s-pad-top-1 s-pad-bottom-3">
-                <p class="nomargin"><dms-engraved>{{ item.projectTitle }}</dms-engraved></p>
-                <p class="nomargin"><dms-engraved>{{ item.collaboratorName }}</dms-engraved></p>
-                
-                <div class="s-pad-top-1 nomargin">
-                    <dms-engraved>{{ item.quote }}</dms-engraved>
+        {% if item.type == 'singleCollaborator' %}
+            <div class="grid grid--fill{% if item.imagePosition == '' %} xdrr{% endif %}">
+    
+                <div class="s-col-12 l-col-6 bevel-up text-m">
+                    <div class="s-pad-1 s-pad-bottom-3">
+                        <p class="nomargin">{{ item.collaboratorName }}</p>
+                        <p class="nomargin">{{ item.projectRole }}</p>
+                        
+                        <div class="s-pad-top-1">
+                            {{ item.quote }}
+                        </div>
+                        
+                        {% if item.readMoreLink|length %}
+                        <a href="{{ item.readMoreLink.one.url }}">&rarr;</a>
+                        {% endif %}
+                        
+                    </div>
                 </div>
+                <div class="s-col-12 l-col-6 bevel-up">
+                    {% set image = item.image.one %}
+                    {% include 'components/image/image' with { asset : image } %}
+                    <div class="fill bevel-up no-pointer"></div>
+                </div>
+                
             </div>
-        </div>
-        <div class="s-col-12 l-col-6 bevel-up">
-            {% set image = item.image.one %}
-            {% include 'components/image/image' with { asset : image } %}
-            <div class="fill bevel-up no-pointer"></div>
-        </div>
-    </div>
+        {% else %}
+            <div class="grid grid--fill l-reverse">
+    
+                <div class="s-col-12 l-col-3 bevel-up text-s">
+                    <div class="s-pad-1 s-pad-bottom-3">
+                        <p class="nomargin">{{ item.leftCollaboratorName }}</p>
+                        <p class="nomargin">{{ item.leftProjectRole }}</p>
+                        
+                        <div class="s-pad-top-1">
+                            {{ item.leftQuote }}
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="s-col-12 l-col-3 bevel-up">
+                    {% include 'components/image/image' with { asset : item.leftImage.one } %}
+                    <div class="fill bevel-up no-pointer"></div>
+                </div>
+
+                
+                <div class="s-col-12 l-col-3 bevel-up text-s">
+                    <div class="s-pad-1 s-pad-bottom-3">
+                        <p class="nomargin">{{ item.rightCollaboratorName }}</p>
+                        <p class="nomargin">{{ item.rightProjectRole }}</p>
+                        
+                        <div class="s-pad-top-1">
+                            {{ item.rightQuote }}
+                        </div>
+                        
+                        {% if item.readMoreLink|length %}
+                        <a href="{{ item.readMoreLink.one.url }}">&rarr;</a>
+                        {% endif %}
+                        
+                    </div>
+                </div>
+
+                <div class="s-col-12 l-col-3 bevel-up">
+                    {% include 'components/image/image' with { asset : item.rightImage.one } %}
+                    <div class="fill bevel-up no-pointer"></div>
+                </div>
+                    
+                    
+
+
+            </div>
+        {% endif %}
 {% endfor %}
 

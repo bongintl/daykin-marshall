@@ -2,22 +2,32 @@
 
 {% set ratio = max( images | map( img => img.height / img.width ) | merge([ 0 ]) ) %}
 
-<dms-slider class="grid grid--fill">
-    <div class="s-col-10 xxl-col-11">
+{% set offset = 0 %}
+{% switch position %}
+    {% case 'left' %}
+        {% set offset = 0 %}
+    {% case 'center' %}
+        {% set offset = ( 12 - ( size.value + 2 ) ) / 2 %}
+    {% case 'right' %}
+        {% set offset = 12 - ( size.value + 2 ) %}
+{% endswitch %}
+
+<dms-slider class="grid grid--fill s-pad-bottom-5">
+    <div class="oh s-col-{{ size.value }} s-off-{{ offset }}">
         <div slides style="padding-bottom: {{ ratio * 100 }}%">
             {% for img in images %}
                 <div slide class="fill">
                     {% include 'components/image/image' with {
                         asset: img,
                         ratio: false,
-                        attrs: { class: 'fill' }
+                        attrs: { class: 'cover' }
                     } only %}
                     <div class="fill bevel-up no-pointer"></div>
                 </div>
             {% endfor %}
         </div>
     </div>
-    <div class="s-col-2 xxl-col-1 bevel-button bg-grey x xjc" slider-next>
+    <div class="s-col-2 xxl-col-1 bg-grey x xjc" slider-next>
         <div class="slider__button-track">
             <div class="slider__button xs0"></div>
         </div>

@@ -2,17 +2,22 @@
 {% set right_side = true %}
 {% set posts = entry.secondaryItems.all() %}
 
-{% set bios = entry.bios.all %}
-{% set paras = entry.introduction.all %}
-{% set studioImages = entry.studioImages.all %}
-{% set bioImages = entry.bioImages.all %}
+{% set headerImage = entry.headerImage.one() %}
 {% set collaborators = entry.collaborators.all %}
 
 {% block content %}
-    {% include 'components/introduction/introduction' with { paragraphs: paras} %}
-    {% include 'components/blocks/slider/slider' with { images: studioImages } %}
-    {% include 'components/bios/bios' with { bios: bios } %}
-    {% include 'components/blocks/slider/slider' with { images: bioImages } %}
+    
+    {% if headerImage | length %}
+        {% include 'components/header-image/header-image' with { img: headerImage } %}
+    {% endif %}
+
+    <div class="s-pad-top-half m-pad-top-1">
+        {% include 'components/blocks/blocks' with { blocks: entry.blocks } only %}
+    </div>
+    
     {% include 'components/collaborators/collaborators' with { items: collaborators} %}
+    {% include 'components/blocks/text/text/' with { heading: false, copy: entry.collaboratorText } %}
     {% include 'components/footer/footer' %}
+    
+    
 {% endblock %}

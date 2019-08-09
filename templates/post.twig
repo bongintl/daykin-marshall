@@ -1,40 +1,49 @@
 {% extends "layout" %}
 {% block content %}
 
+{% include 'components/archive-nav/archive-nav' %}
+
+
     {% set cat = entry.category.first() %}
     {% set img = entry.images.first() %}
     {% set imgs = entry.images.offset(1).all() %}
 
-    <div class="grid mono text-s">
+    <div class="mono text-s s-pad-top-4 m-pad-top-8">
+
+    <div class="grid">
         <div class="s-col-12 m-col-8 s-gap-bottom-1">
             <a href="">{{ cat }}</a><br>
             {{ entry.postDate| date("d.m.Y") }}
         </div>
+    </div>
+    <div class="grid">
 
-        <div class="s-col-12 m-col-8">
+        <div class="s-col-12 m-col-6">
             {% if img|length %}<img src="{{ img.url }}" />{% endif %}
         </div>
-    
-        <div class="s-col-12 m-col-8">
+    </div>
+    <div class="grid">
+        <div class="s-col-12 m-col-6">
             {% if entry.showTitle %}
                 <div class="text-m sans s-pad-top-1">
                     {{ entry.title }}
                 </div>
             {% endif %}
 
-            <div class="s-pad-top-1">
+            <div class="s-pad-top-1 s-pad-bottom-half">
                 {{ entry.body }}
             </div>
         </div>
-        
-        {% if imgs|length %}
+    </div>
+    {% if imgs|length %}
+        <div class="grid">
             <div class="s-col-12 m-col-8">
                 {% for img in imgs %}
                     <img class="s-gap-bottom-1" src="{{ img.url }}" />
                 {% endfor %}
             </div>
-        {% endif %}
-    </div>
+        </div>
+    {% endif %}
 
         
 {% endblock %}

@@ -1,0 +1,26 @@
+<div class="s-gap-bottom-half">
+    <a href="/archive?category={{ cat }}">{{ cat }}</a><br>
+    <a href="{{ entry.url }}">{{ entry.postDate| date("d.m.Y") }}</a>
+</div>
+
+{% if img %}
+    <a href="{{ entry.url }}">{% include 'components/image/image' with { asset: img } only %}</a>
+{% endif %}
+
+{% if entry.showTitle %}
+    <div class="text-m s-gap-top-half sans">
+        {{ entry.title }}
+    </div>
+{% endif %}
+                
+<div class="s-pad-top-half">
+    {% if entry.body|length > limit %}
+        {{ entry.body|striptags|slice(0,limit) ~ '...' }}
+    {% else %}
+        {{ entry.body }}
+    {% endif %}
+</div>
+
+<div class="s-pad-top-half">
+    <a href="{{ entry.url }}">&rarr;</a>
+</div>        

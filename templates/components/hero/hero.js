@@ -14,9 +14,8 @@ class Hero extends HTMLElement {
         resizeObserver.unobserve( this.text, this.onResize );
     }
     onResize ( e ) {
-        console.log( e );
-        this.spacer.style.height = e.contentRect.height / 2 + 'px';
-        this.style.paddingBottom = e.contentRect.height / 2 + 'px';
+        this.spacer.style.height = e.contentRect.height + 'px';
+        // this.style.paddingBottom = e.contentRect.height + 'px';
     }
 }
 

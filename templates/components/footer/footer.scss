@@ -1,12 +1,8 @@
 .footer {
-    &__left {
-        padding-bottom: 1em;
-        @include medium {
-            padding-bottom: 0;
-        }
-    }
     &__right {
+        margin-top: calc( var( --line ) * 1);
         @include medium {
+            margin-top: 0;
             text-align: right;
         }
     }

@@ -1,15 +1,11 @@
 {% extends "layout" %}
-{% set posts = craft.entries
-    .section('posts')
-    .search("tags:buildings")
-    .all() %}
 {% block content %}
     <div class="grid s-pad-top-8 xafe">
         {% for building in craft.entries.section('buildings').all if building.thumbnail | length %}
             <div class="s-col-6 l-col-4">
                 <div class="s-gap-bottom-1 m-gap-x-1 m-gap-bottom-3">
                     <dms-hover url="{{ building.url }}">
-                        <a href="{{ building.url }}">
+                        <a class="buildings" href="{{ building.url }}">
                             {% include 'components/glow-image/glow-image' with {
                                 asset: building.thumbnail.one,
                                 title: building.title

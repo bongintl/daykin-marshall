@@ -17,15 +17,12 @@
   "license": "ISC",
   "dependencies": {
     "@babel/cli": "^7.4.4",
-    "@glidejs/glide": "^3.3.0",
     "breakjs": "^1.0.0",
     "es6-map": "^0.1.5",
     "es6-promisify": "^6.0.1",
     "gr8": "^3.1.5",
     "intersection-observer": "^0.7.0",
     "jquery": "^3.4.1",
-    "lit-element": "^2.1.0",
-    "nanohtml": "^1.6.3",
     "navigo": "^7.1.2",
     "node-sass": "^4.12.0",
     "node-sass-glob": "^1.0.4",
@@ -33,10 +30,7 @@
     "opentype-layout": "^1.1.0",
     "opentype.js": "^1.1.0",
     "parcel-bundler": "^1.12.3",
-    "rebound": "^0.1.0",
     "resize-observer-polyfill": "^1.5.1",
-    "slick-carousel": "^1.8.1",
-    "utils": "^0.3.1",
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {

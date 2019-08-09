@@ -1,18 +1,17 @@
-{% import 'macros/dms' as dms %}
+{#{% import 'macros/dms' as dms %}#}
 
-{% set padding = craft.app.request.url == '/' or craft.app.request.url == '/buildings' ? 's-pad-top-8' : 's-pad-top-50vh' %}
+{#{% set padding = craft.app.request.url == '/' or craft.app.request.url == '/buildings' ? 's-pad-top-8' : 's-pad-top-50vh' %}#}
 
-<div class="grid {{ padding }}">
+<div class="grid s-gap-bottom-5 s-pad-top-8">
     {% for post in posts %}
-        {% for asset in post.images.all %}
-            <div class="s-col-12 s-gap-bottom-1 m-gap-bottom-1">
-                <dms-hover url="{{ dms.urls( post ) }}">
-                    {% set transitionId = "post_#{ post.id }_#{ asset.id }" %}
-                    {% include 'components/glow-image/glow-image' with {
-                        asset: asset,
-                        attrs: { 'data-transition-id': transitionId }
-                    } %}
-                </dms-hover>
+        {% set isEven = loop.index % 2 == 0 %}
+        {% for asset in post.image.all %}
+            <div class="s-col-10 {{ isEven ? 's-off-2' }} s-gap-bottom-1 m-gap-bottom-1">
+                {% set transitionId = "post_#{ post.id }_#{ asset.id }" %}
+                {% include 'components/image/image' with {
+                    asset: asset,
+                    attrs: { 'data-transition-id': transitionId }
+                } %}
             </div>
         {% endfor %}
     {% endfor %}

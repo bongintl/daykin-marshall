@@ -1,18 +1,58 @@
 {% extends "layout" %}
 {% block content %}
-    {#<div class="grid s-pad-top-8">#}
-    {#    {% for building in entry.selectedBuildings.all if building.thumbnail | length %}#}
-    {#        <div  class="s-col-12 s-gap-bottom-1">#}
-    {#            <a href="{{ building.url }}">#}
-    {#                <dms-hover url="{{ building.url }}">#}
-    {#                    {% include 'components/glow-image/glow-image' with {#}
-    {#                        asset: building.thumbnail.one,#}
-    {#                        title: building.title#}
-    {#                    } only %}#}
-    {#                </dms-hover>#}
-    {#            </a>#}
-    {#        </div>#}
-    {#    {% endfor %}#}
-    {#</div>#}
-    {% include 'components/footer/footer' %}
+
+
+    <div class="grid">
+        <div class="s-col-12 m-col-5 m-off-6 s-gap-top-4 m-gap-top-half">
+                {% for block in entry.introduction %}
+                    {% if loop.first %}
+                        <p class=" text-l"><dms-engraved>{{ block.paragraph }}</dms-engraved></p>
+                    {% else %}
+                        <p class="">{{ block.paragraph }}</p>
+                    {% endif %}
+                {% endfor %}
+        </div>
+    </div>
+
+    <div class="grid s-gap-top-2 m-gap-top-8">
+        <div class="s-col-12 m-col-5 m-off-1">
+    
+            {% for building in entry.selectedBuildings.all if building.thumbnail | length %}
+
+                <div class="s-gap-bottom-4 m-gap-bottom-4">
+                    <dms-hover url="{{ building.url }}">
+                        <a class="buildings" href="{{ building.url }}">
+                            {% include 'components/glow-image/glow-image' with {
+                                asset: building.thumbnail.one,
+                                title: building.title
+                            } only %}
+                        </a>
+                    </dms-hover>
+                </div>
+                        
+            {% endfor %}
+        
+        </div>
+        <div class="s-col-12 m-col-5 mono text-s s-gap-top-4">
+    
+        {% for post in entry.selectedPosts.all %}
+        
+        
+            <div class="s-gap-bottom-2">  
+                {% include 'components/archive-post/archive-post' with {
+                    entry: post,
+                    cat: post.category.one(),
+                    img: post.images.one(),
+                    limit: 200
+                } %}
+            </div>
+    
+        {% endfor %}
+        </div>
+    </div>
+   
+    
+    
+{% include 'components/footer/footer' %}
+
 {% endblock %}

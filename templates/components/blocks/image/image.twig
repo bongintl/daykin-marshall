@@ -1,5 +1,20 @@
-<div class="grid s-pad-top-1 s-pad-bottom-1">
-    <div class="s-col-12 {{ size }}">
-        {% include 'components/image/image' with { asset: image } only %}
+{% import 'macros/dms' as dms %}
+
+{% set max = glow ? 10 : 12 %}
+{% set columns = {
+    4: { s: 6, l: 4 },
+    6: { s: 6 },
+    8: { s: max, l: 10, xl: 8 },
+    10: { s: max, l: 10 },
+    12: { s: max }
+} %}
+
+<div class="grid grid--fill s-pad-bottom-3 l-pad-bottom-5">
+    <div class="{{ dms.align( position, columns[ size.value ] ) }}">
+        {% if glow %}
+            {% include 'components/glow-image/glow-image' with { asset: image, alwaysGlow: true } only %}
+        {% else %}
+            {% include 'components/image/image' with { asset: image } only %}
+        {% endif %}
     </div>
 </div>

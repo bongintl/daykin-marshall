@@ -7,3 +7,22 @@
     -%}
     {{ urls | join(',') }}
 {%- endmacro -%}
+
+{%- macro align ( position, sizes ) -%}
+    {#{%- set offset = ( { left: 0, center: 0.5, right: 1 } )[ position ] -%}#}
+    {%- set offset = position == 'left'
+        ? 0
+        : position == 'center'
+            ? 0.5
+            : 1
+    -%}
+    {%- set classes = sizes
+        | map( ( width, breakpoint ) => 
+            "#{ breakpoint }-col-#{ width } #{ breakpoint }-off-#{ ( 12 - width ) * offset }"
+        ) -%}
+    {#{%- set classes = [] -%}#}
+    {#{% for breakpoint, width in sizes %}#}
+    {#    {% set classes = classes | merge([  ]) %}#}
+    {#{%- endfor -%}#}
+    {{ classes | join(' ') }}
+{%- endmacro -%}

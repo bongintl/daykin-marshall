@@ -1,29 +1,33 @@
-<div class="footer grid s-pad-top-1 s-pad-bottom-1 mono nomargin bevel-up ">
-    <div class="footer__left s-col-12 m-col-6">
-        <p>
+<div class="footer grid s-pad-top-1 s-pad-bottom-1 mono nomargin bevel-up text-s">
+    <div class="s-col-12 m-col-6">
+        <p class="s-pad-bottom-2">
+            <a href="/">Daykin Marshall Studio</a><br>
+        </p>
+        <p class="">
             {% for text, url in {
-                "People": "#{ siteUrl }people",
-                "Making": "#{ siteUrl }making",
-                "Buildings": "#{ siteUrl }buildings",
-                "Daykin Marshall Studio": "/"
+                "People": "/people",
+                "Making": "/making",
+                "Buildings": "/buildings",
             } %}
                 <a href="{{ url }}">{{ text }}</a><br>
             {% endfor %}
         </p>
         
-        <p class="s-pad-top-1">
-            {% for item in footer.links.all %}
-                {% switch item.linkType %}
-                    {% case 'social' %}
-                        <a href="{{ item.linkUrl }}" target="_blank">{{ item.linkTitle }}</a><br>
-                    {% case 'telephone' %}
-                        <a href="tel:{{ item.linkUrl }}">{{ item.linkTitle }}</a><br>
-                    {% case 'email' %}
-                        <a href="mailto:{{ item.linkUrl }}">{{ item.linkTitle }}</a><br>
-                {% endswitch %}
+    </div>
+    <div class="s-col-12 m-col-6 footer__right">
+
+        <p class="s-pad-bottom-1">
+            {% for link in nav.links.all %}
+                <a href="{{ link.linkUrl }}"{% if link.newTab %} target="_blank"{% endif %}>{{ link.linkTitle }}</a><br>
             {% endfor %}
         </p>
         
+        <p class="">
+            <a href="tel:{{ nav.phoneNumber }}">{{ nav.phoneNumber }}</a><br>
+            <a href="mailto:{{ nav.email }}">{{ nav.email }}</a>
+        </p>
     </div>
 
 </div>
+
+   

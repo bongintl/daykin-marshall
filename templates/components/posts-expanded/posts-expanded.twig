@@ -3,10 +3,10 @@
 
 {#{% set padding = craft.app.request.url == '/' or craft.app.request.url == '/buildings' ? 's-pad-top-8' : 's-pad-top-50vh' %}#}
 
-<div class="grid s-gap-bottom-5 s-pad-top-8 {{ align == 'center' ? 'xja' : '' }}">
-    <div class="s-col-12 l-col-8 x xw {{ align == 'center' ? 'xja' : '' }}">
-        {% for post in posts %}
+<div class="grid s-gap-bottom-5 s-pad-top-8">
+    {% for post in posts %}
+        <div class="s-col-10 l-col-8 {{ loop.index % 2 == 1 ? 's-off-2 l-off-4' }}">
             {% include 'components/post/post' with { post: post } only %}
-        {% endfor %}
-    </div>
+        </div>  
+    {% endfor %}
 </div>

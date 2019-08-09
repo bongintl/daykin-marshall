@@ -1,0 +1,22 @@
+.text {
+    ul {
+    list-style: none;
+        li {
+        margin-left: 2em;
+        margin-top: .5em;
+        margin-bottom: .5em;
+            &:before {
+                content: "";
+                display: block;
+                position: absolute;
+                background: red;
+                height: 1.25em;
+                width: 1.25em;
+                left: -2em;
+                border-radius: var( --nav-size );
+                background-color: var( --grey );
+                @extend .bevel-down;
+            }    
+       }
+    }
+}

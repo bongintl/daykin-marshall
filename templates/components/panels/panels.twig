@@ -1,12 +1,16 @@
+{% set content = content ?? 'no content' %}
+{% set posts = posts ?? [] %}
+
 <dms-panels>
     <dms-panel class="bg-grey" id="{{ craft.app.request.pathInfo }}" side="left">
-        {{ left | raw }}
+        {{ content | raw }}
     </dms-panel>
-    <dms-panel class="bg-grey" id="{{ craft.app.request.pathInfo }}" side="right" state="collapsed">
-        {{ right_collapsed | raw }}
-    </dms-panel>
-    <dms-panel class="bg-grey" id="{{ craft.app.request.pathInfo }}" side="right" state="expanded">
-        {{ right_expanded | raw }}
-    </dms-panel>
+    {% if posts | length %}
+        <dms-panel class="bg-grey" id="{{ craft.app.request.pathInfo }}" side="right" state="collapsed">
+            {% include 'components/posts-collapsed/posts-collapsed' with { posts: posts } only %}
+        </dms-panel>
+        <dms-panel class="bg-grey" id="{{ craft.app.request.pathInfo }}" side="right" state="expanded">
+            {% include 'components/posts-expanded/posts-expanded' with { posts: posts } only %}
+        </dms-panel>
+    {% endif %}
 </dms-panels>
-

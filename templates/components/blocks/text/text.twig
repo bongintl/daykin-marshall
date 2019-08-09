@@ -1,6 +1,8 @@
-<div class="grid s-pad-bottom-2 m-pad-bottom-4">
-    <div class="s-col-11 m-col-8 text-indent nomargin">
-        <h3 class="line-break">{{ heading }}</h3>
+<div class="grid s-pad-top-1 s-pad-bottom-2 m-pad-bottom-4">
+    <div class="s-col-11 m-col-6 m-off-6 text">
+        {% if heading %}
+            <h3 class="line-break">{{ heading }}</h3>
+        {% endif %}
         {{ copy }}
     </div>
 </div>

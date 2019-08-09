@@ -52,11 +52,9 @@ html {
 
 .text-s {
     font-size: 0.85rem;   
-
 }
 
 .text-m {
-    font-size: 1.25rem;
     @include medium {
         font-size: 1.5rem;
     }
@@ -75,12 +73,12 @@ html {
     line-height: 1.15;
     font-weight: bold;
     @include medium {
-        font-size: 3rem;
+        font-size: 2.25rem;
     }
 }
 
 .text-xxl {
-    font-size: 3rem;
+    font-size: 2.5rem;
     line-height: 1;
     @include medium {
         font-size: 6rem;
@@ -91,7 +89,9 @@ html {
 }
 
 p {
-    margin-bottom: calc( 1em * var( --line-height ) );
+    // margin-bottom: calc( 1em * var( --line-height ) );
+    margin-bottom: 1em;
+
     &.nomargin {
         margin-bottom: 0;
     }

@@ -1,7 +1,7 @@
 import * as opentype from 'opentype.js'
-import computeLayout from 'opentype-layout'
+// import computeLayout from 'opentype-layout'
 import { promisify } from 'es6-promisify';
-import resizeObserver from '~/utils/resizeObserver';
+// import resizeObserver from '~/utils/resizeObserver';
 import loadImage from '~/utils/loadImage';
 
 var fontURL = '/static/fonts/MonumentGrotesk-Medium.otf';

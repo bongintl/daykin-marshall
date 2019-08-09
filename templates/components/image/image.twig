@@ -10,11 +10,11 @@
     {% set placeholder = asset.getUrl({ width: 2 }) %}
     
     {% if ratio != false %}
-        <div style="padding-bottom: {{ ratio * 100 }}%">
+        <div class="bevel-down" style="padding-bottom: {{ ratio * 100 }}%">
             <img is="lazy-img" data-srcset="{{ srcset }}" src="{{ placeholder }}" class="{{ fit }}" {{ m.attrs( attrs ) }}>
         </div>
     {% else %}
-        <img is="lazy-img" data-srcset="{{ srcset }}" src="{{ placeholder }}" {{ m.attrs( attrs ) }}>
+        <img is="lazy-img" data-srcset="{{ srcset }}" src="{{ placeholder }}" class="{{ fit }}" {{ m.attrs( attrs ) }}>
     {% endif %}
     
 {% endif %}

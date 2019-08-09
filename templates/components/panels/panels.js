@@ -14,7 +14,11 @@ var base = document.querySelector('base').href;
 
 var parser = new DOMParser();
 var getPanels = el => {
-    var [ left, rightCollapsed, rightExpanded ] = el.querySelectorAll( 'dms-panel' );
+    var left = el.querySelector( 'dms-panel[side=left]' )
+    var rightCollapsed = el.querySelector( 'dms-panel[side=right][state=collapsed]' )
+    var rightExpanded = el.querySelector( 'dms-panel[side=right][state=expanded]' )
+    console.log({ left, rightCollapsed, rightExpanded })
+    // var [ left, rightCollapsed, rightExpanded ] = el.querySelectorAll( 'dms-panel' );
     return { left, rightCollapsed, rightExpanded }
 }
 var getError = doc => {
@@ -37,7 +41,7 @@ class Panels extends HTMLElement {
     
     constructor () {
         super();
-        this.mode = window.location.href === base ? 'two' : 'one';
+        // this.mode = window.location.href === base ? 'two' : 'one';
         this.focus = 'left';
         this.panels = [ null, null ];
     }
@@ -45,15 +49,15 @@ class Panels extends HTMLElement {
     connectedCallback () {
         this.addEventListener( 'click', this.onClick.bind( this ) );
         this.templates = getPanels( this );
-        for ( var key in this.templates ) this.removeChild( this.templates[ key ] );
+        [ ...this.children ].forEach( el => this.removeChild( el ) );
         this.divider = document.createElement('dms-divider');
         this.appendChild( this.divider );
-        this.render( this.focus, this.mode );
-        this.router = new Navigo( base );
+        this.render();
+        this.router = new Navigo( base );   
         this.router.on({
             '*': () => this.navigate( location.href )
         })
-        breakpoints.addChangeListener(() => this.render( this.focus, this.mode ))
+        // breakpoints.addChangeListener( () => this.render() )
     }
     
     async onClick ( e ) {
@@ -65,37 +69,40 @@ class Panels extends HTMLElement {
             if ( a.href === location.href ) return;
             this.focus = side;
             this.router.navigate( a.href, true );
-        } else if ( ( breakpoints.atMost('s') || this.mode === 'one' ) && this.focus !== side ) {
+        } else if ( this.focus !== side ) {
             e.preventDefault();
-            this.render( side, this.mode );
+            this.render( side );
         }
     }
     
     async navigate ( url, side = this.focus ) {
-        var mode = url === base ? 'two' : 'one';
         this.templates = await loadPanels( url );
-        this.render( side, mode );
+        // this.setAttribute( 'hide-images', '' )
+        // await sleep( 200 );
+        await this.render( side );
+        // this.removeAttribute('hide-images')
     }
     
-    render ( focus, mode ) {
+    render ( focus = this.focus ) {
         var { left, rightCollapsed, rightExpanded } = this.templates;
-        var isSmall = breakpoints.atMost('s')
+        var isSmall = breakpoints.atMost('s');
+        var hasRight = Boolean( rightCollapsed && rightExpanded );
+        if ( focus === 'right' && !hasRight ) throw Error('Cant change to right side it dont exist')
         this.focus = focus;
-        this.mode = mode;
-        if ( mode === 'two' && !isSmall ) {
+        if ( !hasRight ) {
             return this.transition([{
                 page: left,
                 attrs: {
-                    width: 'half',
+                    width: 'full',
                     offset: undefined,
                     inactive: false
-                },
+                }
             },{
-                page: rightExpanded,
+                page: document.createElement('dms-panel'),
                 attrs: {
-                    width: 'half',
-                    offset: 'half',
-                    inactive: false
+                    width: 'small',
+                    offset: 'full',
+                    inactive: true
                 }
             }])
         } else {

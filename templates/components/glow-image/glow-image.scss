@@ -39,8 +39,14 @@
     }
     &__title {
         position: absolute;
-        bottom: 0;
+        bottom: -2em;
         width: 100%;
-        text-align: center;
+        // text-align: center;
+        opacity: 0;
+        transition: opacity .5s;
+        dms-hover[matches-hover] &,
+        .glow-image--glowing & {
+            opacity: 1;
+        }
     }
 }

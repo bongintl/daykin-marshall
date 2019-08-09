@@ -13,7 +13,9 @@
         {% case 'image' %}
             {% include template with {
                 image: block.file.one(),
-                size: block.size
+                size: block.size,
+                position: block.position,
+                glow: block.glow
             } only %}
         {% case 'video' %}
             {% include template with {
@@ -21,7 +23,9 @@
             } only %}
         {% case 'slider' %}
             {% include template with {
-                images: block.images.all()
+                images: block.images.all(),
+                size: block.size,
+                position: block.position
             } only %}
         {% default %}
             you fool: {{ block.type }}

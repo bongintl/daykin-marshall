@@ -7,9 +7,10 @@
     {% set transitionId = transitionId ?? false %}
     {% if ratio == true %}{% set ratio = asset.height / asset.width %}{% endif %}
     {% set attrs = attrs ?? {} %}
+    {% set title = title ?? '' %}
     
     <div
-        class="{{ m.bem( 'glow-image', { glowing: alwaysGlow } ) }}"
+        class="bevel-down {{ m.bem( 'glow-image', { glowing: alwaysGlow } ) }}"
         {% if ratio != false %}
             style="padding-bottom: {{ ratio * 100 }}%"
         {% endif %}
@@ -35,7 +36,17 @@
                 modulate: [ 100, 250, 100 ]
             }
         }) %}
-        <img class="glow-image__glow" src="{{ blurredImg }}">
+        {% set srcset = craft.imager.transformImage( blurredImg, [
+            { width: 400 },
+            { width: 800 },
+            { width: 1000 },
+            { width: 1600 },
+        ], { allowUpscale: false } ) %}
+        <img
+            is="lazy-img"
+            class="glow-image__glow"
+            data-srcset="{{ craft.imager.srcset( srcset ) }}"
+        >
         <img
             is="lazy-img"
             class="glow-image__image cover"
@@ -45,6 +56,13 @@
                 data-transition-id="{{ transitionId }}"
             {% endif %}
         >
+        
+        
+        {% if title %}
+            <div class="glow-image__title">
+                {{ title }}
+            </div>
+        {% endif %}
     </div>
     
 {% endif %}

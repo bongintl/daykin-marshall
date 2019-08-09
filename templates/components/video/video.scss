@@ -1,3 +1,9 @@
 .video {
     width: 100%;
+    video {
+        transition: opacity .2s;
+        dms-panels[hide-images] & {
+            opacity: 0;
+        }
+    }
 }

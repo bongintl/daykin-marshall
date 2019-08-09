@@ -21,6 +21,9 @@ dms-panel {
     &[width=large] {
         width: var( --width-large );
     }
+    &[width=full] {
+        width: 100vw;
+    }
     &[offset=half] {
         transform: translateX( 50vw );
     }
@@ -32,6 +35,9 @@ dms-panel {
     }
     &[offset=large] {
         transform: translateX( var( --width-large ) );
+    }
+    &[offset=full] {
+        transform: translateX( 100vw );
     }
     &[offset=off-left-half] {
         transform: translateX( calc( -50vw + var( --width-small ) ) );
@@ -47,7 +53,7 @@ dms-panel {
     }
     &[inactive] {
         cursor: pointer;
-        overflow-y: hidden;
+        // overflow-y: hidden;
         & > * {
             pointer-events: none;
         }
