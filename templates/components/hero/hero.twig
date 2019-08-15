@@ -6,7 +6,7 @@
     <div class="s-col-12">
         <div class="hero__image s-gap-bottom-1 m-gap-bottom-2">
             {% if video %}
-                {% include 'components/video/video' with { video: video, ratio: false } only %}
+                {% include 'components/video/video' with { video: video, fit: 'cover'} only %}
             {% elseif image %}
                 {% include 'components/image/image' with { asset: image, ratio: false } only %}
             {% endif %}

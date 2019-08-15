@@ -1,3 +1,5 @@
-<div class="video bevel-down">
+{% set fit = fit ?? false %}
+
+<div class="video bevel-down {{ fit }}">
     <video class="video" src="{{ video.url }}" autoplay loop muted playsinline>
 </div>
