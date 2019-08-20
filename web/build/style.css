@@ -3140,7 +3140,9 @@ dms-transition-element {
   transform: translateY(-100vh);
   transition: transform .3s; }
   .splash-on .splash {
-    transform: translateY(0); }
+    transform: translate(0); }
+  .splash-on.nav-open .splash {
+    transform: translateX(var(--nav-width)); }
   .splash h1 {
     width: 100%;
     text-align: center;
