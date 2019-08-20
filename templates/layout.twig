@@ -18,10 +18,22 @@
         <link rel="stylesheet" href="{{ siteUrl }}build/style.css" type="text/css" />
         <base href="{{ siteUrl }}"></base>
     </head>
-    <body>
+    {% if craft.app.request.segments|last == '' %}
+        <body class="splash-on">
+        {% include 'components/splash/splash' %}
+    {% else %}
+        <body>
+    {% endif %}
         
+
+
+
+
         {% include 'components/nav/nav' %}
         
+  
+    
+    
         {% if block('livePreview') is defined %}
             {{ block( 'livePreview' ) | raw }}
         {% else %}

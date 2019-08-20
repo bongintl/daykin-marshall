@@ -131,10 +131,11 @@ html {
   line-height: 1; }
   @media (min-width: 768px) {
     .text-xxl {
-      font-size: 6rem; } }
+      font-size: 4rem; } }
   @media (min-width: 1024px) {
     .text-xxl {
-      line-height: 1.25; } }
+      line-height: 1.25;
+      font-size: 6rem; } }
 
 p {
   margin-bottom: 1em; }
@@ -2691,10 +2692,10 @@ body {
   --bevel-size: 2px;
   --shadow-color: rgba( 0, 0, 0, .1 ); }
 
-.bevel-up, .nav__dot {
+.bevel-up, .nav__dot, .splash__dot {
   box-shadow: inset calc( var( --bevel-size ) * 0.5) calc( var( --bevel-size ) * -0.5) var(--bevel-size) var(--bevel-dark), inset calc( var( --bevel-size ) * -0.5) calc( var( --bevel-size ) * 0.5) var(--bevel-size) var(--bevel-light); }
 
-.bevel-down, .text ul li:before, .nav__dot:hover {
+.bevel-down, .text ul li:before, .nav__dot:hover, .splash__dot:hover {
   box-shadow: inset calc( var( --bevel-size ) * -0.5) calc( var( --bevel-size ) * 0.5) var(--bevel-size) var(--bevel-dark), inset calc( var( --bevel-size ) * 0.5) calc( var( --bevel-size ) * -0.5) var(--bevel-size) var(--bevel-light); }
 
 .bevel-button:before, .bevel-button:after {
@@ -3121,6 +3122,8 @@ dms-panels {
   --width-large: calc( 100vw - var( --line ) * 1.5 ); }
   .nav-open dms-panels {
     transform: translateX(var(--nav-width)); }
+  .splash-on dms-panels {
+    transform: translateY(100vh); }
   @media (min-width: 768px) {
     dms-panels {
       --width-small: calc( 100vw / 7 );
@@ -3131,6 +3134,43 @@ dms-transition-element {
   display: block;
   transition: transform .4s;
   transform-origin: 0 0; }
+
+.splash {
+  height: 100vh;
+  transform: translateY(-100vh);
+  transition: transform .3s; }
+  .splash-on .splash {
+    transform: translateY(0); }
+  .splash h1 {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    z-index: 10;
+    pointer-events: none; }
+  .splash__dot {
+    bottom: var(--gutter);
+    left: 50%;
+    transform: translateX(-50%);
+    width: var(--nav-size);
+    height: var(--nav-size);
+    position: absolute;
+    border-radius: var(--nav-size);
+    background-color: var(--background-color);
+    cursor: pointer; }
+  .splash .video {
+    position: absolute;
+    width: 85%;
+    left: 7.5%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    filter: blur(80px);
+    transition: filter 0.5s; }
+    .splash .video:hover {
+      filter: blur(0); }
 
 .tag {
   white-space: nowrap;

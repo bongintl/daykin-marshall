@@ -7,6 +7,9 @@ dms-panels {
     .nav-open & {
         transform: translateX( var( --nav-width ) );
     }
+    .splash-on & {
+        transform: translateY(100vh );
+    }
     --width-small: 5rem;
     --width-large: calc( 100vw - var( --line ) * 1.5 );
     @include medium {
