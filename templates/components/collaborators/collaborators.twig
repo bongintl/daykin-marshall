@@ -1,6 +1,10 @@
+
+</div>
+
 {% for item in items %}
+
         {% if item.type == 'singleCollaborator' %}
-            <div class="grid grid--fill{% if item.imagePosition == '' %} xdrr{% endif %}">
+            <div class="grid grid--fill collaborators{% if item.imagePosition == '' %} collaborators--reverse{% endif %}">
     
                 <div class="s-col-12 l-col-6 bevel-up text-m">
                     <div class="s-pad-1 s-pad-bottom-3">
@@ -25,7 +29,7 @@
                 
             </div>
         {% else %}
-            <div class="grid grid--fill l-reverse">
+            <div class="grid grid--fill collaborators">
     
                 <div class="s-col-12 l-col-3 bevel-up text-s">
                     <div class="s-pad-1 s-pad-bottom-3">
@@ -36,6 +40,9 @@
                             {{ item.leftQuote }}
                         </div>
                         
+                        {% if item.leftReadMoreLink|length %}
+                        <a href="{{ item.leftReadMoreLink.one.url }}">&rarr;</a>
+                        {% endif %}
                     </div>
                 </div>
                 
@@ -54,8 +61,8 @@
                             {{ item.rightQuote }}
                         </div>
                         
-                        {% if item.readMoreLink|length %}
-                        <a href="{{ item.readMoreLink.one.url }}">&rarr;</a>
+                        {% if item.rightReadMoreLink|length %}
+                        <a href="{{ item.rightReadMoreLink.one.url }}">&rarr;</a>
                         {% endif %}
                         
                     </div>

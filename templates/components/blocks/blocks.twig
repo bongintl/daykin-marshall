@@ -19,13 +19,16 @@
             } only %}
         {% case 'video' %}
             {% include template with {
-                video: block.file.one()
+                video: block.file.one(),
+                position: block.position,
+                size: block.size
             } only %}
         {% case 'slider' %}
             {% include template with {
                 images: block.images.all(),
                 size: block.size,
-                position: block.position
+                position: block.position,
+                transition: block.transition
             } only %}
         {% default %}
             you fool: {{ block.type }}

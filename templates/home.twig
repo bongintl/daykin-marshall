@@ -1,7 +1,7 @@
 {% extends "layout" %}
 {% block content %}
 
-    <div class="bevel-up m-pad-top-2 m-pad-top-4">
+    <div class="bevel-up s-pad-top-half">
     <div class="grid">
         <div class="s-col-12 m-col-5 m-off-6 s-gap-top-4 m-gap-top-half">
                 {% for block in entry.introduction %}
@@ -15,7 +15,7 @@
     </div>
 
     <div class="grid s-gap-top-2 m-gap-top-8">
-        <div class="s-col-12 m-col-5 m-off-1">
+        <div class="s-col-12 m-col-5 m-off-1 s-gap-top-half">
     
             {% for building in entry.selectedBuildings.all if building.thumbnail | length %}
 
@@ -24,27 +24,28 @@
                         <a class="buildings" href="{{ building.url }}">
                             {% include 'components/glow-image/glow-image' with {
                                 asset: building.thumbnail.one,
-                                title: building.title
                             } only %}
                         </a>
                     </dms-hover>
+                    <div class="s-pad-top-half">{{ building.title }}</div>
                 </div>
                         
             {% endfor %}
         
         </div>
-        <div class="s-col-12 m-col-5 mono text-s s-gap-top-4">
+        <div class="s-col-12 m-col-5 mono text-s">
     
         {% for post in entry.selectedPosts.all %}
         
-        
-            <div class="s-gap-bottom-2">  
+            <div class="grid">
+            <div class="m-col-9 s-gap-bottom-2{% if loop.index is odd %} m-off-3{% endif %}">  
                 {% include 'components/archive-post/archive-post' with {
                     entry: post,
                     cat: post.category.one(),
                     img: post.images.one(),
                     limit: 200
                 } %}
+            </div>
             </div>
     
         {% endfor %}

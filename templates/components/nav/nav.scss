@@ -1,24 +1,36 @@
 :root {
     --nav-size: 2rem;
     --nav-width: 100vw;
-    @include large {
-        --nav-width: calc( 100vw * 6/7 );
-    }
+    // @include large {
+    //     --nav-width: calc( 100vw * 6/7 );
+    // }
 }
+
+
 
 .nav {
     position: fixed;
     z-index: 1000;
     width: var( --nav-width );
     height: 100%;
-    background-color: var( --background-color );
+    // background-color: var( --background-color );
     top: 0;
     left: 0;
-    transform: translateX( -100% );
+    // transform: translateX( -100% );
     transition: transform .3s;
+    display: none;
     
     .nav-open & {
-        transform: none;
+        display: block;
+        // transform: none;
+    }
+    
+    &__bg {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
     }
     
     &__dot {
@@ -32,14 +44,17 @@
         background-color: var( --background-color );
         cursor: pointer;
         @extend .bevel-up;
+        transition: background-color .3s;
         &:hover {
             @extend .bevel-down;
+        }
+        .nav-open & {
+            background-color: transparent;
         }
     }
     
     &__group {
         position: absolute;
-        
         ul {
             list-style: none;
             margin: 0;

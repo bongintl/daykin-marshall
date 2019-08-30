@@ -23,11 +23,11 @@
     }
 }
 
-[slides] {
+[slides][slides-transition="slide"] {
     transition: transform .8s;
 }
 
-[slider-next] {
+[slider-next], [slider-prev] {
     cursor: pointer;
 }
 

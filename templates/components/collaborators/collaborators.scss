@@ -1,0 +1,7 @@
+.collaborators {
+    &--reverse {
+        @include medium {
+            flex-direction: row-reverse;   
+        }
+    }
+}

@@ -1,9 +1,15 @@
 .archive-nav {
     max-width: 100%;
+    margin-right: var( --gutter );
+    margin-top: var(--gutter);
     &__item {
         display: block;
-        padding: 0.5em 0.75em;
-        margin-right: var( --gutter );
-        margin-bottom: var( --gutter );
+        padding-left: var( --gutter );
+        a {
+            &:hover {
+                border-bottom: 1px solid var( --text-color );
+            }
+        }
+
     }
 }

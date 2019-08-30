@@ -3,6 +3,12 @@
 
 // var springSystem = new SpringSystem();
 
+var wrap = ( x, limit ) => {
+    while ( x > limit ) x -= limit;
+    while ( x < 0 ) x += limit;
+    return x;
+}
+
 class Slider extends HTMLElement {
     connectedCallback () {
         this.slideContainer = this.querySelector('[slides]');
@@ -16,14 +22,23 @@ class Slider extends HTMLElement {
         // this.spring.addListener({
         //     onSpringUpdate: spring => this.render( spring.getCurrentValue() )
         // })
-        this.querySelector('[slider-next]').addEventListener('click', this.next.bind( this ) );
+        [ ...this.querySelectorAll( '[slider-next]' ) ].forEach( next => {
+            next.addEventListener('click', this.next.bind( this ) );
+        });
+        [ ...this.querySelectorAll( '[slider-prev]' ) ].forEach( prev => {
+            prev.addEventListener('click', this.prev.bind( this ) );
+        })
         this.render();
     }
-    next () {
-        this.curr = ( this.curr + 1 ) % this.slides.length;
+    go ( i ) {
+        this.curr = wrap( i, this.slides.length - 1 );
         this.render();
-        // this.spring.setEndValue( ++this.curr )
-        // this.render();
+    }
+    prev () {
+        this.go( this.curr - 1 );
+    }
+    next () {
+        this.go( this.curr + 1 );
     }
     // prev () {
     //     this.curr = this.curr === 0

@@ -1,10 +1,16 @@
 <div class="s-gap-bottom-half">
     <a href="/archive?category={{ cat }}">{{ cat }}</a><br>
-    <a href="{{ entry.url }}">{{ entry.postDate| date("d.m.Y") }}</a>
+    {% if entry.readMore %}
+        <a href="{{ entry.url }}">{{ entry.postDate| date("d.m.Y") }}</a>
+    {% else %}
+        {{ entry.postDate| date("d.m.Y") }}
+    {% endif %}
 </div>
 
 {% if img %}
-    <a href="{{ entry.url }}">{% include 'components/image/image' with { asset: img } only %}</a>
+    {% if entry.readMore %}<a href="{{ entry.url }}">{% endif %}
+        {% include 'components/image/image' with { asset: img } only %}
+    {% if entry.readMore %}</a>{% endif %}
 {% endif %}
 
 {% if entry.showTitle %}
@@ -14,13 +20,15 @@
 {% endif %}
                 
 <div class="s-pad-top-half">
-    {% if entry.body|length > limit %}
+    {% if entry.readMore %}
         {{ entry.body|striptags|slice(0,limit) ~ '...' }}
     {% else %}
         {{ entry.body }}
     {% endif %}
 </div>
 
+{% if entry.readMore %}
 <div class="s-pad-top-half">
     <a href="{{ entry.url }}">&rarr;</a>
 </div>        
+{% endif %}

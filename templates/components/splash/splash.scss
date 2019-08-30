@@ -1,46 +1,63 @@
 .splash {
     height: 100vh;
     transform: translateY(-100vh );
-    transition: transform .3s;
+    transition: filter .3s, transform .3s;
+    // transition: transform .3s;
 
     .splash-on & {
         transform: translate( 0 );
     }
     
+    
     .splash-on.nav-open & {
-        transform: translateX( var( --nav-width ) );
+        // transform: translateX( var( --nav-width ) );
+        filter: blur(80px);
     }
     
 
     
-    h1 {
+    &__heading {
         width: 100%;
         text-align: center;
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%,-60%);
+        transform: translate(-50%,-50%);
         z-index: 10;
         pointer-events: none;
+        cursor: pointer;
+
+    
+        font-size: 1.5rem;
+        line-height: 1;
+        
+        @include medium {
+            font-size: 3rem;
+        }
+        @include large {
+            font-size: 3.5rem;
+        }
+        
+
     }
   
-    &__dot {
-        bottom: var( --gutter );
-        left: 50%;
-        transform: translateX(-50%);
-        width: var( --nav-size );
-        height: var( --nav-size );
-        position: absolute;
-        border-radius: var( --nav-size );
-        background-color: var( --background-color );
-        cursor: pointer;
-        @extend .bevel-up;
-        &:hover {
-            @extend .bevel-down;
-        }
-    }
+    // &__dot {
+    //     bottom: var( --gutter );
+    //     left: 50%;
+    //     transform: translateX(-50%);
+    //     width: var( --nav-size );
+    //     height: var( --nav-size );
+    //     position: absolute;
+    //     border-radius: var( --nav-size );
+    //     background-color: var( --background-color );
+    //     cursor: pointer;
+    //     @extend .bevel-up;
+    //     &:hover {
+    //         @extend .bevel-down;
+    //     }
+    // }
     
-    .video {
+    &__video {
         position: absolute;
         width: 85%;
         left: 7.5%;
@@ -49,8 +66,21 @@
         z-index: 1;
         filter: blur(80px);
         transition: filter 0.5s;
+        background-color:  var( --background-color );
+        cursor: pointer;
+        video {
+        	mix-blend-mode: color;
+        }
+
         &:hover {
             filter: blur(0);
+            video {
+                mix-blend-mode: normal;
+            }
+        }
+        display: none;
+        @include medium {
+            display: block;
         }
     }
 }

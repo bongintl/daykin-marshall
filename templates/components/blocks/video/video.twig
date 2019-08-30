@@ -1,5 +1,15 @@
-<div class="grid">
-    <div class="s-col-12 s-pad-bottom-1">
+{% import 'macros/dms' as dms %}
+
+{% set columns = {
+    4: { s: 6, l: 4 },
+    6: { s: 6 },
+    8: { s: 12, l: 10, xl: 8 },
+    10: { s: 12, l: 10 },
+    12: { s: 12 }
+} %}
+
+<div class="grid grid--fill s-pad-bottom-3 l-pad-bottom-5">
+    <div class="{{ dms.align( position, columns[ size.value ?? 12 ] ) }}">
         {% if video %}
             {% include 'components/video/video' with { video: video } only %}
         {% endif %}

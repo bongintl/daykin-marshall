@@ -1,6 +1,6 @@
 {% set images = images ?? [] %}
 
-{% set ratio = max( images | map( img => img.height / img.width ) | merge([ 0 ]) ) %}
+{% set ratio = images | length ? max( images | map( img => img.height / img.width ) ) : 0 %}
 
 {% set offset = 0 %}
 {% switch position %}
@@ -13,8 +13,13 @@
 {% endswitch %}
 
 <dms-slider class="grid grid--fill s-pad-bottom-5">
+    <div class="s-col-1 bg-grey x xjc" slider-prev>
+        <div class="slider__button-track">
+            <div class="slider__button xs0"></div>
+        </div>
+    </div>
     <div class="oh s-col-{{ size.value }} s-off-{{ offset }}">
-        <div slides style="padding-bottom: {{ ratio * 100 }}%">
+        <div slides slides-transition="{{ transition }}" style="padding-bottom: {{ ratio * 100 }}%">
             {% for img in images %}
                 <div slide class="fill">
                     {% include 'components/image/image' with {
@@ -27,7 +32,7 @@
             {% endfor %}
         </div>
     </div>
-    <div class="s-col-2 xxl-col-1 bg-grey x xjc" slider-next>
+    <div class="s-col-1 bg-grey x xjc" slider-next>
         <div class="slider__button-track">
             <div class="slider__button xs0"></div>
         </div>

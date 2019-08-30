@@ -3,9 +3,9 @@
 
 {#{% set padding = craft.app.request.url == '/' or craft.app.request.url == '/buildings' ? 's-pad-top-8' : 's-pad-top-50vh' %}#}
 
-<div class="grid s-gap-bottom-5 s-pad-top-8">
+<div class="grid s-gap-bottom-5 text-s s-pad-top-8">
     {% for post in posts %}
-        <div class="s-col-10 l-col-8 {{ loop.index % 2 == 1 ? 's-off-2 l-off-4' }}">
+        <div class="s-col-10 l-col-8 {{ loop.index % 2 == 1 ? 's-off-2 l-off-4' }}" data-scroll-id="post_{{ post.id }}">
             {% include 'components/post/post' with { post: post } only %}
         </div>  
     {% endfor %}

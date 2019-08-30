@@ -13,6 +13,9 @@ dms-panel {
     // @include medium {
     //     padding-top: 12rem;
     // }
+    &:not([width]) {
+        display: none;
+    }
     &[width=half] {
         width: 50vw;
     }
@@ -54,9 +57,8 @@ dms-panel {
     }
     &[inactive] {
         cursor: pointer;
-        // overflow-y: hidden;
         & > * {
-            pointer-events: none;
+            // pointer-events: none;
         }
     }
 }

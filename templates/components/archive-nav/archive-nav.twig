@@ -1,12 +1,15 @@
-<div class="archive-nav x xdr xje xw s-pad-top-half m-pad-top-1 text-s mono">
+<div class="archive-nav x xdr xje xw text-s mono">
 
     {% set cats = craft.categories.group('category').find() %}
 
-        
-    <a href="/archive?category=buildings" class="archive-nav__item bevel-button m-col-1">Buildings</a>
+    <div class="archive-nav__item">
+        <a href="/archive?category=buildings">Buildings</a>
+    </div>
 
     {% for cat in cats %}
-        <a href="/archive?category={{ cat.slug }}" class="archive-nav__item bevel-button m-col-1">{{ cat.title }}</a>
+    <div class="archive-nav__item">
+        <a href="/archive?category={{ cat.slug }}" class="">{{ cat.title }}</a>
+    </div>
     {% endfor %}
 
 

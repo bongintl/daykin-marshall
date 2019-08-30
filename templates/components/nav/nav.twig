@@ -1,7 +1,8 @@
 <div class="nav__dot"></div>
 
-<nav class="nav text-l bevel-up">
+<nav class="nav text-xl bevel-up">
     
+    <div class="nav__bg"></div>
     <div class="nav__group nav__group--tl">
         <ul>
             {% for text, url in {
@@ -30,8 +31,14 @@
     
     <div class="nav__group nav__group--br">
         <ul>
-            <li><a href="tel:{{ nav.phoneNumber }}"><dms-engraved>{{ nav.phoneNumber }}</dms-engraved></a></li>
-            <li><a href="mailto:{{ nav.email }}"><dms-engraved>{{ nav.email }}</dms-engraved></a></li>
+            <li><a href="tel:{{ nav.phoneNumber }}">
+                <span class="s-show m-hide"><dms-engraved>Phone</dms-engraved></span>
+                <span class="s-hide m-show"><dms-engraved>{{ nav.phoneNumber }}</dms-engraved></span>
+            </a></li>
+            <li><a href="mailto:{{ nav.email }}">
+                <span class="s-show m-hide"><dms-engraved>Email</dms-engraved></span>
+                <span class="s-hide m-show"><dms-engraved>{{ nav.email }}</dms-engraved></span>
+            </a></li>
         </ul>
     </div>
 

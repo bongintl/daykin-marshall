@@ -3,9 +3,12 @@ dms-panels {
     top: 0;
     left: 0;
     bottom: 0;
-    transition: transform .3s;
+    // transition: transform .3s;
+    transition: filter .3s, transform .3s;
+    filter: blur(0);
     .nav-open & {
-        transform: translateX( var( --nav-width ) );
+        // transform: translateX( var( --nav-width ) );
+        filter: blur(80px);
     }
     .splash-on & {
         transform: translateY(100vh );

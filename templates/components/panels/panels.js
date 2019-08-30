@@ -47,7 +47,7 @@ class Panels extends HTMLElement {
     }
     
     connectedCallback () {
-        this.addEventListener( 'click', this.onClick.bind( this ) );
+        document.body.addEventListener( 'click', this.onClick.bind( this ) );
         this.templates = getPanels( this );
         [ ...this.children ].forEach( el => this.removeChild( el ) );
         this.divider = document.createElement('dms-divider');
@@ -71,7 +71,8 @@ class Panels extends HTMLElement {
             this.router.navigate( a.href, true );
         } else if ( this.focus !== side ) {
             e.preventDefault();
-            this.render( side );
+            var scrollIDEl = findParent( e.target, el => el.dataset.scrollId );
+            this.render( side, scrollIDEl ? scrollIDEl.dataset.scrollId : null );
         }
     }
     
@@ -83,7 +84,7 @@ class Panels extends HTMLElement {
         // this.removeAttribute('hide-images')
     }
     
-    render ( focus = this.focus ) {
+    render ( focus = this.focus, scrollID ) {
         var { left, rightCollapsed, rightExpanded } = this.templates;
         var isSmall = breakpoints.atMost('s');
         var hasRight = Boolean( rightCollapsed && rightExpanded );
@@ -104,7 +105,7 @@ class Panels extends HTMLElement {
                     offset: 'full',
                     inactive: true
                 }
-            }])
+            }], scrollID )
         } else {
             switch ( focus ) {
                 case 'left':
@@ -122,7 +123,7 @@ class Panels extends HTMLElement {
                             width: 'small',
                             inactive: true
                         }
-                    }])
+                    }], scrollID )
                 case 'right':
                     return this.transition([{
                         page: left,
@@ -138,23 +139,24 @@ class Panels extends HTMLElement {
                             width: isSmall ? 'large' : 'half',
                             inactive: false
                         }
-                    }])
+                    }], scrollID )
             }
         }
     }
     
-    transition ( nextPanels ) {
+    transition ( nextPanels, scrollID ) {
         var currPanels = this.panels;
         this.panels = nextPanels.map( p => p.page );
-        return this.transitionPanels( zip( currPanels, nextPanels ) )
+        return this.transitionPanels( zip( currPanels, nextPanels ), scrollID )
     }
     
-    async transitionPanels ( panels ) {
+    async transitionPanels ( panels, scrollID ) {
         panels.forEach( ([ curr, next ]) => {
             if ( curr !== null ) curr.setAttribute( 'inactive', true );
             if ( curr !== next.page ) {
                 setAttributes( next.page, { ...next.attrs, hidden: true, inactive: true });
                 this.appendChild( next.page )
+                if ( scrollID ) this.scrollPageTo( next.page, scrollID );
             }
         })
         var transitionElements = flatten( panels.map( ([ curr, next ]) => {
@@ -217,6 +219,15 @@ class Panels extends HTMLElement {
                 return el;
             })
     }
+    
+    scrollPageTo ( page, id ) {
+        var target = page.querySelector(`[data-scroll-id="${ id }"]`);
+        if ( !target ) return;
+        var { top, height } = target.getBoundingClientRect();
+        var center = top + height / 2;
+        page.scrollTo( 0, center - window.innerHeight / 2 )
+    }
+    
 }
 
 window.customElements.define( 'dms-panels', Panels )
