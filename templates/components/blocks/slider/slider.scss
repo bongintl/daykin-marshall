@@ -6,8 +6,8 @@
         padding: calc( 50% - .5em ) 0;
     }
     &__button {
-        width: 1.5em;
-        height: 1.5em;
+        width: 1em;
+        height: 1em;
         cursor: pointer;
         z-index: 40;
         @include bevel-button( 1 );
@@ -19,6 +19,10 @@
         }
         &:before, &:after {
             border-radius: 50%;
+        }
+        @include medium {
+            width: 1.5em;
+            height: 1.5em;
         }
     }
 }

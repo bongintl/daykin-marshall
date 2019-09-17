@@ -37,8 +37,8 @@
     
         {% for post in entry.selectedPosts.all %}
         
-            <div class="grid">
-            <div class="m-col-9 s-gap-bottom-2{% if loop.index is odd %} m-off-3{% endif %}">  
+            <div class="grid grid--fill">
+            <div class="s-col-12 m-col-9 s-gap-bottom-2{% if loop.index is odd %} m-off-3{% endif %}">  
                 {% include 'components/archive-post/archive-post' with {
                     entry: post,
                     cat: post.category.one(),

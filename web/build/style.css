@@ -2823,8 +2823,9 @@ body {
   order: 99; }
 
 .archive-nav {
-  max-width: 100%;
-  margin-right: var(--gutter);
+  max-width: 80%;
+  position: absolute;
+  right: var(--gutter);
   margin-top: var(--gutter); }
   .archive-nav__item {
     display: block;
@@ -2839,8 +2840,8 @@ body {
   padding: calc( 50% - .5em) 0; }
 
 .slider__button {
-  width: 1.5em;
-  height: 1.5em;
+  width: 1em;
+  height: 1em;
   cursor: pointer;
   z-index: 40;
   position: sticky;
@@ -2869,6 +2870,10 @@ body {
       opacity: 1; }
   .slider__button:before, .slider__button:after {
     border-radius: 50%; }
+  @media (min-width: 768px) {
+    .slider__button {
+      width: 1.5em;
+      height: 1.5em; } }
 
 [slides][slides-transition="slide"] {
   transition: transform .8s; }

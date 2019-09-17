@@ -13,12 +13,12 @@
 {% endswitch %}
 
 <dms-slider class="grid grid--fill s-pad-bottom-5">
-    <div class="s-col-1 bg-grey x xjc" slider-prev>
+    <div class="s-col-1  m-off-{{ offset }} bg-grey x xjc" slider-prev>
         <div class="slider__button-track">
             <div class="slider__button xs0"></div>
         </div>
     </div>
-    <div class="oh s-col-{{ size.value }} s-off-{{ offset }}">
+    <div class="oh s-col-10 m-col-{{ size.value }}">
         <div slides slides-transition="{{ transition }}" style="padding-bottom: {{ ratio * 100 }}%">
             {% for img in images %}
                 <div slide class="fill">
