@@ -14,8 +14,8 @@
         filter: blur(80px);
     }
     
-
     
+
     &__heading {
         width: 100%;
         text-align: center;
@@ -24,7 +24,6 @@
         left: 50%;
         transform: translate(-50%,-50%);
         z-index: 10;
-        pointer-events: none;
         cursor: pointer;
 
     
@@ -32,6 +31,7 @@
         line-height: 1;
         
         @include medium {
+            pointer-events: none;
             font-size: 3rem;
         }
         @include large {
