@@ -68,6 +68,7 @@
         transition: filter 0.5s;
         background-color:  var( --background-color );
         cursor: pointer;
+        max-height: 70vh;
         video {
         	mix-blend-mode: color;
         }

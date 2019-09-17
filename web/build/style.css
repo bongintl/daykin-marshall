@@ -3195,6 +3195,7 @@ dms-transition-element {
     transition: filter 0.5s;
     background-color: var(--background-color);
     cursor: pointer;
+    max-height: 70vh;
     display: none; }
     .splash__video video {
       mix-blend-mode: color; }
