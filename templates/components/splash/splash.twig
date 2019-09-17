@@ -3,6 +3,6 @@
     {#<div class="splash__dot"></div>#}
     
     <div class="splash__video">
-        {% include 'components/video/video' with { video: entry.splashVideo.one() } only %}
+        {% include 'components/video/video' with { video: shuffle(entry.splashVideo)[0] } only %}
     </div>
 </div>
