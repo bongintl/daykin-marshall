@@ -8,7 +8,7 @@
     {% if ratio == true %}{% set ratio = asset.height / asset.width %}{% endif %}
     {% set attrs = attrs ?? {} %}
     {% set title = title ?? '' %}
-    
+
     <div
         class="bevel-down {{ m.bem( 'glow-image', { glowing: alwaysGlow } ) }}"
         {% if ratio != false %}
@@ -59,7 +59,7 @@
         
         
         {% if title %}
-            <div class="glow-image__title">
+            <div class="glow-image__title{% if titleOn %} glow-image__title--on{% endif %}">
                 {{ title }}
             </div>
         {% endif %}

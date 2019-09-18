@@ -5,12 +5,9 @@ import resizeObserver from '~/utils/resizeObserver'
 var intersectionObserver = createObserver( IntersectionObserver, { rootMargin: '100% 0% 100% 0%' } );
 
 class LazyImage extends HTMLImageElement {
-    constructor () {
-        super();
-        this.onResize = this.onResize.bind( this );
-        this.onIntersect = this.onIntersect.bind( this );
-    }
     connectedCallback () {
+        this.onIntersect = this.onIntersect.bind( this );
+        this.onResize = this.onResize.bind( this );
         intersectionObserver.observe( this, this.onIntersect );
     }
     disconnectedCallback () {

@@ -2955,6 +2955,8 @@ dms-engraved {
     width: 100%;
     opacity: 0;
     transition: opacity .5s; }
+    .glow-image__title--on {
+      opacity: 1; }
     dms-hover[matches-hover] .glow-image__title,
     .glow-image--glowing .glow-image__title {
       opacity: 1; }

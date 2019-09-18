@@ -8,12 +8,13 @@
                         <a class="buildings" href="{{ building.url }}">
                             {% include 'components/glow-image/glow-image' with {
                                 asset: building.thumbnail.one,
-                                title: building.title
+                                title: building.title,
+                                titleOn: true
                             } only %}
                         </a>
                     </dms-hover>
-                    <div class="s-pad-top-half">{{ building.title }}</div>
                 </div>
+
             </div>
         {% endfor %}
     </div>

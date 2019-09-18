@@ -17,6 +17,8 @@
   "license": "ISC",
   "dependencies": {
     "@babel/cli": "^7.4.4",
+    "@ungap/custom-elements-builtin": "^0.2.7",
+    "@webcomponents/custom-elements": "^1.2.4",
     "breakjs": "^1.0.0",
     "es6-map": "^0.1.5",
     "es6-promisify": "^6.0.1",
