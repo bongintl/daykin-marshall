@@ -14,8 +14,11 @@ dms-hero {
     }
     .hero__title-sticky {
         position: sticky;
-        top: 100vh;
+        top: 60vh;
         height: 0;
+        @include large {
+            top: 100vh;
+        }
     }
     .hero__title {
         transform: translateY(-100%);

@@ -2985,8 +2985,11 @@ dms-hero {
       object-fit: cover; }
   dms-hero .hero__title-sticky {
     position: sticky;
-    top: 100vh;
+    top: 60vh;
     height: 0; }
+    @media (min-width: 1024px) {
+      dms-hero .hero__title-sticky {
+        top: 100vh; } }
   dms-hero .hero__title {
     transform: translateY(-100%);
     padding: var(--gutter); }
