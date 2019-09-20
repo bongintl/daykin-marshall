@@ -47,9 +47,11 @@
         &--on {
             opacity: 1;
         }
-        dms-hover[matches-hover] &,
-        .glow-image--glowing & {
-            opacity: 1;
+        @include medium {
+            dms-hover[matches-hover] &,
+            .glow-image--glowing & {
+                opacity: 1;
+            }
         }
     }
 }

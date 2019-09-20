@@ -3,7 +3,7 @@
     <div class="grid s-pad-top-8 xafe">
         {% for building in craft.entries.section('buildings').all if ( building.thumbnail | length ) and ( building.archivedBuilding == false ) %}
             <div class="s-col-6 l-col-4">
-                <div class="s-gap-bottom-1 m-gap-x-1 m-gap-bottom-3">
+                <div class="s-gap-bottom-3 m-gap-x-1 m-gap-bottom-3">
                     <dms-hover url="{{ building.url }}">
                         <a class="buildings" href="{{ building.url }}">
                             {% include 'components/glow-image/glow-image' with {
