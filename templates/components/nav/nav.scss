@@ -50,8 +50,11 @@
         border-radius: var( --nav-size );
         background-color: var( --background-color );
         cursor: pointer;
+        transition: all .3s;
         @extend .bevel-up;
-        transition: background-color .3s;
+        .splash-on & {
+            visibility: hidden;
+        }
         &:hover {
             @extend .bevel-down;
         }

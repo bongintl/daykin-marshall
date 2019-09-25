@@ -1,16 +1,38 @@
+{% set catShow =  catShow ?? true %}
+
 <div class="s-gap-bottom-half">
-    <a href="/archive?category={{ cat }}">{{ cat }}</a><br>
+    {% if catShow %}
+        <a href="/archive?category={{ cat }}">{{ cat }}</a><br>
+    {% endif %}
+    
+    
     {% if entry.readMore %}
         <a href="{{ entry.url }}">{{ entry.postDate| date("d.m.Y") }}</a>
     {% else %}
-        {{ entry.postDate| date("d.m.Y") }}
+        {% if entry.internalLink|length %}
+            {% set url = entry.internalLink.one().url %}
+            <a href="{{ url }}">{{ entry.postDate| date("d.m.Y") }}</a>
+        {% else %}
+            {{ entry.postDate| date("d.m.Y") }}
+        {% endif %}
     {% endif %}
+    
+
 </div>
 
 {% if img %}
-    {% if entry.readMore %}<a href="{{ entry.url }}">{% endif %}
+    {% if entry.readMore %}
+        <a href="{{ entry.url }}">
+    {% else %}
+        {% if entry.internalLink|length %}
+            {% set url = entry.internalLink.one().url %}
+            <a href="{{ url }}">
+        {% endif %}
+    {% endif %}
         {% include 'components/image/image' with { asset: img } only %}
-    {% if entry.readMore %}</a>{% endif %}
+    {% if entry.readMore or entry.internalLink|length %}
+        </a>
+    {% endif %}
 {% endif %}
 
 {% if entry.showTitle %}
@@ -30,5 +52,10 @@
 {% if entry.readMore %}
 <div class="s-pad-top-half">
     <a href="{{ entry.url }}">&rarr;</a>
-</div>        
+</div>   
+{% else %}
+    {% if entry.internalLink|length %}
+        {% set url = entry.internalLink.one().url %}
+        <a href="{{ url }}">&rarr;</a>
+    {% endif %}
 {% endif %}

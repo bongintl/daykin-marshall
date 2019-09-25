@@ -9,11 +9,11 @@
 {% if categoryQuery %}
 
 
-    {% if categoryQuery == 'buildings' %}
+    {% if categoryQuery == 'catalogue' %}
     
         {% set entries = craft.entries
         .section('buildings')
-        .archivedBuilding(true) %}
+        .all() %}
                 
     {% else %}
     
@@ -28,16 +28,10 @@
 
 {% else %}
 
-    {% set posts = craft.entries
-        .section('posts')
+    {% set entries = craft.entries
+        .section('posts','buildings')
         .all() %}
         
-    {% set archivedBuildings = craft.entries
-        .section('buildings')
-        .archivedBuilding(true) %}
-
-    {% set entries = posts|merge(archivedBuildings) %}
-
 {% endif %}
 
 
@@ -46,12 +40,12 @@
     
 {% for post in entries %}
 
-    
             {% if post.section.handle == 'buildings' %}
+            
                 <div class="s-col-12 m-col-3 s-gap-top-1 s-gap-bottom-2 mono text-s">
         
                     {% set img = post.thumbnail.one() %}
-                    
+
                     <div class="s-gap-bottom-half">
                         <a href="">Building</a><br>
                         <a href="{{ post.url }}">{{ post.title }}</a>
@@ -63,7 +57,8 @@
                             <a class="buildings" href="{{ post.url }}">
                                 {% include 'components/glow-image/glow-image' with {
                                     asset: img,
-                                    title: false
+                                    title: false,
+                                    archived: post.archivedBuilding 
                                 } only %}
                             </a>
                         </dms-hover>
@@ -75,6 +70,7 @@
                     </div>
 
                 </div>
+                
             {% else %}
             
                 <div class="s-col-12  m-col-3 s-gap-top-1 s-gap-bottom-2 mono text-s">
@@ -84,12 +80,6 @@
                         img: post.images.one(),
                         limit: 120
                     } %}
-                        
-            
-                   
-                   
-                   
-                   
                 </div>
     
             {% endif %}

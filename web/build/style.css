@@ -158,6 +158,9 @@ body {
 .bg-grey {
   background: var(--background-color); }
 
+.greyscale {
+  filter: grayscale(100%); }
+
 :root {
   --gutter: calc( var( --line ) / 2 ); }
   @media (min-width: 768px) {
@@ -2918,6 +2921,12 @@ body {
       border-radius: var(--nav-size);
       background-color: var(--grey); }
 
+.collaborators--single div {
+  min-height: 45vw; }
+
+.collaborators--double div {
+  min-height: 25vw; }
+
 @media (min-width: 768px) {
   .collaborators--reverse {
     flex-direction: row-reverse; } }
@@ -3058,7 +3067,9 @@ dms-hover {
     border-radius: var(--nav-size);
     background-color: var(--background-color);
     cursor: pointer;
-    transition: background-color .3s; }
+    transition: all .3s; }
+    .splash-on .nav__dot {
+      visibility: hidden; }
     .nav-open .nav__dot {
       background-color: transparent; }
   .nav__group {
@@ -3165,14 +3176,17 @@ dms-panels {
   top: 0;
   left: 0;
   bottom: 0;
-  transition: filter .3s, transform .3s;
+  transition: filter .3s, opacity .75s;
   filter: blur(0);
+  opacity: 1;
+  visibility: visible;
   --width-small: 5rem;
   --width-large: calc( 100vw - var( --line ) * 1.5 ); }
   .nav-open dms-panels {
     filter: blur(80px); }
   .splash-on dms-panels {
-    transform: translateY(100vh); }
+    opacity: 0;
+    visibility: hidden; }
   @media (min-width: 768px) {
     dms-panels {
       --width-small: calc( 100vw / 7 );
@@ -3186,12 +3200,13 @@ dms-transition-element {
 
 .splash {
   height: 100vh;
-  transform: translateY(-100vh);
-  transition: filter .3s, transform .3s; }
+  opacity: 0;
+  visibility: hidden;
+  transition: filter .3s, opacity .3s; }
   .splash-on .splash {
-    transform: translate(0); }
-  .splash-on.nav-open .splash {
-    filter: blur(80px); }
+    transform: translate(0);
+    visibility: visible;
+    opacity: 1; }
   .splash__heading {
     width: 100%;
     text-align: center;
@@ -3218,7 +3233,7 @@ dms-transition-element {
     top: 50%;
     transform: translateY(-50%);
     z-index: 1;
-    filter: blur(80px);
+    filter: blur(40px);
     transition: filter 0.5s;
     background-color: var(--background-color);
     cursor: pointer;

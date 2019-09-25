@@ -24,20 +24,20 @@
     <div class="nav__group nav__group--bl">
         <ul>
             {% for link in nav.links.all %}
-                <li><a href="{{ link.linkUrl }}"{% if link.newTab %} target="_blank"{% endif %}><dms-engraved>{{ link.linkTitle }}</dms-engraved></a></li>
+                <li><a href="{{ link.linkUrl }}" {% if link.newTab %} target="_blank"{% endif %}><dms-engraved>{{ link.linkTitle }}</dms-engraved></a></li>
             {% endfor %}
         </ul>
     </div>
     
     <div class="nav__group nav__group--br">
         <ul>
-            <li><a href="tel:{{ nav.phoneNumber }}">
+            <li><a href="tel:{{ contact.phoneNumber }}">
                 <span class="s-show m-hide"><dms-engraved>Phone</dms-engraved></span>
-                <span class="s-hide m-show"><dms-engraved>{{ nav.phoneNumber }}</dms-engraved></span>
+                <span class="s-hide m-show"><dms-engraved>{{ contact.phoneNumber }}</dms-engraved></span>
             </a></li>
-            <li><a href="mailto:{{ nav.email }}">
+            <li><a href="mailto:{{ contact.email }}">
                 <span class="s-show m-hide"><dms-engraved>Email</dms-engraved></span>
-                <span class="s-hide m-show"><dms-engraved>{{ nav.email }}</dms-engraved></span>
+                <span class="s-hide m-show"><dms-engraved>{{ contact.email }}</dms-engraved></span>
             </a></li>
         </ul>
     </div>

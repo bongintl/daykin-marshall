@@ -6,15 +6,16 @@
         <div class="s-col-12 m-col-5 m-off-6 s-gap-top-4 m-gap-top-half">
                 {% for block in entry.introduction %}
                     {% if loop.first %}
-                        <p class=" text-l"><dms-engraved>{{ block.paragraph }}</dms-engraved></p>
+                        <p class="text-l"><dms-engraved>{{ block.paragraph }}</dms-engraved></p>
                     {% else %}
                         <p class="">{{ block.paragraph }}</p>
                     {% endif %}
                 {% endfor %}
+
         </div>
     </div>
 
-    <div class="grid s-gap-top-2 m-gap-top-8">
+    <div class="grid s-gap-top-2 m-gap-top-4">
         <div class="s-col-12 m-col-5 m-off-1 s-gap-top-half">
     
             {% for building in entry.selectedBuildings.all if building.thumbnail | length %}
@@ -43,7 +44,8 @@
                     entry: post,
                     cat: post.category.one(),
                     img: post.images.one(),
-                    limit: 200
+                    limit: 200,
+                    catShow: false
                 } %}
             </div>
             </div>

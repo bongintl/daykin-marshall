@@ -4,9 +4,9 @@
 {% for item in items %}
 
         {% if item.type == 'singleCollaborator' %}
-            <div class="grid grid--fill collaborators{% if item.imagePosition == '' %} collaborators--reverse{% endif %}">
+            <div class="grid grid--fill collaborators collaborators--single {% if item.imagePosition == '' %} collaborators--reverse{% endif %}">
     
-                <div class="s-col-12 l-col-6 bevel-up text-m">
+                <div class="s-col-12 l-col-6 bevel-up">
                     <div class="s-pad-1 s-pad-bottom-3">
                         <p class="nomargin">{{ item.collaboratorName }}</p>
                         <p class="nomargin">{{ item.projectRole }}</p>
@@ -23,15 +23,31 @@
                 </div>
                 <div class="s-col-12 l-col-6 bevel-up">
                     {% set image = item.image.one %}
-                    {% include 'components/image/image' with { asset : image } %}
+                    {% include 'components/image/image' with { asset : image, ratio: false } %}
                     <div class="fill bevel-up no-pointer"></div>
                 </div>
                 
             </div>
-        {% else %}
-            <div class="grid grid--fill collaborators">
+
+        {% elseif item.type == 'images' %}
+        
+            <div class="grid grid--fill collaborators collaborators--single">
     
-                <div class="s-col-12 l-col-3 bevel-up text-s">
+                <div class="s-col-12 l-col-6 bevel-up">
+                    {% include 'components/image/image' with { asset : item.leftImage.one, ratio: false } %}
+                    <div class="fill bevel-up no-pointer"></div>
+                </div>
+                <div class="s-col-12 l-col-6 bevel-up">
+                    {% include 'components/image/image' with { asset : item.rightImage.one, ratio: false } %}
+                    <div class="fill bevel-up no-pointer"></div>
+                </div>
+                
+            </div>
+
+        {% else %}
+            <div class="grid grid--fill collaborators collaborators--double">
+    
+                <div class="s-col-12 l-col-3 bevel-up">
                     <div class="s-pad-1 s-pad-bottom-3">
                         <p class="nomargin">{{ item.leftCollaboratorName }}</p>
                         <p class="nomargin">{{ item.leftProjectRole }}</p>
@@ -47,12 +63,12 @@
                 </div>
                 
                 <div class="s-col-12 l-col-3 bevel-up">
-                    {% include 'components/image/image' with { asset : item.leftImage.one } %}
+                    {% include 'components/image/image' with { asset : item.leftImage.one, ratio: false } %}
                     <div class="fill bevel-up no-pointer"></div>
                 </div>
 
                 
-                <div class="s-col-12 l-col-3 bevel-up text-s">
+                <div class="s-col-12 l-col-3 bevel-up">
                     <div class="s-pad-1 s-pad-bottom-3">
                         <p class="nomargin">{{ item.rightCollaboratorName }}</p>
                         <p class="nomargin">{{ item.rightProjectRole }}</p>
@@ -69,7 +85,7 @@
                 </div>
 
                 <div class="s-col-12 l-col-3 bevel-up">
-                    {% include 'components/image/image' with { asset : item.rightImage.one } %}
+                    {% include 'components/image/image' with { asset : item.rightImage.one, ratio: false } %}
                     <div class="fill bevel-up no-pointer"></div>
                 </div>
                     

@@ -11,3 +11,7 @@ body {
 .bg-grey {
     background: var( --background-color );
 }
+
+.greyscale {
+    filter: grayscale(100%);
+}

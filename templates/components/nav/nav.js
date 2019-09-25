@@ -7,7 +7,7 @@
 [ ...document.querySelectorAll( '.nav a' ) ].forEach( el => {
     el.addEventListener( 'click', e => {
         if (
-            el.target !== 'blank' &&
+            el.target !== '_blank' &&
             !el.href.startsWith('mailto:') &&
             !el.href.startsWith('tel:')
         ) {

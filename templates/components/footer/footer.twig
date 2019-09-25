@@ -17,14 +17,14 @@
     <div class="s-col-12 m-col-6 footer__right">
 
         <p class="s-pad-bottom-1">
-            {% for link in nav.links.all %}
+            {% for link in footerNav.links.all %}
                 <a href="{{ link.linkUrl }}"{% if link.newTab %} target="_blank"{% endif %}>{{ link.linkTitle }}</a><br>
             {% endfor %}
         </p>
         
         <p class="">
-            <a href="tel:{{ nav.phoneNumber }}">{{ nav.phoneNumber }}</a><br>
-            <a href="mailto:{{ nav.email }}">{{ nav.email }}</a>
+            <a href="tel:{{ contact.phoneNumber }}">{{ contact.phoneNumber }}</a><br>
+            <a href="mailto:{{ contact.email }}">{{ contact.email }}</a>
         </p>
     </div>
 

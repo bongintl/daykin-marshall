@@ -8,6 +8,7 @@
     {% if ratio == true %}{% set ratio = asset.height / asset.width %}{% endif %}
     {% set attrs = attrs ?? {} %}
     {% set title = title ?? '' %}
+    {% set archived = archived ?? false %}
 
     <div
         class="bevel-down {{ m.bem( 'glow-image', { glowing: alwaysGlow } ) }}"
@@ -44,12 +45,12 @@
         ], { allowUpscale: false } ) %}
         <img
             is="lazy-img"
-            class="glow-image__glow"
+            class="glow-image__glow{% if archived %} greyscale{% endif %}"
             data-srcset="{{ craft.imager.srcset( srcset ) }}"
         >
         <img
             is="lazy-img"
-            class="glow-image__image cover"
+            class="glow-image__image cover{% if archived %} greyscale{% endif %}"
             data-srcset="{{ m.srcset( asset ) }}"
             src="{{ asset.getUrl({ width: 2 }) }}"
             {% if transitionId %}

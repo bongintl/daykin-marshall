@@ -3,15 +3,19 @@ dms-panels {
     top: 0;
     left: 0;
     bottom: 0;
-    // transition: transform .3s;
-    transition: filter .3s, transform .3s;
+    transition: filter .3s, opacity .75s;
     filter: blur(0);
+    opacity: 1;
+    visibility: visible;
+    // transition: transform .3s;
     .nav-open & {
-        // transform: translateX( var( --nav-width ) );
         filter: blur(80px);
+        // transform: translateX( var( --nav-width ) );
     }
     .splash-on & {
-        transform: translateY(100vh );
+        opacity: 0;
+        visibility: hidden;
+        // transform: translateY(100vh );
     }
     --width-small: 5rem;
     --width-large: calc( 100vw - var( --line ) * 1.5 );

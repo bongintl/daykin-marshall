@@ -1,4 +1,10 @@
 .collaborators {
+    &--single div {
+        min-height: 45vw;
+    }
+    &--double div  {
+        min-height: 25vw;
+    }
     &--reverse {
         @include medium {
             flex-direction: row-reverse;   

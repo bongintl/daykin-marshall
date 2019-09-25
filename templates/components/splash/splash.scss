@@ -1,21 +1,22 @@
 .splash {
     height: 100vh;
-    transform: translateY(-100vh );
-    transition: filter .3s, transform .3s;
+    opacity: 0;
+    visibility: hidden;
+    transition: filter .3s, opacity .3s;
+    // transform: translateY(-100vh );
     // transition: transform .3s;
-
+    
     .splash-on & {
         transform: translate( 0 );
+        visibility: visible;
+        opacity: 1;
     }
     
+    // .splash-on.nav-open & {
+    //     // transform: translateX( var( --nav-width ) );
+    //     filter: blur(60px);
+    // }
     
-    .splash-on.nav-open & {
-        // transform: translateX( var( --nav-width ) );
-        filter: blur(80px);
-    }
-    
-    
-
     &__heading {
         width: 100%;
         text-align: center;
@@ -65,7 +66,7 @@
         top: 50%;
         transform: translateY(-50%);
         z-index: 1;
-        filter: blur(80px);
+        filter: blur(40px);
         transition: filter 0.5s;
         background-color:  var( --background-color );
         cursor: pointer;

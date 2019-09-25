@@ -1,14 +1,18 @@
+{% set categoryQuery = craft.app.request.getQueryParam('category') ?? false %}
+
+
 <div class="archive-nav x xdr xje xw text-s mono">
 
     {% set cats = craft.categories.group('category').find() %}
 
     <div class="archive-nav__item">
-        <a href="/archive?category=buildings">Buildings</a>
+        <a href="/archive?category=catalogue">Catalogue</a>{% if categoryQuery == 'catalogue' %} <a href="/archive" class="archive-nav__close">&times;</a>{% endif %}
     </div>
 
     {% for cat in cats %}
     <div class="archive-nav__item">
-        <a href="/archive?category={{ cat.slug }}" class="">{{ cat.title }}</a>
+        <a href="/archive?category={{ cat.slug }}" class="">{{ cat.title }}</a>{% if categoryQuery is same as(cat.slug) %} <a href="/archive" class="archive-nav__close">&times;</a>{% endif %}
+   
     </div>
     {% endfor %}
 
