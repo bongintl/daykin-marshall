@@ -16,7 +16,7 @@
     </div>
 
     <div class="grid s-gap-top-2 m-gap-top-4">
-        <div class="s-col-12 m-col-5 m-off-1 s-gap-top-half">
+        <div class="s-col-6 m-col-5 m-off-1 s-gap-top-half">
     
             {% for building in entry.selectedBuildings.all if building.thumbnail | length %}
 
@@ -34,7 +34,7 @@
             {% endfor %}
         
         </div>
-        <div class="s-col-12 m-col-5 mono text-s">
+        <div class="s-col-6 m-col-5 mono text-s">
     
         {% for post in entry.selectedPosts.all %}
         

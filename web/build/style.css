@@ -119,7 +119,7 @@ html {
       font-size: 2rem; } }
 
 .text-xl {
-  font-size: 2rem;
+  font-size: 1.5rem;
   line-height: 1.15;
   font-weight: bold; }
   @media (min-width: 768px) {
@@ -2921,11 +2921,25 @@ body {
       border-radius: var(--nav-size);
       background-color: var(--grey); }
 
-.collaborators--single div {
-  min-height: 45vw; }
+@media (max-width: 767px) {
+  .collaborators {
+    flex-direction: column-reverse; } }
 
-.collaborators--double div {
-  min-height: 25vw; }
+.collaborators--single .collaborators__image,
+.collaborators--single .collaborators__text {
+  min-height: 105vw; }
+  @media (min-width: 768px) {
+    .collaborators--single .collaborators__image,
+    .collaborators--single .collaborators__text {
+      min-height: 50vw; } }
+
+.collaborators--double .collaborators__image,
+.collaborators--double .collaborators__text {
+  min-height: 105vw; }
+  @media (min-width: 768px) {
+    .collaborators--double .collaborators__image,
+    .collaborators--double .collaborators__text {
+      min-height: 25vw; } }
 
 @media (min-width: 768px) {
   .collaborators--reverse {
@@ -2980,7 +2994,7 @@ dms-engraved {
     transform: scale(1.3); }
   .glow-image__title {
     position: absolute;
-    bottom: -2em;
+    top: calc(100% + .25em);
     width: 100%;
     opacity: 0;
     transition: opacity .5s; }
@@ -3080,12 +3094,18 @@ dms-hover {
     .nav__group--tl {
       top: calc( var( --gutter ) * 6);
       left: calc( calc( var( --gutter ) * 2 ) + ( var( --nav-size ) )); }
+      @media (max-width: 767px) {
+        .nav__group--tl li {
+          margin-top: 0.2em; } }
       @media (min-width: 768px) {
         .nav__group--tl {
           top: calc( var( --gutter ) * 0.75); } }
     .nav__group--bl {
       bottom: calc( var( --gutter ) * 9);
       left: calc( calc( var( --gutter ) * 2 ) + ( var( --nav-size ) )); }
+      @media (max-width: 767px) {
+        .nav__group--bl li {
+          margin-top: 0.2em; } }
       @media (min-width: 768px) {
         .nav__group--bl {
           bottom: var(--gutter); } }
@@ -3101,6 +3121,9 @@ dms-hover {
     .nav__group--br {
       left: calc( calc( var( --gutter ) * 2 ) + ( var( --nav-size ) ));
       bottom: var(--gutter); }
+      @media (max-width: 767px) {
+        .nav__group--br li {
+          margin-top: 0.2em; } }
       @media (min-width: 768px) {
         .nav__group--br {
           left: auto;

@@ -1,9 +1,26 @@
 .collaborators {
-    &--single div {
-        min-height: 45vw;
+    @include small {
+        flex-direction: column-reverse;   
     }
-    &--double div  {
-        min-height: 25vw;
+    &--single {
+        .collaborators__image,
+        .collaborators__text {
+            min-height: 105vw;
+    
+            @include medium {
+                min-height: 50vw;
+            }
+        }
+    }
+    &--double  {
+        .collaborators__image,
+        .collaborators__text {
+            min-height: 105vw;
+    
+            @include medium {
+            min-height: 25vw;
+            }
+        }
     }
     &--reverse {
         @include medium {

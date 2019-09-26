@@ -68,11 +68,18 @@
         ul {
             list-style: none;
             margin: 0;
+            
+            
         }
         
         &--tl {
             top: calc( var( --gutter ) * 6 );
             left: calc( calc( var( --gutter ) * 2 ) + ( var( --nav-size ) );
+            @include small {
+                li {
+                    margin-top: 0.2em;
+                }    
+            }
             @include medium {
                 top: calc( var( --gutter ) * 0.75 );
             }
@@ -81,6 +88,11 @@
         &--bl {
             bottom: calc( var( --gutter ) * 9 );
             left: calc( calc( var( --gutter ) * 2 ) + ( var( --nav-size ) );
+            @include small {
+                li {
+                    margin-top: 0.2em;
+                }    
+            }
             @include medium {
                 bottom: var( --gutter );
             }
@@ -89,7 +101,7 @@
         &--tr {
             top: var( --gutter );
             left: calc( calc( var( --gutter ) * 2 ) + ( var( --nav-size ) );
-
+        
             @include medium {
                 top: calc( var( --gutter ) * 0.75 );
                 left: auto;
@@ -101,6 +113,11 @@
         &--br {
             left: calc( calc( var( --gutter ) * 2 ) + ( var( --nav-size ) );
             bottom: var( --gutter );
+            @include small {
+                li {
+                    margin-top: 0.2em;
+                }    
+            }
             @include medium {
                 left: auto;
                 right: var( --gutter );
