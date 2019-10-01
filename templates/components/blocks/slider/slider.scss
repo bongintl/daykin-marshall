@@ -41,6 +41,23 @@
     cursor: pointer;
 }
 
+.swipe {
+  overflow: hidden;
+  visibility: hidden;
+  position: relative;
+}
+.swipe-wrap {
+  overflow: hidden;
+  position: absolute;
+  height: 100%;
+}
+.swipe-wrap > * {
+  float: left;
+  width: 100%;
+  position: relative;
+  
+}
+
 // [slide] {
 //     img {
 //         opacity: 0;

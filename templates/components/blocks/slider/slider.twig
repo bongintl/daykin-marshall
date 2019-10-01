@@ -13,21 +13,20 @@
 {% endswitch %}
 
 <dms-slider class="grid grid--fill s-pad-bottom-5">
-    <div class="s-col-1  m-off-{{ offset }} bg-grey x xjc" slider-prev>
+    <div class="s-col-1 m-off-{{ offset }} bg-grey x xjc" slider-prev>
         <div class="slider__button-track">
             <div class="slider__button xs0"></div>
         </div>
     </div>
-    <div class="oh s-col-10 m-col-{{ size.value }}">
-        <div slides slides-transition="{{ transition }}" style="padding-bottom: {{ ratio * 100 }}%">
+    <div class="swipe oh s-col-10 m-col-{{ size.value }}" style="padding-bottom: {{ ratio * 100 }}%">
+        <div class="swipe-wrap">
             {% for img in images %}
-                <div slide class="fill">
+                <div class="fill">
                     {% include 'components/image/image' with {
                         asset: img,
                         ratio: false,
                         attrs: { class: 'cover' }
                     } only %}
-                    <div class="fill bevel-up no-pointer"></div>
                 </div>
             {% endfor %}
         </div>
@@ -38,3 +37,30 @@
         </div>
     </div>
 </dms-slider>
+
+{#<dms-slider class="grid grid--fill s-pad-bottom-5">#}
+{#    <div class="s-col-1  m-off-{{ offset }} bg-grey x xjc" slider-prev>#}
+{#        <div class="slider__button-track">#}
+{#            <div class="slider__button xs0"></div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="oh s-col-10 m-col-{{ size.value }}">#}
+{#        <div slides slides-transition="{{ transition }}" style="padding-bottom: {{ ratio * 100 }}%">#}
+{#            {% for img in images %}#}
+{#                <div slide class="fill">#}
+{#                    {% include 'components/image/image' with {#}
+{#                        asset: img,#}
+{#                        ratio: false,#}
+{#                        attrs: { class: 'cover' }#}
+{#                    } only %}#}
+{#                    <div class="fill bevel-up no-pointer"></div>#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="s-col-1 bg-grey x xjc" slider-next>#}
+{#        <div class="slider__button-track">#}
+{#            <div class="slider__button xs0"></div>#}
+{#        </div>#}
+{#    </div>#}
+{#</dms-slider>#}

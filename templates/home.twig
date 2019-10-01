@@ -15,44 +15,132 @@
         </div>
     </div>
 
-    <div class="grid s-gap-top-2 m-gap-top-4">
-        <div class="s-col-6 m-col-5 m-off-1 s-gap-top-half">
     
-            {% for building in entry.selectedBuildings.all if building.thumbnail | length %}
+        {% set buildings = entry.selectedBuildings.all %}
+        {% set posts = entry.selectedPosts.all %}
+        {% set both = [] %}
 
-                <div class="s-gap-bottom-4 m-gap-bottom-4">
-                    <dms-hover url="{{ building.url }}">
-                        <a class="buildings" href="{{ building.url }}">
-                            {% include 'components/glow-image/glow-image' with {
-                                asset: building.thumbnail.one,
-                            } only %}
-                        </a>
-                    </dms-hover>
-                    <div class="s-pad-top-half">{{ building.title }}</div>
-                </div>
-                        
-            {% endfor %}
-        
-        </div>
-        <div class="s-col-6 m-col-5 mono text-s">
-    
-        {% for post in entry.selectedPosts.all %}
-        
-            <div class="grid grid--fill">
-            <div class="s-col-12 m-col-9 s-gap-bottom-2{% if loop.index is odd %} m-off-3{% endif %}">  
-                {% include 'components/archive-post/archive-post' with {
-                    entry: post,
-                    cat: post.category.one(),
-                    img: post.images.one(),
-                    limit: 200,
-                    catShow: false
-                } %}
-            </div>
-            </div>
+        {% if buildings|length > posts|length %}
+            {% set max = buildings|length %}
+        {% else %}
+            {% set max = posts|length %}
+        {% endif %}
+        {% set max = max - 1 %}
+
+        {% for i in 0..max %}
+            
+            {% if buildings[i] is defined  %}
+                {% set both = both|merge([buildings[i].id]) %}
+            {% endif %}
+            
+            {% if posts[i] is defined  %}
+                {% set both = both|merge([posts[i].id]) %}
+
+            {% endif %}
     
         {% endfor %}
+        
+
+            
+        
+
+
+
+        <div class="s-hide m-show">
+            <div class="grid s-gap-top-2 m-gap-top-4">
+                <div class="s-col-6 m-col-5 m-off-1 s-gap-top-half">
+            
+                    {% for building in buildings %}
+        
+                        <div class="s-gap-bottom-4 m-gap-bottom-4">
+                            <dms-hover url="{{ building.url }}">
+                                <a class="buildings" href="{{ building.url }}">
+                                    {% include 'components/glow-image/glow-image' with {
+                                        asset: building.thumbnail.one,
+                                    } only %}
+                                </a>
+                            </dms-hover>
+                            {% if not building.hideTitle %}
+                            <div class="s-pad-top-half">{{ building.title }}</div>
+                            {% endif %}
+                            <div class="s-pad-top-half mono text-s">
+                                {{ building.currentStory }}
+                            </div>
+                        </div>
+                                
+                    {% endfor %}
+                
+                </div>
+                <div class="s-col-6 m-col-5 mono text-s">
+            
+                    {% for post in posts %}
+                    
+                        <div class="grid grid--fill">
+                        <div class="s-col-12 m-col-9 s-gap-bottom-2{% if loop.index is odd %} m-off-3{% endif %}">  
+                            {% include 'components/archive-post/archive-post' with {
+                                entry: post,
+                                cat: post.category.one(),
+                                img: post.images.one(),
+                                limit: 200,
+                                catShow: false
+                            } %}
+                        </div>
+                        </div>
+                
+                    {% endfor %}
+                
+                </div>
+            </div>
         </div>
-    </div>
+    
+    
+        <div class="s-show m-hide">
+            <div class="grid s-gap-top-2 m-gap-top-4">
+
+                {% for entry in craft.entries.id(both).fixedOrder().all() %}
+                        
+                    <div class="s-col-12 s-gap-top-half">
+        
+
+                        {% if entry.section.handle == 'buildings' %}
+                            <div class="s-gap-bottom-4">
+                                <dms-hover url="{{ entry.url }}">
+                                    <a class="buildings" href="{{ entry.url }}">
+                                        {% include 'components/glow-image/glow-image' with {
+                                            asset: entry.thumbnail.one,
+                                        } only %}
+                                    </a>
+                                </dms-hover>
+                                {% if not entry.hideTitle %}
+                                <div class="s-pad-top-half">{{ entry.title }}</div>
+                                {% endif %}
+                                <div class="s-pad-top-half mono text-s">
+                                    {{ entry.currentStory }}
+                                </div>
+                            </div>
+                        {% else  %}
+                        
+                            <div class="s-gap-bottom-4 mono text-s">
+                                {% include 'components/archive-post/archive-post' with {
+                                    entry: entry,
+                                    cat: entry.category.one(),
+                                    img: entry.images.one(),
+                                    limit: 200,
+                                    catShow: false
+                                } %}
+                            </div>
+                        
+                        {% endif %}
+                    
+                    </div>
+                    
+                {% endfor %}
+            
+            </div>
+        </div>
+    
+    
+    
    
     </div>
     

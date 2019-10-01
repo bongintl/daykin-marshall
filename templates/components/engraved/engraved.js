@@ -15,11 +15,12 @@ class EngravedText extends HTMLElement {
         super();
         this.render();
         this.darkness = this.getAttribute('darkness') || 5;
+        this.text = this.innerText;
     }
     async render () {
         if ( !font ) font = await loadFont( fontURL );
         var scale = 1 / font.unitsPerEm;
-        var glyphs = font.stringToGlyphs( this.innerText );
+        var glyphs = font.stringToGlyphs( this.text );
         var words = glyphs.reduce( ( words, glyph ) => {
             words[ words.length - 1 ].push( glyph );
             if ( glyph.name === 'space' ) {

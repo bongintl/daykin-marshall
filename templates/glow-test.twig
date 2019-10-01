@@ -1,0 +1,24 @@
+{% set width = 100 %}
+{% set blur = 10 %}
+{% set tinyImg = craft.imager.transformImage( '/assets/000_Isometric_Final.jpg', { width: width } ) %}
+<img src="{{ tinyImg.url }}">
+{% set extendedImg = craft.imager.transformImage( '/static/nothing.png', {
+    width: tinyImg.getWidth + blur * 2,
+    height: tinyImg.getHeight + blur * 2,
+    watermark: {
+        image: tinyImg,
+        width: tinyImg.getWidth,
+        height: tinyImg.getHeight,
+        position: { top: blur, left: blur },
+        opacity: 1,
+        blendMode: 'blend'
+    }
+}) %}
+<img src="{{ extendedImg.url }}">
+{% set blurredImg = craft.imager.transformImage( extendedImg, {
+    effects: {
+        blur: blur / 2,
+        modulate: [ 100, 250, 100 ]
+    }
+}) %}
+<img src="{{ blurredImg.url }}">

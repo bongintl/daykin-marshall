@@ -88,7 +88,7 @@ class Panels extends HTMLElement {
         var { left, rightCollapsed, rightExpanded } = this.templates;
         var isSmall = breakpoints.atMost('s');
         var hasRight = Boolean( rightCollapsed && rightExpanded );
-        if ( focus === 'right' && !hasRight ) throw Error('Cant change to right side it dont exist')
+        if ( focus === 'right' && !hasRight ) focus = left//throw Error('Cant change to right side it dont exist')
         this.focus = focus;
         if ( !hasRight ) {
             return this.transition([{

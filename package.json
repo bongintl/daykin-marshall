@@ -33,6 +33,7 @@
     "opentype.js": "^1.1.0",
     "parcel-bundler": "^1.12.3",
     "resize-observer-polyfill": "^1.5.1",
+    "swipejs": "^2.2.14",
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
