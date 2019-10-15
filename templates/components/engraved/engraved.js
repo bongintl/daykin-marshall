@@ -13,9 +13,9 @@ var getLetterURL = ( code, darkness = 5 ) => `/static/bevel/${ darkness }/${ cod
 class EngravedText extends HTMLElement {
     constructor () {
         super();
-        this.render();
         this.darkness = this.getAttribute('darkness') || 5;
         this.text = this.innerText;
+        this.render();
     }
     async render () {
         if ( !font ) font = await loadFont( fontURL );
