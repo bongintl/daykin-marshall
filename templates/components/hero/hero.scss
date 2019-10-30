@@ -4,7 +4,7 @@ dms-hero {
         height: 60vh;    
         width: 100%;
         @include large {
-            height: 100vh;    
+            height: 70vh;    
         }
         img, video {
             width: 100%;
@@ -16,13 +16,15 @@ dms-hero {
         position: sticky;
         top: 60vh;
         height: 0;
+
         @include large {
-            top: 100vh;
+            top: 70vh;
         }
     }
     .hero__title {
         transform: translateY(-100%);
         padding: var(--gutter);
+
         @include medium {
             text-align: right;
         }

@@ -21,29 +21,72 @@
         </ul>
     </div>
     
-    <div class="nav__group nav__group--bl">
-        <ul>
-            {% for link in nav.links.all %}
-                <li><a href="{{ link.linkUrl }}" {% if link.newTab %} target="_blank"{% endif %}><dms-engraved>{{ link.linkTitle }}</dms-engraved></a></li>
-            {% endfor %}
-        </ul>
-    </div>
     
-    <div class="nav__group nav__group--br">
-        <ul>
-            <li><a href="tel:{{ contact.phoneNumber }}">
-                <span class="s-show m-hide"><dms-engraved>Phone</dms-engraved></span>
-                <span class="s-hide m-show"><dms-engraved>{{ contact.phoneNumber }}</dms-engraved></span>
-            </a></li>
-            <li><a href="mailto:{{ contact.email }}">
-                <span class="s-show m-hide"><dms-engraved>Email</dms-engraved></span>
-                <span class="s-hide m-show"><dms-engraved>{{ contact.email }}</dms-engraved></span>
-            </a></li>
-        </ul>
-    </div>
+    
+    {% if nav.showAddress %}
+        
+        <div class="nav__group nav__group nav__group--bl nav__group--bl--address">
+            <ul>
+                {% for link in nav.links.all %}
+                    <li><a href="{{ link.linkUrl }}" {% if link.newTab %} target="_blank"{% endif %}><dms-engraved>{{ link.linkTitle }}</dms-engraved></a></li>
+                {% endfor %}
+                <li><a href="tel:{{ contact.phoneNumber }}">
+                    <span class="s-show m-hide"><dms-engraved>Phone</dms-engraved></span>
+                    <span class="s-hide m-show"><dms-engraved>{{ contact.phoneNumber }}</dms-engraved></span>
+                </a></li>
+                <li><a href="mailto:{{ contact.email }}">
+                    <span class="s-show m-hide"><dms-engraved>Email</dms-engraved></span>
+                    <span class="s-hide m-show"><dms-engraved>{{ contact.email }}</dms-engraved></span>
+                </a></li>
+            </ul>
+        </div>
+        <div class="nav__group nav__group--br">
+            <ul>
+                <a href="https://goo.gl/maps/D4BKCWh18uuGifva8" target="_blank">
+                    <li><dms-engraved>F19 Parkhall</dms-engraved></li>
+                    <li><dms-engraved>40 Martell Road</dms-engraved></li>
+                    <li><dms-engraved>London  SE21 8EN</dms-engraved></li>
+    
+                </a>
+                
+            </ul>
+        </div>
+
+    
+    {% else %}
+    
+        <div class="nav__group nav__group--bl">
+            <ul>
+                {% for link in nav.links.all %}
+                    <li><a href="{{ link.linkUrl }}" {% if link.newTab %} target="_blank"{% endif %}><dms-engraved>{{ link.linkTitle }}</dms-engraved></a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        
+        <div class="nav__group nav__group--br">
+            <ul>
+                <li><a href="tel:{{ contact.phoneNumber }}">
+                    <span class="s-show m-hide"><dms-engraved>Phone</dms-engraved></span>
+                    <span class="s-hide m-show"><dms-engraved>{{ contact.phoneNumber }}</dms-engraved></span>
+                </a></li>
+                <li><a href="mailto:{{ contact.email }}">
+                    <span class="s-show m-hide"><dms-engraved>Email</dms-engraved></span>
+                    <span class="s-hide m-show"><dms-engraved>{{ contact.email }}</dms-engraved></span>
+                </a></li>
+            </ul>
+        </div>
+
+    
+    {% endif %}
+    
+    
+    
+
 
     
     
+
     
  
     

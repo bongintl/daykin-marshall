@@ -2,18 +2,18 @@
 {% block content %}
 
     <div class="bevel-up s-pad-top-half">
-    <div class="grid">
-        <div class="s-col-12 m-col-5 m-off-6 s-gap-top-4 m-gap-top-half">
-                {% for block in entry.introduction %}
-                    {% if loop.first %}
-                        <p class="text-l"><dms-engraved>{{ block.paragraph }}</dms-engraved></p>
-                    {% else %}
-                        <p class="">{{ block.paragraph }}</p>
-                    {% endif %}
-                {% endfor %}
+    {#<div class="grid">#}
+    {#    <div class="s-col-12 m-col-5 m-off-6 s-gap-top-4 m-gap-top-half">#}
+    {#            {% for block in entry.introduction %}#}
+    {#                {% if loop.first %}#}
+    {#                    <p class="text-l"><dms-engraved>{{ block.paragraph }}</dms-engraved></p>#}
+    {#                {% else %}#}
+    {#                    <p class="">{{ block.paragraph }}</p>#}
+    {#                {% endif %}#}
+    {#            {% endfor %}#}
 
-        </div>
-    </div>
+    {#    </div>#}
+    {#</div>#}
 
     
         {% set buildings = entry.selectedBuildings.all %}
@@ -72,7 +72,21 @@
                 
                 </div>
                 <div class="s-col-6 m-col-5 mono text-s">
-            
+                    
+                    <div class="grid grid--fill s-hide m-show">
+                    <div class="s-col-12 m-col-12 s-gap-bottom-2">  
+
+                        {% for block in entry.introduction %}
+                            {% if loop.first %}
+                                <p class="text-l"><dms-engraved>{{ block.paragraph }}</dms-engraved></p>
+                            {% else %}
+                                <p class="">{{ block.paragraph }}</p>
+                            {% endif %}
+                        {% endfor %}
+                        
+                    </div>
+                    </div>
+                
                     {% for post in posts %}
                     
                         <div class="grid grid--fill">
@@ -96,7 +110,17 @@
     
         <div class="s-show m-hide">
             <div class="grid s-gap-top-2 m-gap-top-4">
-
+                    
+                <div class="s-col-12 s-gap-top-half">
+                    {% for block in entry.introduction %}
+                        {% if loop.first %}
+                            <p class="text-l"><dms-engraved>{{ block.paragraph }}</dms-engraved></p>
+                        {% else %}
+                            <p class="">{{ block.paragraph }}</p>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                
                 {% for entry in craft.entries.id(both).fixedOrder().all() %}
                         
                     <div class="s-col-12 s-gap-top-half">

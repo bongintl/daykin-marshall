@@ -4,12 +4,19 @@
 
 <dms-hero class="s-gap-bottom-1 m-gap-bottom-2">
     <div class="s-col-12">
-        <div class="hero__image s-gap-bottom-1 m-gap-bottom-2">
-            {% if video %}
-                {% include 'components/video/video' with { video: video, fit: 'cover'} only %}
-            {% elseif image %}
+        <div class="s-hide m-show">
+            <div class="hero__image s-gap-bottom-1 m-gap-bottom-2">
+                {% if video %}
+                    {% include 'components/video/video' with { video: video, fit: 'cover'} only %}
+                {% elseif image %}
+                    {% include 'components/image/image' with { asset: image, ratio: false } only %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="s-show m-hide">
+            <div class="hero__image s-gap-bottom-1 m-gap-bottom-2">
                 {% include 'components/image/image' with { asset: image, ratio: false } only %}
-            {% endif %}
+            </div>
         </div>
         <div hero-spacer></div>
         <div class="fill">

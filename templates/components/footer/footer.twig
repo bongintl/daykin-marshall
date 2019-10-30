@@ -1,3 +1,51 @@
+{% if footerNav.showAddress %}
+
+
+<div class="footer grid s-pad-top-1 s-pad-bottom-1 mono nomargin bevel-up text-s">
+    <div class="s-col-12 m-col-6">
+        <p class="s-pad-bottom-1">
+            <a href="/">Daykin Marshall Studio</a><br>
+        </p>
+        <p class="s-pad-bottom-1">
+            {% for text, url in {
+                "People": "/people",
+                "Making": "/making",
+                "Buildings": "/buildings",
+            } %}
+                <a href="{{ url }}">{{ text }}</a><br>
+            {% endfor %}
+        </p>
+        
+        <p class="">
+            {% for link in footerNav.links.all %}
+                <a href="{{ link.linkUrl }}"{% if link.newTab %} target="_blank"{% endif %}>{{ link.linkTitle }}</a><br>
+            {% endfor %}
+        </p>
+    </div>
+    <div class="s-col-12 m-col-6 footer__right">
+
+   
+        
+        <p class="s-pad-bottom-1 m-pad-bottom-4">
+            <a href="tel:{{ contact.phoneNumber }}">{{ contact.phoneNumber }}</a><br>
+            <a href="mailto:{{ contact.email }}">{{ contact.email }}</a>
+        </p>
+        
+        <p class="">
+            <a href="https://goo.gl/maps/D4BKCWh18uuGifva8" target="_blank">
+                F19 Parkhall<br>
+                40 Martell Road<br>
+                London  SE21 8EN
+            </a>
+        </p>
+    </div>
+
+</div>
+
+  
+{% else %}
+
+
 <div class="footer grid s-pad-top-1 s-pad-bottom-1 mono nomargin bevel-up text-s">
     <div class="s-col-12 m-col-6">
         <p class="s-pad-bottom-2">
@@ -30,4 +78,5 @@
 
 </div>
 
-   
+
+{% endif %}

@@ -9,7 +9,7 @@ dms-divider {
     z-index: 200;
     transition: transform .4s;
     // background: linear-gradient( to right, transparent 0%, rgba( 0, 0, 0, .2 ) 50%, transparent 100% );
-    background: linear-gradient( to left, transparent 0%, rgba( 0, 0, 0, .2 ) 50%, rgba( 255, 255, 255, 1 ) 51%, transparent 100% );
+    background: linear-gradient( to left, rgba( 0, 0, 0, 0 ) 0%, rgba( 0, 0, 0, .2 ) 50%, rgba( 255, 255, 255, 1 ) 51%, rgba( 255, 255, 255, 0 ) 100% );
     &[offset=half] {
         transform: translateX( 50vw );
     }

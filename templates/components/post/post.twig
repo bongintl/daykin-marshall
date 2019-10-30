@@ -2,8 +2,16 @@
 {#{% import 'macros/dms' as dms %}#}
 
 {% set images = post.image.all %}
-{% set maxWidth = max( images | map( asset => min( asset.width / asset.height, 1 ) ) ) %}
-<div class="s-gap-bottom-2 mono" style="width: {{ maxWidth * 100 }}%">
+
+{% if images | length %}
+    {% set maxWidth = max( images | map( asset => min( asset.width / asset.height, 1 ) ) ) %}
+    <div class="s-gap-bottom-2 mono" style="width: {{ maxWidth * 100 }}%">
+{% else %}
+    <div class="s-gap-bottom-2 mono">
+{% endif %}
+    
+{% if images | length %}
+
     {% for asset in images %}
         {% set transitionId = "post_#{ post.id }_#{ asset.id }" %}
         {% set width = min( asset.width / asset.height, 1 ) / maxWidth %}
@@ -14,6 +22,8 @@
             } only %}
         </div>
     {% endfor %}
+{% endif %}
+
     {#<div class="s-gap-bottom-half x xw">#}
     {#    {% for tag in post.tags.options#}
     {#        | filter( tag => tag.selected )#}

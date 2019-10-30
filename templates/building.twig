@@ -8,7 +8,7 @@
     {% include 'components/hero/hero' with {
         title: entry.title,
         video: entry.headerVideo | length ? entry.headerVideo.one : null,
-        image: entry.thumbnail | length ? entry.thumbnail.one : null
+        image: entry.headerImage | length ? entry.headerImage.one : null
     } only %}
     {#<div class="grid bevel-up">#}
     {#    <div class="s-col-12">#}

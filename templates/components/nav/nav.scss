@@ -96,6 +96,11 @@
             @include medium {
                 bottom: var( --gutter );
             }
+            @include small {
+                &--address {
+                    bottom: calc( var( --gutter ) * 13 );
+                }
+            }
         }
         
         &--tr {

@@ -7,12 +7,17 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        {#{% if entry is defined %}#}
-        {#    {% set seo = entry.seo %}#}
-        {#    {% hook "seo" %}#}
-        {#{% else %}#}
+        
+        
+        {% if entry is defined %}
+            {% set seo = entry.seo %}
+            {% hook "seo" %}
+        {% else %}
+            
             <title>{{ siteName }}</title>
-        {#{% endif %}#}
+        
+        {% endif %}
+        
     	{#{% if globals.favicon16 | length %}<link rel="icon" href="{{ globals.favicon16.first.url }}" sizes="16x16">{% endif %}#}
         {#{% if globals.favicon32 | length %}<link rel="icon" href="{{ globals.favicon32.first.url }}" sizes="32x32">{% endif %}#}
         <link rel="stylesheet" href="{{ siteUrl }}build/style.css" type="text/css" />

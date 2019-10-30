@@ -3037,7 +3037,7 @@ dms-hero {
     width: 100%; }
     @media (min-width: 1024px) {
       dms-hero .hero__image {
-        height: 100vh; } }
+        height: 70vh; } }
     dms-hero .hero__image img, dms-hero .hero__image video {
       width: 100%;
       height: 100%;
@@ -3048,7 +3048,7 @@ dms-hero {
     height: 0; }
     @media (min-width: 1024px) {
       dms-hero .hero__title-sticky {
-        top: 100vh; } }
+        top: 70vh; } }
   dms-hero .hero__title {
     transform: translateY(-100%);
     padding: var(--gutter); }
@@ -3124,6 +3124,9 @@ dms-hover {
       @media (min-width: 768px) {
         .nav__group--bl {
           bottom: var(--gutter); } }
+      @media (max-width: 767px) {
+        .nav__group--bl--address {
+          bottom: calc( var( --gutter ) * 13); } }
     .nav__group--tr {
       top: var(--gutter);
       left: calc( calc( var( --gutter ) * 2 ) + ( var( --nav-size ) )); }
@@ -3155,7 +3158,7 @@ dms-divider {
   background: green;
   z-index: 200;
   transition: transform .4s;
-  background: linear-gradient(to left, transparent 0%, rgba(0, 0, 0, 0.2) 50%, white 51%, transparent 100%); }
+  background: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 50%, white 51%, rgba(255, 255, 255, 0) 100%); }
   dms-divider[offset=half] {
     transform: translateX(50vw); }
   dms-divider[offset=small] {
@@ -3235,6 +3238,9 @@ dms-transition-element {
   display: block;
   transition: transform .4s;
   transform-origin: 0 0; }
+
+.posts-expanded ul, .posts-expanded ol {
+  margin-left: 1em; }
 
 .splash {
   height: 100vh;
