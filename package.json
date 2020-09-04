@@ -26,7 +26,7 @@
     "intersection-observer": "^0.7.0",
     "jquery": "^3.4.1",
     "navigo": "^7.1.2",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "node-sass-glob": "^1.0.4",
     "onchange": "^6.0.0",
     "opentype-layout": "^1.1.0",
